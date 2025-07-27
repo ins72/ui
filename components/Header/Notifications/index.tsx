@@ -1,3 +1,6 @@
+"use client";
+
+import { dataService } from "@/lib/data-service";
 import { useState } from "react";
 import Link from "next/link";
 import Button from "@/components/Button";
@@ -5,9 +8,33 @@ import Icon from "@/components/Icon";
 import Modal from "@/components/Modal";
 import Image from "@/components/Image";
 
-import { newNotifications } from "@/mocks/notifications";
+
 
 const Notifications = ({}) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await dataService.getNotifications();
+        if (response.data) {
+          setData(response.data);
+        }
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
     const [isOpen, setIsOpen] = useState(false);
 
     return (

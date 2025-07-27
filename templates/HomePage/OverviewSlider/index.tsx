@@ -1,3 +1,6 @@
+"use client";
+
+import { dataService } from "@/lib/data-service";
 import { useState } from "react";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -7,12 +10,36 @@ import Card from "@/components/Card";
 import Image from "@/components/Image";
 import Button from "@/components/Button";
 
-import { sliderData } from "@/mocks/dashboard";
+
 
 import "swiper/css";
 import "swiper/css/navigation";
 
 const OverviewSlider = ({}) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await dataService.getProducts({ limit: 10 });
+        if (response.data) {
+          setData(response.data);
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Unknown error");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
     const [isFirstSlide, setIsFirstSlide] = useState(true);
     const [isLastSlide, setIsLastSlide] = useState(false);
 

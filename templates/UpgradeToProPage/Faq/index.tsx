@@ -1,15 +1,43 @@
-import { useState } from "react";
+"use client";
+
+import { useState, useEffect } from "react";
+import { dataService } from "@/lib/data-service";
 import Tabs from "@/components/Tabs";
 import Item from "./Item";
 import { TabsOption } from "@/types/tabs";
 
-import { faqs } from "@/mocks/faqs";
 
-const Faq = () => {
-    const [activeTab, setActiveTab] = useState(faqs[0]);
-    const [activeItemId, setActiveItemId] = useState<number | null>(null);
+
+const Faq = ({}) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await dataService.getFaqs();
+        if (response.faqs) {
+          setData(response.faqs);
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Unknown error');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+  
+  const [activeTab, setActiveTab] = useState(data[0] || { id: 1, name: 'General', items: [] });
+  const [activeItemId, setActiveItemId] = useState<number | null>(null);
     const handleTabChange = (tab: TabsOption) => {
-        setActiveTab(faqs[tab.id - 1]);
+        setActiveTab(data[tab.id - 1] || data[0]);
         setActiveItemId(null);
     };
 
@@ -17,7 +45,7 @@ const Faq = () => {
         setActiveItemId(activeItemId === itemId ? null : itemId);
     };
 
-    const currentItems = faqs[activeTab.id - 1]?.items || [];
+    const currentItems = data[activeTab.id - 1]?.items || data[0]?.items || [];
 
     return (
         <div className="">
@@ -27,7 +55,7 @@ const Faq = () => {
             <Tabs
                 className="justify-center mb-4 max-md:justify-stretch max-md:-mx-6 max-md:overflow-x-auto max-md:scrollbar-none max-md:before:shrink-0 max-md:before:w-5 max-md:after:shrink-0 max-md:after:w-5"
                 classButton="max-md:shrink-0"
-                items={faqs}
+                items={data}
                 value={activeTab}
                 setValue={handleTabChange}
             />

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-scroll";
+// import { Link } from "react-scroll"; // Temporarily disabled
 import Search from "@/components/Search";
 import Image from "@/components/Image";
 import Icon from "@/components/Icon";

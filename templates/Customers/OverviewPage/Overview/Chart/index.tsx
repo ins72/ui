@@ -1,3 +1,8 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { dataService } from "@/lib/data-service";
+
 import {
     ResponsiveContainer,
     LineChart,
@@ -10,9 +15,33 @@ import {
 import millify from "millify";
 import { NumericFormat } from "react-number-format";
 
-import { customersOverviewChartData } from "@/mocks/charts";
+
 
 const Chart = ({}) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await dataService.getProducts({ limit: 10 });
+        if (response.products) {
+          setData(response.products);
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Unknown error");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
     const formatterYAxis = (value: number) => {
         if (value === 0) {
             return "0";

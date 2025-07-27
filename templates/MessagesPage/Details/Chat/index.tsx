@@ -1,6 +1,11 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { dataService } from "@/lib/data-service";
+
 import Image from "@/components/Image";
 
-import { chat } from "@/mocks/messages";
+
 
 const Chat = ({}) => (
     <div className="flex flex-col gap-6 grow py-6 overflow-auto max-md:gap-0 max-md:h-[calc(100svh-15.5rem)] max-md:py-0">

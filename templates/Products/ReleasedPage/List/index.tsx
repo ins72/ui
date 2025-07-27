@@ -55,7 +55,7 @@ const List = ({
                             Edit
                         </button>
                         <DeleteItems onDelete={() => {}} />
-                        <UnpublishItems onClick={() => {}} image={item.image} />
+                        <UnpublishItems onClick={async () => {}} image={item.image} />
                     </TableProductCell>
                     <td className="max-md:hidden">
                         <div

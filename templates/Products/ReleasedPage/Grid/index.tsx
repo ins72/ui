@@ -29,7 +29,7 @@ const Grid = ({ selectedRows, onRowSelect, items }: GridProps) => {
                             </button>
                             <DeleteItems onDelete={() => {}} />
                             <UnpublishItems
-                                onClick={() => {}}
+                                onClick={async () => {}}
                                 image={item.image}
                             />
                         </>

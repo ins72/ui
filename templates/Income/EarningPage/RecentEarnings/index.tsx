@@ -1,3 +1,6 @@
+"use client";
+
+import { dataService } from "@/lib/data-service";
 import { useState } from "react";
 import {
     ComposedChart,
@@ -14,7 +17,7 @@ import Card from "@/components/Card";
 import Button from "@/components/Button";
 import Percentage from "@/components/Percentage";
 
-import { recentEarningsChartData } from "@/mocks/charts";
+
 
 const durations = [
     { id: 1, name: "Last 7 days" },
@@ -23,6 +26,30 @@ const durations = [
 ];
 
 const RecentEarnings = ({}) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await dataService.getProducts({ limit: 10 });
+        if (response.data) {
+          setData(response.data);
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Unknown error");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
     const [duration, setDuration] = useState(durations[0]);
 
     const CustomTooltip = ({
