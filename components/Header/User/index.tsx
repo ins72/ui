@@ -43,7 +43,7 @@ const User = ({}) => {
                         <MenuItem key={index}>
                             <Link
                                 className={`group/item relative flex items-center h-12 px-3 text-button text-t-secondary transition-colors data-[focus]:text-t-primary before:absolute before:inset-0 before:rounded-[16px] before:bg-linear-to-b before:from-shade-09 before:to-[#ebebeb] before:opacity-0 before:transition-opacity after:absolute after:inset-0.25 after:bg-b-pop after:rounded-[15px] after:opacity-0 after:transition-opacity ${
-                                    link.title === "Upgrade to Pro"
+                                    link.title === "Pricing"
                                         ? "!text-primary-01"
                                         : ""
                                 } ${
@@ -55,9 +55,9 @@ const User = ({}) => {
                             >
                                 <Icon
                                     className={`relative z-2 mr-4 fill-t-secondary transition-colors group-[[data-focus]]/item:fill-t-primary ${
-                                        link.title === "Upgrade to Pro"
-                                            ? "!fill-primary-01"
-                                            : ""
+                                                                            link.title === "Pricing"
+                                        ? "!fill-primary-01"
+                                        : ""
                                     } ${
                                         isActive(link.href)
                                             ? "!fill-t-primary"

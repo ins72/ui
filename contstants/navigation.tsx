@@ -1,94 +1,118 @@
 export const navigation = [
     {
         title: "Dashboard",
-        icon: "dashboard",
+        icon: "home",
         href: "/",
     },
     {
+        title: "Website Builder",
+        icon: "globe",
+        href: "/website-builder",
+        children: [
+            { title: "Builder", href: "/website-builder" },
+            { title: "Templates", href: "/website-templates" },
+            { title: "Settings", href: "/website-settings" },
+            { title: "Analytics", href: "/website-analytics" },
+        ]
+    },
+    {
         title: "Products",
-        icon: "product-think",
-        list: [
-            {
-                title: "Overview",
-                href: "/products",
-            },
-            {
-                title: "Drafts",
-                href: "/products/drafts",
-                counter: 2,
-            },
-            {
-                title: "Released",
-                href: "/products/released",
-            },
-            {
-                title: "Comments",
-                href: "/products/comments",
-            },
-            {
-                title: "Scheduled",
-                href: "/products/scheduled",
-                counter: 8,
-            },
-        ],
+        icon: "shopping-bag",
+        href: "/products",
+        children: [
+            { title: "All Products", href: "/products/manage" },
+            { title: "Add Product", href: "/products/create" },
+            { title: "Categories", href: "/products/categories" },
+            { title: "Inventory", href: "/products/inventory" },
+        ]
     },
     {
         title: "Customers",
-        icon: "profile",
-        list: [
-            {
-                title: "Overview",
-                href: "/customers",
-            },
-            {
-                title: "Customer list",
-                href: "/customers/customer-list",
-            },
-        ],
+        icon: "users",
+        href: "/customers",
+        children: [
+            { title: "All Customers", href: "/customers/manage" },
+            { title: "Add Customer", href: "/customers/create" },
+            { title: "Analytics", href: "/customers/analytics" },
+            { title: "Segments", href: "/customers/segments" },
+        ]
     },
     {
-        title: "Shop",
-        icon: "wallet",
-        href: "/shop",
+        title: "Orders",
+        icon: "shopping-cart",
+        href: "/orders",
+        children: [
+            { title: "All Orders", href: "/orders/manage" },
+            { title: "Create Order", href: "/orders/create" },
+            { title: "Fulfillment", href: "/orders/fulfillment" },
+            { title: "Analytics", href: "/orders/analytics" },
+        ]
+    },
+    {
+        title: "Leads",
+        icon: "target",
+        href: "/leads",
+        children: [
+            { title: "All Leads", href: "/leads/manage" },
+            { title: "Add Lead", href: "/leads/create" },
+            { title: "Pipeline", href: "/leads/pipeline" },
+            { title: "Analytics", href: "/leads/analytics" },
+        ]
+    },
+    {
+        title: "Marketing",
+        icon: "megaphone",
+        href: "/marketing",
+        children: [
+            { title: "Campaigns", href: "/marketing/campaigns" },
+            { title: "Automation", href: "/marketing/automation" },
+            { title: "Email Marketing", href: "/marketing/email" },
+            { title: "Analytics", href: "/marketing/analytics" },
+        ]
     },
     {
         title: "Income",
-        icon: "income",
-        list: [
-            {
-                title: "Earning",
-                href: "/income/earning",
-            },
-            {
-                title: "Refunds",
-                href: "/income/refunds",
-                counter: 3,
-            },
-            {
-                title: "Payouts",
-                href: "/income/payouts",
-            },
-            {
-                title: "Statements",
-                href: "/income/statements",
-            },
-        ],
+        icon: "dollar-sign",
+        href: "/income",
+        children: [
+            { title: "Dashboard", href: "/income/dashboard" },
+            { title: "Reports", href: "/income/reports" },
+            { title: "Payouts", href: "/income/payouts" },
+            { title: "Analytics", href: "/income/analytics" },
+        ]
     },
     {
-        title: "Promote",
-        icon: "promote",
-        href: "/promote",
+        title: "Admin",
+        icon: "shield",
+        href: "/admin",
+        children: [
+            { title: "Dashboard", href: "/admin" },
+            { title: "Users", href: "/admin/users" },
+            { title: "Settings", href: "/admin/settings" },
+            { title: "Security", href: "/admin/security" },
+        ]
+    },
+    {
+        title: "Settings",
+        icon: "settings",
+        href: "/settings",
+        children: [
+            { title: "Profile", href: "/users/profile" },
+            { title: "Account", href: "/users/settings" },
+            { title: "Billing", href: "/users/billing" },
+            { title: "Security", href: "/users/security" },
+        ]
     },
 ];
 
 export const navigationUser = [
     {
-        title: "My shop",
+        title: "My Store",
         icon: "bag",
         href: "/shop",
     },
     {
-        title: "Edit profile",
+        title: "Account Settings",
         icon: "edit-profile",
         href: "/settings",
     },
@@ -98,17 +122,17 @@ export const navigationUser = [
         href: "/customers",
     },
     {
-        title: "Affiliate center",
+        title: "Affiliate Program",
         icon: "chain-think",
         href: "/affiliate-center",
     },
     {
-        title: "Explore creators",
+        title: "Discover Creators",
         icon: "grid",
         href: "/explore-creators",
     },
     {
-        title: "Upgrade to Pro",
+        title: "Pricing",
         icon: "star-fill",
         href: "/upgrade-to-pro",
     },

@@ -4,29 +4,29 @@ import Button from "@/components/Button";
 const socials = [
     {
         icon: "twitter",
-        href: "https://x.com/ui8",
+        href: "https://x.com/mewayz",
     },
     {
         icon: "facebook",
-        href: "https://www.facebook.com/ui8.net/",
+        href: "https://www.facebook.com/mewayz/",
     },
     {
         icon: "instagram",
-        href: "https://www.instagram.com/ui8net/",
+        href: "https://www.instagram.com/mewayz/",
     },
     {
         icon: "threads",
-        href: "https://www.threads.net/@ui8net",
+        href: "https://www.threads.net/@mewayz",
     },
 ];
 
 const GetMoreCustomers = ({}) => {
     return (
-        <Card title="Get more customers">
+        <Card title="Expand Your Business Reach">
             <div className="mb-6 px-5 text-body-2 text-t-secondary max-lg:px-3">
-                Fifty percent of new customers explore products because the
-                author shares their work on social media. <br></br>Start earning
-                now! 🔥
+                Leverage social media marketing to drive customer acquisition and increase revenue. 
+                Businesses that actively engage on social platforms see 78% higher customer engagement rates. 
+                Start building your digital presence today! 🚀
             </div>
             <div className="flex gap-3">
                 {socials.map((social, index) => (

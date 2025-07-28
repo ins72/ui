@@ -6,7 +6,7 @@ import Faq from "./Faq";
 
 const SettingsPage = () => {
     return (
-        <Layout title="Upgrade to Pro">
+        <Layout title="Pricing">
             <div className="card px-12 py-22 max-lg:p-8 max-lg:px-6">
                 <div className="max-w-215 mx-auto">
                     <Pricing />

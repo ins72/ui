@@ -1,35 +1,35 @@
 export const popularProducts = [
     {
         id: 1,
-        title: "Crypter - NFT UI Kit",
+        title: "Enterprise CRM Suite",
         image: "/images/products/1.png",
         price: 3250,
         active: true,
     },
     {
         id: 2,
-        title: "Bento Pro 2.0 Illustrations",
+        title: "Business Analytics Pro",
         image: "/images/products/2.png",
         price: 7890,
         active: true,
     },
     {
         id: 3,
-        title: "Fleet - travel shopping kit",
+        title: "E-commerce Management System",
         image: "/images/products/3.png",
         price: 1500,
         active: false,
     },
     {
         id: 4,
-        title: "SimpleSocial UI Design Kit",
+        title: "Advanced Reporting Suite",
         image: "/images/products/4.png",
         price: 9999,
         active: true,
     },
     {
         id: 5,
-        title: "SimpleSocial UI Design Kit",
+        title: "API Integration Platform",
         image: "/images/products/5.png",
         price: 4750,
         active: true,
@@ -56,7 +56,7 @@ export const bestMatch = [
 export const overview = [
     {
         id: 1,
-        title: "Earning",
+        title: "Revenue",
         icon: "wallet",
         tooltip: "Maximum 100 characters. No HTML or emoji allowed",
         counter: "128k",
@@ -94,7 +94,7 @@ export const overview = [
     },
     {
         id: 2,
-        title: "Customer",
+        title: "Customers",
         icon: "profile",
         tooltip: "Maximum 100 characters. No HTML or emoji allowed",
         counter: "512",
@@ -132,7 +132,7 @@ export const overview = [
     },
     {
         id: 3,
-        title: "Sales",
+        title: "Transactions",
         icon: "product-think",
         tooltip: "Maximum 100 characters. No HTML or emoji allowed",
         counter: "6812",
@@ -170,7 +170,7 @@ export const overview = [
     },
     {
         id: 4,
-        title: "Payout",
+        title: "Payouts",
         icon: "arrow",
         tooltip: "Maximum 100 characters. No HTML or emoji allowed",
         counter: "256k",

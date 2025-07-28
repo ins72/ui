@@ -1,9 +1,14 @@
 "use client";
 
 import { ThemeProvider } from "next-themes";
+import { AuthProvider } from "@/contexts/AuthContext";
 
-const Providers = ({ children }: { children: React.ReactNode }) => {
-    return <ThemeProvider disableTransitionOnChange>{children}</ThemeProvider>;
-};
-
-export default Providers;
+export function Providers({ children }: { children: React.ReactNode }) {
+    return (
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <AuthProvider>
+                {children}
+            </AuthProvider>
+        </ThemeProvider>
+    );
+}
