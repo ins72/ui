@@ -1,11 +1,38 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { dataService } from "@/lib/data-service";
 import Card from "@/components/Card";
 
-import { timeSlots } from "@/mocks/activeTimes";
+
 
 const days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
 
-const ActiveTimes = () => {
+const ActiveTimes = ({}) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await dataService.getActiveTimes();
+        if (response.activeTimes) {
+          setData(response.activeTimes);
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Unknown error');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
     const getEngagementClass = (level: number) => {
         switch (level) {
             case 0:

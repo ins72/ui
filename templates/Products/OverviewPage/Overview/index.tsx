@@ -1,10 +1,13 @@
+"use client";
+
+import { dataService } from "@/lib/data-service";
 import { useState } from "react";
 import Card from "@/components/Card";
 import Tabs from "@/components/Tabs";
 import Select from "@/components/Select";
 import Item from "./Item";
 
-import { overview } from "@/mocks/products";
+
 
 const timeOptionsShort = [
     { id: 1, name: "1D" },
@@ -23,6 +26,30 @@ const timeOptionsLong = [
 ];
 
 const Overview = ({}) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await dataService.getProducts({ limit: 10 });
+        if (response.data) {
+          setData(response.data);
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Unknown error");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
     const [timeShort, setTimeShort] = useState(timeOptionsShort[4]);
     const [timeLong, setTimeLong] = useState(timeOptionsLong[4]);
 

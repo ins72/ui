@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
     BarChart,
     Bar,
@@ -12,7 +12,7 @@ import millify from "millify";
 import { NumericFormat } from "react-number-format";
 import Card from "@/components/Card";
 
-import { trafficСhannelChartData } from "@/mocks/charts";
+import { dataService } from "@/lib/data-service";
 
 const durations = [
     { id: 1, name: "Last 7 days" },
@@ -22,6 +22,24 @@ const durations = [
 
 const TrafficСhannel = ({}) => {
     const [duration, setDuration] = useState(durations[0]);
+    const [chartData, setChartData] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await dataService.getTrafficChannels({ limit: 7 });
+                if (response.data) {
+                    setChartData(response.data);
+                }
+            } catch (error) {
+                console.error('Error fetching traffic channels:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchData();
+    }, []);
 
     const formatterYAxis = (value: number) => {
         if (value === 0) {
@@ -91,7 +109,7 @@ const TrafficСhannel = ({}) => {
                         <BarChart
                             width={500}
                             height={280}
-                            data={trafficСhannelChartData}
+                            data={chartData}
                             // barCategoryGap={16}
                             barSize={20}
                             margin={{

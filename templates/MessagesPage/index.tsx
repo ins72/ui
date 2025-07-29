@@ -1,5 +1,6 @@
 "use client";
 
+import { dataService } from "@/lib/data-service";
 import { useState, useEffect } from "react";
 import { useMedia } from "react-use";
 import Layout from "@/components/Layout";
@@ -8,9 +9,33 @@ import Button from "@/components/Button";
 import Message from "./Message";
 import Details from "./Details";
 
-import { messages } from "@/mocks/messages";
 
-const MessagesPage = () => {
+
+const MessagesPage = ({}) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await dataService.getMessages();
+        if (response.messages) {
+          setData(response.messages);
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Unknown error");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
     const [search, setSearch] = useState("");
     const [mounted, setMounted] = useState(false);
     const isMobile = useMedia("(max-width: 767px)");

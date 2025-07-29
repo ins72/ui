@@ -1,7 +1,12 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { dataService } from "@/lib/data-service";
+
 import Button from "@/components/Button";
 import ShopItem from "@/components/ShopItem";
 
-import { shopItems } from "@/mocks/shopItems";
+
 
 const Populars = ({}) => (
     <div className="">

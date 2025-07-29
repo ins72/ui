@@ -1,8 +1,13 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { dataService } from "@/lib/data-service";
+
 import Card from "@/components/Card";
 import Button from "@/components/Button";
 import Image from "@/components/Image";
 
-import { productsShare } from "@/mocks/products";
+
 
 const socials = [
     {
@@ -24,6 +29,30 @@ const socials = [
 ];
 
 const ShareProducts = ({}) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await dataService.getProducts({ limit: 10 });
+        if (response.products) {
+          setData(response.products);
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Unknown error");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
     return (
         <Card title="Share products">
             <div className="relative -mx-3 mb-6 before:absolute before:left-0 before:top-0 before:bottom-0 before:z-3 before:w-6 before:bg-linear-to-r before:from-b-surface2 before:to-transparent before:pointer-events-none after:absolute after:right-0 after:top-0 after:bottom-0 after:z-3 after:w-6 after:bg-linear-to-l after:from-b-surface2 after:to-transparent after:pointer-events-none">

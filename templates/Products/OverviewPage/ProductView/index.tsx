@@ -1,10 +1,39 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { dataService } from "@/lib/data-service";
+
 import { BarChart, Bar, XAxis, Tooltip, ResponsiveContainer } from "recharts";
 import { NumericFormat } from "react-number-format";
 import Card from "@/components/Card";
 
-import { productsProductViewChartData } from "@/mocks/charts";
+
 
 const ProductView = ({}) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await dataService.getChartData({ type: "productView" });
+        if (response.chartData) {
+          setData(response.chartData);
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Unknown error");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
     const CustomTooltip = ({
         payload,
         label,

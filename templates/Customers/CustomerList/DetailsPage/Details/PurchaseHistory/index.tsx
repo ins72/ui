@@ -1,7 +1,9 @@
+"use client";
+
 import { NumericFormat } from "react-number-format";
 import Image from "@/components/Image";
 
-import { productsPurchaseHistory } from "@/mocks/products";
+
 
 const PurchaseHistory = ({}) => (
     <div>

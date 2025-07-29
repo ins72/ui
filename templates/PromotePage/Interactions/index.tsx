@@ -1,10 +1,13 @@
+"use client";
+
+import { dataService } from "@/lib/data-service";
 import { useState, useMemo } from "react";
 import { NumericFormat } from "react-number-format";
 import Card from "@/components/Card";
 import Tabs from "@/components/Tabs";
 import Icon from "@/components/Icon";
 
-import { interactions } from "@/mocks/promote";
+
 
 const sortOptions = [
     { id: 1, name: "All" },
@@ -21,13 +24,31 @@ type InteractionItemProps = {
     percentage: number;
 };
 
-const InteractionItem = ({
-    icon,
-    name,
-    followers,
-    nonFollowers,
-    percentage,
-}: InteractionItemProps) => {
+const InteractionItem = ({}) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await dataService.getProducts({ limit: 10 });
+        if (response.data) {
+          setData(response.data);
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Unknown error");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
     const totalCount = followers + nonFollowers;
     const followersPercentage = useMemo(
         () => (followers / totalCount) * 100,

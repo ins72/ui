@@ -1,457 +1,302 @@
-"use client";
+import { Metadata } from "next";
 
-import { useState } from "react";
-import { Mail, Phone, MapPin, Clock, MessageSquare, Send, CheckCircle } from "lucide-react";
-import Link from "next/link";
+export const dynamic = 'force-static';
+export const revalidate = 3600; // Revalidate every hour
 
-const ContactPage = () => {
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        company: "",
-        subject: "",
-        message: ""
-    });
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [isSubmitted, setIsSubmitted] = useState(false);
+export const metadata: Metadata = {
+    title: "Contact Us - Get Professional Support & Expert Guidance | MEWAYZ",
+    description: "Connect with our expert team for personalized support, technical assistance, and business consultation. Multiple contact options available including live chat, email, and phone support.",
+    keywords: "contact support, customer service, technical help, business consultation, live chat, expert assistance",
+    openGraph: {
+        title: "Contact Our Expert Team - Professional Support | MEWAYZ",
+        description: "Get the help you need from our professional support team. Live chat, email, phone support, and dedicated account management available.",
+        type: "website",
+        siteName: "MEWAYZ"
+    },
+    robots: {
+        index: true,
+        follow: true
+    }
+};
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }));
-    };
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setIsSubmitting(true);
-        
-        // Simulate form submission
-        await new Promise(resolve => setTimeout(resolve, 2000));
-        
-        setIsSubmitting(false);
-        setIsSubmitted(true);
-        
-        // Reset form after 3 seconds
-        setTimeout(() => {
-            setIsSubmitted(false);
-            setFormData({
-                name: "",
-                email: "",
-                company: "",
-                subject: "",
-                message: ""
-            });
-        }, 3000);
-    };
-
-    const contactInfo = [
+export default function ContactPage() {
+    const contactMethods = [
         {
-            icon: Mail,
+            id: "live-chat",
+            title: "Live Chat Support",
+            description: "Get instant answers from our support team",
+            icon: "💬",
+            availability: "24/7 for Pro & Enterprise",
+            responseTime: "< 2 minutes",
+            action: "Start Chat",
+            recommended: true
+        },
+        {
+            id: "email",
             title: "Email Support",
-            description: "Get help with your account or technical questions",
-            value: "support@mewayz.com",
-            link: "mailto:support@mewayz.com"
+            description: "Detailed assistance for complex questions",
+            icon: "📧",
+            availability: "24/7",
+            responseTime: "< 24 hours",
+            action: "Send Email",
+            email: "support@mewayz.com"
         },
         {
-            icon: Phone,
-            title: "Sales Inquiries",
-            description: "Speak with our sales team about enterprise solutions",
-            value: "+1 (555) 123-4567",
-            link: "tel:+15551234567"
+            id: "phone",
+            title: "Phone Support",
+            description: "Direct conversation with our experts",
+            icon: "📞",
+            availability: "Business hours",
+            responseTime: "Immediate",
+            action: "Call Now",
+            phone: "+1 (555) 123-4567"
         },
         {
-            icon: MapPin,
-            title: "Office Location",
-            description: "Visit our headquarters in San Francisco",
-            value: "123 Business Ave, San Francisco, CA 94105",
-            link: "https://maps.google.com"
-        },
-        {
-            icon: Clock,
-            title: "Business Hours",
-            description: "We're here to help during these hours",
-            value: "Monday - Friday: 9:00 AM - 6:00 PM PST",
-            link: null
+            id: "consultation",
+            title: "Expert Consultation",
+            description: "Personalized business strategy session",
+            icon: "🎯",
+            availability: "By appointment",
+            responseTime: "Within 48 hours",
+            action: "Schedule Call",
+            premium: true
         }
     ];
 
-    const departments = [
+    const officeLocations = [
         {
-            name: "General Support",
-            description: "Account questions, billing, and general inquiries",
-            email: "support@mewayz.com",
-            responseTime: "Within 24 hours"
+            city: "San Francisco",
+            address: "123 Innovation Drive, Suite 400",
+            zipCode: "San Francisco, CA 94107",
+            phone: "+1 (555) 123-4567",
+            timezone: "PST"
         },
         {
-            name: "Technical Support",
-            description: "API integration, technical issues, and troubleshooting",
-            email: "tech@mewayz.com",
-            responseTime: "Within 4 hours"
+            city: "New York",
+            address: "456 Business Plaza, Floor 25",
+            zipCode: "New York, NY 10001",
+            phone: "+1 (555) 987-6543",
+            timezone: "EST"
         },
         {
-            name: "Sales & Partnerships",
-            description: "Enterprise plans, custom solutions, and partnerships",
-            email: "sales@mewayz.com",
-            responseTime: "Within 2 hours"
-        },
-        {
-            name: "Press & Media",
-            description: "Media inquiries, press releases, and interviews",
-            email: "press@mewayz.com",
-            responseTime: "Within 24 hours"
+            city: "London",
+            address: "789 Tech Hub, Level 12",
+            zipCode: "London, EC2A 4NE, UK",
+            phone: "+44 20 7123 4567",
+            timezone: "GMT"
         }
     ];
 
     return (
-        <div className="min-h-screen bg-white dark:bg-gray-900">
-            {/* Header */}
-            <header className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex justify-between items-center py-6">
-                        <div className="flex items-center">
-                            <Link href="/" className="text-2xl font-bold text-gray-900 dark:text-white">Mewayz</Link>
-                        </div>
-                        <nav className="hidden md:flex space-x-8">
-                            <Link href="/" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Home</Link>
-                            <Link href="/pricing" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Pricing</Link>
-                            <Link href="/about" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">About</Link>
-                            <Link href="/contact" className="text-blue-600 dark:text-blue-400 font-medium">Contact</Link>
-                        </nav>
-                        <div className="flex items-center space-x-4">
-                            <Link href="/login" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Sign In</Link>
-                            <Link href="/register" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                                Get Started
-                            </Link>
-                        </div>
+        <div className="min-h-screen bg-b-surface1 dark:bg-shade-01">
+            <div className="container mx-auto px-4 py-16">
+                {/* Hero Section */}
+                <div className="text-center mb-16">
+                    <h1 className="text-h1 text-t-primary mb-6 max-md:text-h2">
+                        Get Expert Support When You Need It
+                    </h1>
+                    <p className="text-h6 text-t-secondary max-w-3xl mx-auto mb-8">
+                        Our professional support team is here to help you succeed. Choose from multiple contact options 
+                        designed to provide fast, effective assistance for your business needs.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button className="bg-primary-02 text-white px-8 py-4 rounded-3xl text-button hover:bg-primary-01 transition-all">
+                            Start Live Chat
+                        </button>
+                        <button className="bg-b-surface2 text-t-primary px-8 py-4 rounded-3xl text-button border border-s-stroke2 hover:bg-b-surface1 transition-all">
+                            Schedule Consultation
+                        </button>
                     </div>
                 </div>
-            </header>
 
-            {/* Hero Section */}
-            <section className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-800 dark:to-gray-900 py-20">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-                        Get in <span className="text-blue-600">Touch</span>
-                    </h1>
-                    <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
-                        Have questions about Mewayz? We're here to help. Reach out to our team for support, 
-                        sales inquiries, or just to say hello.
-                    </p>
-                </div>
-            </section>
-
-            {/* Contact Information */}
-            <section className="py-16 bg-white dark:bg-gray-900">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {contactInfo.map((info, index) => (
-                            <div key={index} className="text-center">
-                                <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mx-auto mb-4">
-                                    <info.icon className="h-8 w-8 text-blue-600" />
+                {/* Contact Methods Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                    {contactMethods.map((method) => (
+                        <div
+                            key={method.id}
+                            className={`card p-6 text-center transition-all hover:shadow-depth ${
+                                method.recommended ? "border-2 border-primary-02 relative" : ""
+                            } ${method.premium ? "bg-gradient-to-br from-primary-02/5 to-secondary-04/5" : ""}`}
+                        >
+                            {method.recommended && (
+                                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                                    <span className="bg-primary-02 text-white px-4 py-1 rounded-full text-caption font-medium">
+                                        Most Popular
+                                    </span>
                                 </div>
-                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                                    {info.title}
-                                </h3>
-                                <p className="text-gray-600 dark:text-gray-300 mb-3 text-sm">
-                                    {info.description}
-                                </p>
-                                {info.link ? (
-                                    <a 
-                                        href={info.link}
-                                        className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium"
-                                    >
-                                        {info.value}
-                                    </a>
-                                ) : (
-                                    <p className="text-gray-900 dark:text-white font-medium">
-                                        {info.value}
-                                    </p>
-                                )}
+                            )}
+
+                            <div className="text-4xl mb-4">{method.icon}</div>
+                            <h3 className="text-h6 text-t-primary mb-2">{method.title}</h3>
+                            <p className="text-body-2 text-t-secondary mb-4">{method.description}</p>
+                            
+                            <div className="space-y-2 mb-6">
+                                <div className="text-caption text-t-tertiary">
+                                    <strong>Available:</strong> {method.availability}
+                                </div>
+                                <div className="text-caption text-t-tertiary">
+                                    <strong>Response:</strong> {method.responseTime}
+                                </div>
+                            </div>
+
+                            <button
+                                className={`w-full py-3 px-4 rounded-3xl text-button font-medium transition-all ${
+                                    method.recommended || method.premium
+                                        ? "bg-primary-02 text-white hover:bg-primary-01"
+                                        : "bg-b-surface2 text-t-primary border border-s-stroke2 hover:bg-b-surface1"
+                                }`}
+                            >
+                                {method.action}
+                            </button>
+
+                            {method.email && (
+                                <div className="mt-3 text-caption text-primary-02">
+                                    {method.email}
+                                </div>
+                            )}
+                            {method.phone && (
+                                <div className="mt-3 text-caption text-primary-02">
+                                    {method.phone}
+                                </div>
+                            )}
+                        </div>
+                    ))}
+                </div>
+
+                {/* Quick Contact Form */}
+                <div className="card p-8 max-w-4xl mx-auto mb-16">
+                    <h2 className="text-h4 text-t-primary text-center mb-8">
+                        Send Us a Message
+                    </h2>
+                    <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label className="block text-button text-t-primary mb-2">First Name *</label>
+                            <input
+                                type="text"
+                                className="w-full px-4 py-3 bg-b-surface2 border border-s-stroke2 rounded-2xl text-body-2 text-t-primary focus:border-primary-02 focus:outline-none transition-colors"
+                                placeholder="Enter your first name"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-button text-t-primary mb-2">Last Name *</label>
+                            <input
+                                type="text"
+                                className="w-full px-4 py-3 bg-b-surface2 border border-s-stroke2 rounded-2xl text-body-2 text-t-primary focus:border-primary-02 focus:outline-none transition-colors"
+                                placeholder="Enter your last name"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-button text-t-primary mb-2">Email Address *</label>
+                            <input
+                                type="email"
+                                className="w-full px-4 py-3 bg-b-surface2 border border-s-stroke2 rounded-2xl text-body-2 text-t-primary focus:border-primary-02 focus:outline-none transition-colors"
+                                placeholder="your.email@company.com"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-button text-t-primary mb-2">Company</label>
+                            <input
+                                type="text"
+                                className="w-full px-4 py-3 bg-b-surface2 border border-s-stroke2 rounded-2xl text-body-2 text-t-primary focus:border-primary-02 focus:outline-none transition-colors"
+                                placeholder="Your company name"
+                            />
+                        </div>
+                        <div className="md:col-span-2">
+                            <label className="block text-button text-t-primary mb-2">How can we help? *</label>
+                            <select
+                                className="w-full px-4 py-3 bg-b-surface2 border border-s-stroke2 rounded-2xl text-body-2 text-t-primary focus:border-primary-02 focus:outline-none transition-colors"
+                                required
+                            >
+                                <option value="">Select a topic</option>
+                                <option value="technical-support">Technical Support</option>
+                                <option value="billing">Billing & Pricing</option>
+                                <option value="feature-request">Feature Request</option>
+                                <option value="integration">Integration Help</option>
+                                <option value="business-consultation">Business Consultation</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div className="md:col-span-2">
+                            <label className="block text-button text-t-primary mb-2">Message *</label>
+                            <textarea
+                                rows={5}
+                                className="w-full px-4 py-3 bg-b-surface2 border border-s-stroke2 rounded-2xl text-body-2 text-t-primary focus:border-primary-02 focus:outline-none transition-colors resize-vertical"
+                                placeholder="Tell us more about your question or how we can help..."
+                                required
+                            ></textarea>
+                        </div>
+                        <div className="md:col-span-2 text-center">
+                            <button
+                                type="submit"
+                                className="bg-primary-02 text-white px-12 py-4 rounded-3xl text-button font-medium hover:bg-primary-01 transition-all"
+                            >
+                                Send Message
+                            </button>
+                            <p className="text-caption text-t-tertiary mt-4">
+                                We'll get back to you within 24 hours
+                            </p>
+                        </div>
+                    </form>
+                </div>
+
+                {/* Office Locations */}
+                <div className="mb-16">
+                    <h2 className="text-h4 text-t-primary text-center mb-8">
+                        Our Global Offices
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {officeLocations.map((office) => (
+                            <div key={office.city} className="card p-6 text-center">
+                                <h3 className="text-h6 text-t-primary mb-4">{office.city}</h3>
+                                <div className="space-y-2 text-body-2 text-t-secondary">
+                                    <div>{office.address}</div>
+                                    <div>{office.zipCode}</div>
+                                    <div className="text-primary-02 font-medium">{office.phone}</div>
+                                    <div className="text-caption text-t-tertiary">
+                                        Timezone: {office.timezone}
+                                    </div>
+                                </div>
                             </div>
                         ))}
                     </div>
                 </div>
-            </section>
 
-            {/* Contact Form and Departments */}
-            <section className="py-16 bg-gray-50 dark:bg-gray-800">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid lg:grid-cols-2 gap-12">
-                        {/* Contact Form */}
-                        <div className="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
-                            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                                Send us a Message
-                            </h2>
-                            
-                            {isSubmitted ? (
-                                <div className="text-center py-8">
-                                    <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
-                                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                                        Message Sent Successfully!
-                                    </h3>
-                                    <p className="text-gray-600 dark:text-gray-300">
-                                        We'll get back to you within 24 hours.
-                                    </p>
-                                </div>
-                            ) : (
-                                <form onSubmit={handleSubmit} className="space-y-6">
-                                    <div className="grid md:grid-cols-2 gap-6">
-                                        <div>
-                                            <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                                Full Name *
-                                            </label>
-                                            <input
-                                                type="text"
-                                                id="name"
-                                                name="name"
-                                                value={formData.name}
-                                                onChange={handleInputChange}
-                                                required
-                                                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
-                                                placeholder="Your full name"
-                                            />
-                                        </div>
-                                        <div>
-                                            <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                                Email Address *
-                                            </label>
-                                            <input
-                                                type="email"
-                                                id="email"
-                                                name="email"
-                                                value={formData.email}
-                                                onChange={handleInputChange}
-                                                required
-                                                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
-                                                placeholder="your.email@company.com"
-                                            />
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="grid md:grid-cols-2 gap-6">
-                                        <div>
-                                            <label htmlFor="company" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                                Company
-                                            </label>
-                                            <input
-                                                type="text"
-                                                id="company"
-                                                name="company"
-                                                value={formData.company}
-                                                onChange={handleInputChange}
-                                                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
-                                                placeholder="Your company name"
-                                            />
-                                        </div>
-                                        <div>
-                                            <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                                Subject *
-                                            </label>
-                                            <select
-                                                id="subject"
-                                                name="subject"
-                                                value={formData.subject}
-                                                onChange={handleInputChange}
-                                                required
-                                                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
-                                            >
-                                                <option value="">Select a subject</option>
-                                                <option value="general">General Inquiry</option>
-                                                <option value="support">Technical Support</option>
-                                                <option value="sales">Sales Inquiry</option>
-                                                <option value="billing">Billing Question</option>
-                                                <option value="partnership">Partnership</option>
-                                                <option value="other">Other</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    
-                                    <div>
-                                        <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                            Message *
-                                        </label>
-                                        <textarea
-                                            id="message"
-                                            name="message"
-                                            value={formData.message}
-                                            onChange={handleInputChange}
-                                            required
-                                            rows={6}
-                                            className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
-                                            placeholder="Tell us how we can help you..."
-                                        />
-                                    </div>
-                                    
-                                    <button
-                                        type="submit"
-                                        disabled={isSubmitting}
-                                        className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
-                                    >
-                                        {isSubmitting ? (
-                                            <>
-                                                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                                                Sending...
-                                            </>
-                                        ) : (
-                                            <>
-                                                <Send className="h-5 w-5 mr-2" />
-                                                Send Message
-                                            </>
-                                        )}
-                                    </button>
-                                </form>
-                            )}
-                        </div>
-
-                        {/* Departments */}
-                        <div>
-                            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                                Contact by Department
-                            </h2>
-                            <div className="space-y-6">
-                                {departments.map((dept, index) => (
-                                    <div key={index} className="bg-white dark:bg-gray-900 p-6 rounded-lg border border-gray-200 dark:border-gray-700">
-                                        <div className="flex items-start justify-between">
-                                            <div>
-                                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                                                    {dept.name}
-                                                </h3>
-                                                <p className="text-gray-600 dark:text-gray-300 mb-3">
-                                                    {dept.description}
-                                                </p>
-                                                <a 
-                                                    href={`mailto:${dept.email}`}
-                                                    className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium"
-                                                >
-                                                    {dept.email}
-                                                </a>
-                                            </div>
-                                            <div className="text-right">
-                                                <span className="inline-block bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs font-medium px-2 py-1 rounded-full">
-                                                    {dept.responseTime}
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* FAQ Section */}
-            <section className="py-16 bg-white dark:bg-gray-900">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                            Frequently Asked Questions
-                        </h2>
-                        <p className="text-lg text-gray-600 dark:text-gray-300">
-                            Quick answers to common questions about Mewayz
-                        </p>
-                    </div>
-                    
-                    <div className="space-y-6">
-                        <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                                How quickly will I receive a response?
-                            </h3>
-                            <p className="text-gray-600 dark:text-gray-300">
-                                We typically respond to all inquiries within 24 hours. For urgent technical issues, 
-                                our support team aims to respond within 4 hours during business hours.
-                            </p>
-                        </div>
-                        
-                        <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                                Do you offer phone support?
-                            </h3>
-                            <p className="text-gray-600 dark:text-gray-300">
-                                Yes, we offer phone support for enterprise customers and sales inquiries. 
-                                You can reach our sales team at +1 (555) 123-4567 during business hours.
-                            </p>
-                        </div>
-                        
-                        <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                                Can I schedule a demo?
-                            </h3>
-                            <p className="text-gray-600 dark:text-gray-300">
-                                Absolutely! We'd love to show you how Mewayz can transform your business. 
-                                Contact our sales team to schedule a personalized demo at your convenience.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* CTA Section */}
-            <section className="bg-blue-600 py-16">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-3xl font-bold text-white mb-4">
-                        Ready to Get Started?
+                {/* FAQ Section */}
+                <div className="card p-8 max-w-4xl mx-auto">
+                    <h2 className="text-h4 text-t-primary text-center mb-8">
+                        Frequently Asked Questions
                     </h2>
-                    <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-                        Join thousands of businesses that have already transformed their operations with Mewayz.
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Link href="/register" className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                            Start Free Trial
-                        </Link>
-                        <Link href="/pricing" className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
-                            View Pricing
-                        </Link>
-                    </div>
-                </div>
-            </section>
-
-            {/* Footer */}
-            <footer className="bg-gray-50 dark:bg-gray-800 py-12">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid md:grid-cols-4 gap-8">
+                    <div className="space-y-6">
                         <div>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Mewayz</h3>
-                            <p className="text-gray-600 dark:text-gray-300">
-                                Empowering businesses with comprehensive enterprise solutions.
+                            <h3 className="text-button text-t-primary mb-2">What's the best way to get quick help?</h3>
+                            <p className="text-body-2 text-t-secondary">
+                                Live chat is the fastest option for immediate assistance. Our team is available 24/7 for Pro and Enterprise customers.
                             </p>
                         </div>
                         <div>
-                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-4">Product</h4>
-                            <ul className="space-y-2">
-                                <li><Link href="/pricing" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Pricing</Link></li>
-                                <li><Link href="/features" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Features</Link></li>
-                                <li><Link href="/integrations" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Integrations</Link></li>
-                            </ul>
+                            <h3 className="text-button text-t-primary mb-2">Do you offer phone support?</h3>
+                            <p className="text-body-2 text-t-secondary">
+                                Yes, we provide phone support during business hours for all paid plans. Enterprise customers get 24/7 phone access.
+                            </p>
                         </div>
                         <div>
-                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-4">Company</h4>
-                            <ul className="space-y-2">
-                                <li><Link href="/about" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">About</Link></li>
-                                <li><Link href="/contact" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Contact</Link></li>
-                                <li><Link href="/careers" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Careers</Link></li>
-                            </ul>
+                            <h3 className="text-button text-t-primary mb-2">How long does email support take?</h3>
+                            <p className="text-body-2 text-t-secondary">
+                                We aim to respond to all emails within 24 hours, with most responses sent within 4-6 hours during business days.
+                            </p>
                         </div>
                         <div>
-                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-4">Support</h4>
-                            <ul className="space-y-2">
-                                <li><Link href="/help" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Help Center</Link></li>
-                                <li><Link href="/status" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Status</Link></li>
-                                <li><Link href="/docs" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Documentation</Link></li>
-                            </ul>
+                            <h3 className="text-button text-t-primary mb-2">Can I schedule a consultation?</h3>
+                            <p className="text-body-2 text-t-secondary">
+                                Absolutely! We offer personalized consultation sessions to help you maximize your platform usage and business growth.
+                            </p>
                         </div>
-                    </div>
-                    <div className="border-t border-gray-200 dark:border-gray-700 mt-8 pt-8 text-center">
-                        <p className="text-gray-600 dark:text-gray-300">
-                            © 2024 Mewayz. All rights reserved.
-                        </p>
                     </div>
                 </div>
-            </footer>
+            </div>
         </div>
     );
-};
-
-export default ContactPage; 
+}

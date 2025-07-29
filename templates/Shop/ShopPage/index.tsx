@@ -1,5 +1,6 @@
 "use client";
 
+import { dataService } from "@/lib/data-service";
 import { useState } from "react";
 import Layout from "@/components/Layout";
 import Image from "@/components/Image";
@@ -11,9 +12,9 @@ import Follower from "@/components/Follower";
 import Spinner from "@/components/Spinner";
 import Profile from "./Profile";
 
-import { shopItems } from "@/mocks/shopItems";
-import { followers } from "@/mocks/followers";
-import { followings } from "@/mocks/followings";
+
+
+
 
 const types = [
     { id: 1, name: "Products" },
@@ -27,7 +28,31 @@ const sortOptions = [
     { id: 3, name: "Most popular" },
 ];
 
-const ShopPage = () => {
+const ShopPage = ({}) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await dataService.getProducts({ limit: 10 });
+        if (response.products) {
+          setData(response.products);
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Unknown error");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
     const [type, setType] = useState(types[0]);
     const [sort, setSort] = useState(sortOptions[0]);
 

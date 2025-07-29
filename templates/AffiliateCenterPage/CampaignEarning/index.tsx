@@ -1,3 +1,6 @@
+"use client";
+
+import { dataService } from "@/lib/data-service";
 import { useState } from "react";
 import { NumericFormat } from "react-number-format";
 import Card from "@/components/Card";
@@ -6,7 +9,7 @@ import TableRow from "@/components/TableRow";
 import Image from "@/components/Image";
 import Icon from "@/components/Icon";
 
-import { campaignEarningItems } from "@/mocks/affiliate-center";
+
 
 const durations = [
     { id: 1, name: "Last 7 days" },
@@ -21,7 +24,31 @@ type IndicatorProps = {
     percentage: number;
 };
 
-const Indicator = ({ value, percentage }: IndicatorProps) => {
+const Indicator = ({}) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await dataService.getAffiliateCenter();
+        if (response.data) {
+          setData(response.data);
+        }
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
     return (
         <div className="inline-flex items-center gap-2">
             <div className="min-w-8">{value}</div>

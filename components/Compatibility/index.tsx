@@ -1,14 +1,41 @@
+"use client";
+
+import { dataService } from "@/lib/data-service";
 import { useState } from "react";
 import Tooltip from "@/components/Tooltip";
 import Image from "@/components/Image";
 
-import { compatibility } from "@/mocks/compatibility";
+
 
 type CompatibilityProps = {
     classItemName?: string;
 };
 
-const Compatibility = ({ classItemName }: CompatibilityProps) => {
+const Compatibility = ({}) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await dataService.getProducts({ limit: 10 });
+        if (response.data) {
+          setData(response.data);
+        }
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
     const [activeIds, setActiveIds] = useState<number[]>([]);
 
     const handleClick = (id: number) => {

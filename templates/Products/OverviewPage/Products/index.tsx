@@ -1,4 +1,6 @@
-import { useState } from "react";
+"use client";
+
+import { useState, useEffect } from "react";
 import Search from "@/components/Search";
 import Tabs from "@/components/Tabs";
 import NoFound from "@/components/NoFound";
@@ -11,11 +13,7 @@ import SetProductsStatus from "./SetProductsStatus";
 import { useSelection } from "@/hooks/useSelection";
 import { ProductMarket } from "@/types/product";
 
-import {
-    products,
-    productsTrafficSources,
-    productsViewers,
-} from "@/mocks/products";
+import { dataService } from "@/lib/data-service";
 
 const categories = [
     { id: 1, name: "Market" },
@@ -24,6 +22,30 @@ const categories = [
 ];
 
 const Products = ({}) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await dataService.getProducts({ limit: 10 });
+        if (response.products) {
+          setData(response.products);
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Unknown error');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
     const [search, setSearch] = useState("");
     const [category, setCategory] = useState(categories[0]);
     const [visibleSearch, setVisibleSearch] = useState(false);
@@ -33,7 +55,7 @@ const Products = ({}) => {
         handleRowSelect,
         handleSelectAll,
         handleDeselect,
-    } = useSelection<ProductMarket>(products);
+    } = useSelection<ProductMarket>(data);
 
     return (
         <div className="card">
@@ -100,7 +122,7 @@ const Products = ({}) => {
                 <div className="pt-3 px-1 pb-5 max-lg:px-0 max-lg:pb-0">
                     {category.id === 1 && (
                         <Market
-                            items={products}
+                            items={data}
                             selectedRows={selectedRows}
                             onRowSelect={handleRowSelect}
                             selectAll={selectAll}
@@ -109,7 +131,7 @@ const Products = ({}) => {
                     )}
                     {category.id === 2 && (
                         <ProductsStatistics
-                            items={productsTrafficSources}
+                            items={data}
                             selectedRows={selectedRows}
                             onRowSelect={handleRowSelect}
                             selectAll={selectAll}
@@ -118,7 +140,7 @@ const Products = ({}) => {
                     )}
                     {category.id === 3 && (
                         <ProductsStatistics
-                            items={productsViewers}
+                            items={data}
                             selectedRows={selectedRows}
                             onRowSelect={handleRowSelect}
                             selectAll={selectAll}

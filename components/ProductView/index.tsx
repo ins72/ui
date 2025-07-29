@@ -1,4 +1,7 @@
-import { useMemo } from "react";
+"use client";
+
+import { dataService } from "@/lib/data-service";
+import { useMemo, useState, useEffect } from "react";
 import {
     BarChart,
     Bar,
@@ -10,13 +13,37 @@ import {
 import { NumericFormat } from "react-number-format";
 import Card from "@/components/Card";
 
-import { productsProductViewChartData } from "@/mocks/charts";
+
 
 type ProductViewProps = {
     className?: string;
 };
 
-const ProductView = ({ className }: ProductViewProps) => {
+const ProductView = ({}) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await dataService.getChartData({ type: "productView" });
+        if (response.chartData) {
+          setData(response.chartData);
+        }
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
     const CustomTooltip = ({
         payload,
         label,

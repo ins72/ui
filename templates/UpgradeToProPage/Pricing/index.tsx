@@ -1,4 +1,8 @@
-import { pricing } from "@/mocks/pricing";
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { dataService } from "@/lib/data-service";
+
 import Button from "@/components/Button";
 import Icon from "@/components/Icon";
 

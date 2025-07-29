@@ -1,10 +1,13 @@
+"use client";
+
+import { dataService } from "@/lib/data-service";
 import { useState } from "react";
 import Tabs from "@/components/Tabs";
 import Image from "@/components/Image";
 import Message from "@/components/Message";
 import Answer from "./Answer";
 
-import { comments } from "@/mocks/comments";
+
 
 const sortOptions = [
     { id: 1, name: "Newest" },
@@ -12,6 +15,30 @@ const sortOptions = [
 ];
 
 const Comments = ({}) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await dataService.getProducts({ limit: 10 });
+        if (response.data) {
+          setData(response.data);
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Unknown error");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
     const [sort, setSort] = useState(sortOptions[0]);
     const [message, setMessage] = useState("");
 

@@ -12,7 +12,7 @@ const OverviewPage = () => {
             <Overview />
             <div className="flex mb-3 max-lg:flex-col">
                 <ProductActivity />
-                <ProductView className="col-right" />
+                <ProductView />
             </div>
             <Products />
         </Layout>

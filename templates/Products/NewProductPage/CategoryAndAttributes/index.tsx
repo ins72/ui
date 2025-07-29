@@ -1,5 +1,5 @@
 import { useState } from "react";
-import TagsInput from "react-tagsinput";
+// import TagsInput from "react-tagsinput"; // Temporarily disabled
 import Card from "@/components/Card";
 import Select from "@/components/Select";
 import Tooltip from "@/components/Tooltip";
