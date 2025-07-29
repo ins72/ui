@@ -1,6 +1,46 @@
+"use client";
+
+
+export const metadata = {
+  title: "MEWAYZ - All-in-One Business Platform | E-commerce, CRM, Courses & More",
+  description: "Transform your business with MEWAYZ's comprehensive platform. Manage e-commerce, CRM, courses, social media, and marketing automation in one powerful solution. Start free today.",
+  keywords: "business platform, e-commerce platform, CRM software, online course platform, marketing automation, social media management, business intelligence, enterprise software",
+  openGraph: {
+    title: "MEWAYZ - All-in-One Business Platform | E-commerce, CRM, Courses & More",
+    description: "Transform your business with MEWAYZ's comprehensive platform. Manage e-commerce, CRM, courses, social media, and marketing automation in one powerful solution. Start free today.",
+    type: "website",
+    url: "https://mewayz.com",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "MEWAYZ - Transform Your Business"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MEWAYZ - All-in-One Business Platform | E-commerce, CRM, Courses & More",
+    description: "Transform your business with MEWAYZ's comprehensive platform. Manage e-commerce, CRM, courses, social media, and marketing automation in one powerful solution. Start free today.",
+    images: ["/og-image.jpg"]
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1
+    }
+  }
+};
+
 import { useState } from "react";
-import Image from "@/components/Image";
-import Button from "@/components/Button";
+import Image from "@/style-reference/components/Image";
+import Button from "@/style-reference/components/Button";
 
 type CreatorProps = {
     value: {
@@ -67,7 +107,7 @@ const Creator = ({ value }: CreatorProps) => {
                 >
                     <div className="flex gap-3 max-lg:hidden">
                         {value.socials.map((social, index) => (
-                            <Button
+                            <button
                                 icon={social.icon}
                                 key={index}
                                 isStroke
@@ -76,10 +116,10 @@ const Creator = ({ value }: CreatorProps) => {
                                 href={social.href}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                            />
+                            / aria-label="Action button">
                         ))}
                     </div>
-                    <Button as="link" href="/shop" isBlack>
+                    <button as="link" href="/shop" isBlack aria-label="Action button">
                         View shop
                     </Button>
                 </div>
@@ -98,7 +138,7 @@ const Creator = ({ value }: CreatorProps) => {
                             height={242}
                             alt=""
                         />
-                        <Button
+                        <button
                             className={`absolute top-1/2 left-1/2 -translate-1/2 invisible opacity-0 -rotate-45 !transition-all group-hover/image:visible group-hover/image:opacity-100 ${
                                 activeId === item.id
                                     ? "max-lg:visible max-lg:opacity-100"
@@ -109,7 +149,7 @@ const Creator = ({ value }: CreatorProps) => {
                             icon="arrow"
                             isWhite
                             isCircle
-                        />
+                        / aria-label="Action button">
                     </div>
                 ))}
             </div>

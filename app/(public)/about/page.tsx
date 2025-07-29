@@ -1,59 +1,37 @@
 "use client";
 
 import { useState } from "react";
-import { Users, Shield, Zap, Globe, Award, Heart, Target, TrendingUp, CheckCircle, Star } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
+import Head from "next/head";
 
-const AboutPage = () => {
+export default function AboutPage() {
     const [activeTab, setActiveTab] = useState("mission");
-
-    const team = [
+    
+    const teamMembers = [
         {
             name: "Sarah Johnson",
             role: "CEO & Founder",
-            bio: "Former VP of Engineering at Google, with 15+ years of experience in building scalable platforms.",
-            image: "/api/placeholder/150/150"
+            image: "/team/sarah.jpg",
+            bio: "Former VP of Product at tech unicorn, passionate about empowering small businesses."
         },
         {
             name: "Michael Chen",
             role: "CTO",
-            bio: "Ex-Microsoft architect specializing in cloud infrastructure and enterprise software development.",
-            image: "/api/placeholder/150/150"
+            image: "/team/michael.jpg", 
+            bio: "Ex-Google engineer with 15+ years building scalable platforms."
         },
         {
             name: "Emily Rodriguez",
-            role: "Head of Product",
-            bio: "Product leader with experience at Facebook and Airbnb, focused on user-centric design.",
-            image: "/api/placeholder/150/150"
+            role: "Head of Design",
+            image: "/team/emily.jpg",
+            bio: "Award-winning UX designer focused on creating intuitive business tools."
         },
         {
             name: "David Kim",
             role: "VP of Engineering",
-            bio: "Engineering leader with expertise in building high-performance, scalable systems.",
-            image: "/api/placeholder/150/150"
-        }
-    ];
-
-    const values = [
-        {
-            icon: Target,
-            title: "Customer Success First",
-            description: "Every decision we make is driven by our commitment to customer success and satisfaction."
-        },
-        {
-            icon: Shield,
-            title: "Security & Trust",
-            description: "Enterprise-grade security and compliance to protect your business data and customer information."
-        },
-        {
-            icon: Zap,
-            title: "Innovation",
-            description: "Constantly innovating and improving our platform to stay ahead of industry trends."
-        },
-        {
-            icon: Heart,
-            title: "Transparency",
-            description: "Open and honest communication with our customers, partners, and team members."
+            image: "/team/david.jpg",
+            bio: "Former Amazon principal engineer, expert in enterprise architecture."
         }
     ];
 
@@ -61,22 +39,22 @@ const AboutPage = () => {
         {
             year: "2020",
             title: "Company Founded",
-            description: "Mewayz was founded with a vision to democratize enterprise business tools."
+            description: "Started with a vision to simplify business management for entrepreneurs worldwide."
         },
         {
-            year: "2021",
+            year: "2021", 
             title: "First 1,000 Users",
-            description: "Reached our first milestone of 1,000 active users across various industries."
+            description: "Reached our first major milestone with small businesses across 25 countries."
         },
         {
             year: "2022",
             title: "Series A Funding",
-            description: "Secured $10M in Series A funding to accelerate product development and growth."
+            description: "Raised $10M to accelerate product development and expand our team."
         },
         {
             year: "2023",
-            title: "10,000+ Users",
-            description: "Achieved 10,000+ active users and expanded to international markets."
+            title: "100,000+ Businesses",
+            description: "Crossed 100,000 active businesses using our platform to grow their operations."
         },
         {
             year: "2024",
@@ -86,319 +64,220 @@ const AboutPage = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-white dark:bg-gray-900">
-            {/* Header */}
-            <header className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex justify-between items-center py-6">
-                        <div className="flex items-center">
-                            <Link href="/" className="text-2xl font-bold text-gray-900 dark:text-white">Mewayz</Link>
-                        </div>
-                        <nav className="hidden md:flex space-x-8">
-                            <Link href="/" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Home</Link>
-                            <Link href="/pricing" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Pricing</Link>
-                            <Link href="/about" className="text-blue-600 dark:text-blue-400 font-medium">About</Link>
-                            <Link href="/contact" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Contact</Link>
-                        </nav>
-                        <div className="flex items-center space-x-4">
-                            <Link href="/login" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Sign In</Link>
-                            <Link href="/register" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                                Get Started
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </header>
-
-            {/* Hero Section */}
-            <section className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-800 dark:to-gray-900 py-20">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-                        About <span className="text-blue-600">Mewayz</span>
-                    </h1>
-                    <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
-                        We're on a mission to empower businesses of all sizes with enterprise-grade tools that drive growth, 
-                        efficiency, and success in the digital economy.
-                    </p>
-                </div>
-            </section>
-
-            {/* Navigation Tabs */}
-            <section className="py-8 border-b border-gray-200 dark:border-gray-700">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex space-x-8">
-                        <button
-                            onClick={() => setActiveTab("mission")}
-                            className={`pb-4 px-2 border-b-2 font-medium text-sm ${
-                                activeTab === "mission"
-                                    ? "border-blue-500 text-blue-600"
-                                    : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-                            }`}
-                        >
-                            Our Mission
-                        </button>
-                        <button
-                            onClick={() => setActiveTab("team")}
-                            className={`pb-4 px-2 border-b-2 font-medium text-sm ${
-                                activeTab === "team"
-                                    ? "border-blue-500 text-blue-600"
-                                    : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-                            }`}
-                        >
-                            Our Team
-                        </button>
-                        <button
-                            onClick={() => setActiveTab("values")}
-                            className={`pb-4 px-2 border-b-2 font-medium text-sm ${
-                                activeTab === "values"
-                                    ? "border-blue-500 text-blue-600"
-                                    : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-                            }`}
-                        >
-                            Our Values
-                        </button>
-                        <button
-                            onClick={() => setActiveTab("history")}
-                            className={`pb-4 px-2 border-b-2 font-medium text-sm ${
-                                activeTab === "history"
-                                    ? "border-blue-500 text-blue-600"
-                                    : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-                            }`}
-                        >
-                            Our History
-                        </button>
-                    </div>
-                </div>
-            </section>
-
-            {/* Content Sections */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-                {activeTab === "mission" && (
-                    <div className="space-y-12">
-                        <div className="text-center">
-                            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-                                Empowering Businesses Worldwide
-                            </h2>
-                            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-4xl mx-auto">
-                                At Mewayz, we believe that every business deserves access to the same powerful tools that 
-                                large enterprises use to grow and succeed. Our mission is to democratize enterprise-grade 
-                                business technology, making it accessible, affordable, and easy to use for companies of all sizes.
-                            </p>
-                        </div>
-
-                        <div className="grid md:grid-cols-2 gap-12 items-center">
-                            <div>
-                                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                                    What We Do
-                                </h3>
-                                <p className="text-gray-600 dark:text-gray-300 mb-6">
-                                    We provide a comprehensive business platform that combines e-commerce, social media management, 
-                                    course creation, and customer relationship management into one seamless solution.
-                                </p>
-                                <ul className="space-y-3">
-                                    <li className="flex items-center">
-                                        <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
-                                        <span className="text-gray-700 dark:text-gray-300">Simplify complex business operations</span>
-                                    </li>
-                                    <li className="flex items-center">
-                                        <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
-                                        <span className="text-gray-700 dark:text-gray-300">Reduce costs and increase efficiency</span>
-                                    </li>
-                                    <li className="flex items-center">
-                                        <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
-                                        <span className="text-gray-700 dark:text-gray-300">Enable rapid business growth</span>
-                                    </li>
-                                    <li className="flex items-center">
-                                        <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
-                                        <span className="text-gray-700 dark:text-gray-300">Provide enterprise-grade security</span>
-                                    </li>
-                                </ul>
+        <>
+            <Head>
+                <title>About MEWAYZ - All-in-One Business Platform | E-commerce, CRM, Courses & More</title>
+                <meta name="description" content="Transform your business with MEWAYZ's comprehensive platform. Manage e-commerce, CRM, courses, social media, and marketing automation in one powerful solution." />
+                <meta name="keywords" content="business platform, e-commerce platform, CRM software, online course platform, marketing automation, social media management" />
+            </Head>
+            
+            <div className="min-h-screen bg-b-surface">
+                {/* Header */}
+                <header className="bg-b-surface border-b border-s-stroke">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="flex justify-between items-center py-6">
+                            <div className="flex items-center">
+                                <Link href="/" className="text-2xl font-bold text-t-primary">Mewayz</Link>
                             </div>
-                            <div className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-800 dark:to-gray-700 p-8 rounded-lg">
-                                <div className="text-center">
-                                    <Globe className="h-16 w-16 text-blue-600 mx-auto mb-4" />
-                                    <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                                        Global Impact
-                                    </h4>
-                                    <p className="text-gray-600 dark:text-gray-300">
-                                        Serving businesses in over 50 countries with localized solutions and support.
-                                    </p>
-                                </div>
+                            <nav className="hidden md:flex space-x-8">
+                                <Link href="/" className="text-t-secondary hover:text-t-primary">Home</Link>
+                                <Link href="/pricing" className="text-t-secondary hover:text-t-primary">Pricing</Link>
+                                <Link href="/about" className="text-primary font-medium">About</Link>
+                                <Link href="/contact" className="text-t-secondary hover:text-t-primary">Contact</Link>
+                            </nav>
+                            <div className="flex items-center space-x-4">
+                                <Link href="/login" className="text-t-secondary hover:text-t-primary">Sign In</Link>
+                                <Link href="/register" className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-dark">
+                                    Get Started Free
+                                </Link>
                             </div>
                         </div>
                     </div>
-                )}
+                </header>
 
-                {activeTab === "team" && (
-                    <div className="space-y-12">
-                        <div className="text-center">
-                            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-                                Meet Our Leadership Team
-                            </h2>
-                            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                                Our team brings together decades of experience from leading technology companies, 
-                                united by a shared vision of democratizing enterprise business tools.
-                            </p>
-                        </div>
-
-                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                            {team.map((member, index) => (
-                                <div key={index} className="text-center">
-                                    <div className="w-32 h-32 mx-auto mb-4 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                                        <Users className="h-12 w-12 text-gray-400" />
-                                    </div>
-                                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                                        {member.name}
-                                    </h3>
-                                    <p className="text-blue-600 dark:text-blue-400 font-medium mb-3">
-                                        {member.role}
-                                    </p>
-                                    <p className="text-gray-600 dark:text-gray-300 text-sm">
-                                        {member.bio}
-                                    </p>
-                                </div>
-                            ))}
-                        </div>
+                {/* Hero Section */}
+                <section className="py-16 px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-4xl mx-auto text-center">
+                        <h1 className="text-4xl md:text-6xl font-bold text-t-primary mb-6">
+                            Empowering Businesses to 
+                            <span className="text-primary"> Thrive Online</span>
+                        </h1>
+                        <p className="text-xl text-t-secondary mb-8 max-w-3xl mx-auto">
+                            Since 2020, MEWAYZ has been the trusted partner for over 100,000 businesses worldwide, 
+                            providing the tools and technology needed to succeed in the digital economy.
+                        </p>
                     </div>
-                )}
+                </section>
 
-                {activeTab === "values" && (
-                    <div className="space-y-12">
-                        <div className="text-center">
-                            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-                                Our Core Values
-                            </h2>
-                            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                                These values guide everything we do, from product development to customer support.
-                            </p>
+                {/* Mission, Vision, Values */}
+                <section className="py-16 px-4 sm:px-6 lg:px-8 bg-b-surface1">
+                    <div className="max-w-6xl mx-auto">
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl font-bold text-t-primary mb-4">Our Purpose</h2>
+                            <p className="text-lg text-t-secondary">What drives us every day</p>
                         </div>
-
-                        <div className="grid md:grid-cols-2 gap-8">
-                            {values.map((value, index) => (
-                                <div key={index} className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700">
-                                    <div className="flex items-start">
-                                        <div className="flex-shrink-0">
-                                            <value.icon className="h-8 w-8 text-blue-600" />
-                                        </div>
-                                        <div className="ml-4">
-                                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                                                {value.title}
-                                            </h3>
-                                            <p className="text-gray-600 dark:text-gray-300">
-                                                {value.description}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                )}
-
-                {activeTab === "history" && (
-                    <div className="space-y-12">
-                        <div className="text-center">
-                            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-                                Our Journey
-                            </h2>
-                            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                                From a small startup to a global platform serving thousands of businesses worldwide.
-                            </p>
-                        </div>
-
-                        <div className="relative">
-                            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-gray-700"></div>
-                            <div className="space-y-8">
-                                {milestones.map((milestone, index) => (
-                                    <div key={index} className="relative flex items-start">
-                                        <div className="absolute left-6 top-2 w-4 h-4 bg-blue-600 rounded-full border-4 border-white dark:border-gray-900"></div>
-                                        <div className="ml-16">
-                                            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700">
-                                                <div className="flex items-center mb-2">
-                                                    <span className="text-2xl font-bold text-blue-600 mr-4">
-                                                        {milestone.year}
-                                                    </span>
-                                                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                                                        {milestone.title}
-                                                    </h3>
-                                                </div>
-                                                <p className="text-gray-600 dark:text-gray-300">
-                                                    {milestone.description}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
+                        
+                        {/* Tab Navigation */}
+                        <div className="flex justify-center mb-8">
+                            <div className="flex bg-b-surface2 rounded-lg p-1">
+                                {["mission", "vision", "values"].map((tab) => (
+                                    <button
+                                        key={tab}
+                                        onClick={() => setActiveTab(tab)}
+                                        className={`px-6 py-3 rounded-md text-sm font-medium capitalize transition-colors ${
+                                            activeTab === tab
+                                                ? "bg-primary text-white"
+                                                : "text-t-secondary hover:text-t-primary"
+                                        }`}
+                                    >
+                                        {tab}
+                                    </button>
                                 ))}
                             </div>
                         </div>
-                    </div>
-                )}
-            </div>
 
-            {/* CTA Section */}
-            <section className="bg-blue-600 py-16">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-3xl font-bold text-white mb-4">
-                        Ready to Transform Your Business?
-                    </h2>
-                    <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-                        Join thousands of businesses that have already transformed their operations with Mewayz.
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Link href="/register" className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                            Start Free Trial
-                        </Link>
-                        <Link href="/contact" className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
-                            Contact Sales
-                        </Link>
+                        {/* Tab Content */}
+                        <div className="max-w-4xl mx-auto">
+                            {activeTab === "mission" && (
+                                <div className="text-center">
+                                    <h3 className="text-2xl font-bold text-t-primary mb-4">Our Mission</h3>
+                                    <p className="text-lg text-t-secondary leading-relaxed">
+                                        To democratize access to enterprise-grade business tools, enabling entrepreneurs 
+                                        and small businesses to compete with large corporations through technology that 
+                                        was once only available to Fortune 500 companies.
+                                    </p>
+                                </div>
+                            )}
+                            
+                            {activeTab === "vision" && (
+                                <div className="text-center">
+                                    <h3 className="text-2xl font-bold text-t-primary mb-4">Our Vision</h3>
+                                    <p className="text-lg text-t-secondary leading-relaxed">
+                                        A world where every business, regardless of size, has access to the same powerful 
+                                        tools and technologies that enable growth, efficiency, and success in the global marketplace.
+                                    </p>
+                                </div>
+                            )}
+                            
+                            {activeTab === "values" && (
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                    <div className="text-center">
+                                        <h4 className="text-lg font-semibold text-t-primary mb-2">Innovation</h4>
+                                        <p className="text-t-secondary">Continuously pushing boundaries to create better solutions</p>
+                                    </div>
+                                    <div className="text-center">
+                                        <h4 className="text-lg font-semibold text-t-primary mb-2">Accessibility</h4>
+                                        <p className="text-t-secondary">Making powerful tools available to businesses of all sizes</p>
+                                    </div>
+                                    <div className="text-center">
+                                        <h4 className="text-lg font-semibold text-t-primary mb-2">Reliability</h4>
+                                        <p className="text-t-secondary">Building trust through consistent, dependable service</p>
+                                    </div>
+                                    <div className="text-center">
+                                        <h4 className="text-lg font-semibold text-t-primary mb-2">Customer Success</h4>
+                                        <p className="text-t-secondary">Your growth and success are our primary metrics</p>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            {/* Footer */}
-            <footer className="bg-gray-50 dark:bg-gray-800 py-12">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid md:grid-cols-4 gap-8">
-                        <div>
-                            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Mewayz</h3>
-                            <p className="text-gray-600 dark:text-gray-300">
-                                Empowering businesses with comprehensive enterprise solutions.
+                {/* Team Section */}
+                <section className="py-16 px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-6xl mx-auto">
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl font-bold text-t-primary mb-4">Meet Our Leadership Team</h2>
+                            <p className="text-lg text-t-secondary">
+                                Experienced leaders from top tech companies, united by a passion for helping businesses succeed
                             </p>
                         </div>
-                        <div>
-                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-4">Product</h4>
-                            <ul className="space-y-2">
-                                <li><Link href="/pricing" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Pricing</Link></li>
-                                <li><Link href="/features" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Features</Link></li>
-                                <li><Link href="/integrations" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Integrations</Link></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-4">Company</h4>
-                            <ul className="space-y-2">
-                                <li><Link href="/about" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">About</Link></li>
-                                <li><Link href="/contact" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Contact</Link></li>
-                                <li><Link href="/careers" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Careers</Link></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-4">Support</h4>
-                            <ul className="space-y-2">
-                                <li><Link href="/help" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Help Center</Link></li>
-                                <li><Link href="/status" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Status</Link></li>
-                                <li><Link href="/docs" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Documentation</Link></li>
-                            </ul>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            {teamMembers.map((member, index) => (
+                                <div key={index} className="text-center">
+                                    <div className="w-32 h-32 mx-auto mb-4 bg-b-surface2 rounded-full flex items-center justify-center">
+                                        <span className="text-2xl font-bold text-t-primary">
+                                            {member.name.split(' ').map(n => n[0]).join('')}
+                                        </span>
+                                    </div>
+                                    <h3 className="text-lg font-semibold text-t-primary mb-1">{member.name}</h3>
+                                    <p className="text-primary font-medium mb-3">{member.role}</p>
+                                    <p className="text-sm text-t-secondary">{member.bio}</p>
+                                </div>
+                            ))}
                         </div>
                     </div>
-                    <div className="border-t border-gray-200 dark:border-gray-700 mt-8 pt-8 text-center">
-                        <p className="text-gray-600 dark:text-gray-300">
-                            © 2024 Mewayz. All rights reserved.
-                        </p>
-                    </div>
-                </div>
-            </footer>
-        </div>
-    );
-};
+                </section>
 
-export default AboutPage; 
+                {/* Company Timeline */}
+                <section className="py-16 px-4 sm:px-6 lg:px-8 bg-b-surface1">
+                    <div className="max-w-6xl mx-auto">
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl font-bold text-t-primary mb-4">Our Journey</h2>
+                            <p className="text-lg text-t-secondary">Key milestones in our growth story</p>
+                        </div>
+                        
+                        <div className="relative">
+                            {/* Timeline Line */}
+                            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-primary opacity-20"></div>
+                            
+                            {milestones.map((milestone, index) => (
+                                <div key={index} className={`flex items-center mb-12 ${
+                                    index % 2 === 0 ? "flex-row" : "flex-row-reverse"
+                                }`}>
+                                    <div className={`w-1/2 ${index % 2 === 0 ? "pr-8 text-right" : "pl-8 text-left"}`}>
+                                        <div className="bg-b-surface2 p-6 rounded-lg">
+                                            <span className="text-primary font-bold text-lg">{milestone.year}</span>
+                                            <h3 className="text-xl font-semibold text-t-primary mb-2">{milestone.title}</h3>
+                                            <p className="text-t-secondary">{milestone.description}</p>
+                                        </div>
+                                    </div>
+                                    
+                                    {/* Timeline Dot */}
+                                    <div className="w-4 h-4 bg-primary rounded-full border-4 border-b-surface flex-shrink-0 z-10"></div>
+                                    
+                                    <div className="w-1/2"></div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* Call to Action */}
+                <section className="py-16 px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-4xl mx-auto text-center">
+                        <h2 className="text-3xl font-bold text-t-primary mb-4">Ready to Transform Your Business?</h2>
+                        <p className="text-lg text-t-secondary mb-8">
+                            Join over 100,000 businesses that trust MEWAYZ to power their growth
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                            <Link href="/register" className="bg-primary text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-primary-dark transition-colors">
+                                Start Free Trial
+                            </Link>
+                            <Link href="/contact" className="border border-primary text-primary px-8 py-3 rounded-lg text-lg font-medium hover:bg-primary hover:text-white transition-colors">
+                                Contact Sales
+                            </Link>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Footer */}
+                <footer className="bg-b-surface1 border-t border-s-stroke py-12 px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-6xl mx-auto text-center">
+                        <div className="mb-8">
+                            <Link href="/" className="text-2xl font-bold text-t-primary">Mewayz</Link>
+                        </div>
+                        <div className="flex justify-center space-x-8 mb-8">
+                            <Link href="/" className="text-t-secondary hover:text-t-primary">Home</Link>
+                            <Link href="/pricing" className="text-t-secondary hover:text-t-primary">Pricing</Link>
+                            <Link href="/about" className="text-t-secondary hover:text-t-primary">About</Link>
+                            <Link href="/contact" className="text-t-secondary hover:text-t-primary">Contact</Link>
+                        </div>
+                        <p className="text-t-secondary">© 2024 MEWAYZ. All rights reserved.</p>
+                    </div>
+                </footer>
+            </div>
+        </>
+    );
+} 

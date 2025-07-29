@@ -1,6 +1,7 @@
-import Card from "@/components/Card";
-import Product from "@/components/Product";
-import Button from "@/components/Button";
+import React from "react";
+import Card from "@/style-reference/components/Card";
+import Product from "@/style-reference/components/Product";
+import Button from "@/style-reference/components/Button";
 
 interface PopularProductsProps {
     title: string;

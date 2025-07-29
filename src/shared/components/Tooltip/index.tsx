@@ -1,6 +1,6 @@
 import { useId } from "react";
 import { Tooltip as ReactTooltip, PlacesType } from "react-tooltip";
-import Icon from "@/components/Icon";
+import Icon from "@/style-reference/components/Icon";
 
 interface TooltipProps {
     className?: string;

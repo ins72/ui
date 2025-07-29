@@ -1,4 +1,6 @@
-import Icon from "@/components/Icon";
+"use client";
+
+import Icon from "@/style-reference/components/Icon";
 import { useState } from "react";
 
 interface LikeButtonProps {

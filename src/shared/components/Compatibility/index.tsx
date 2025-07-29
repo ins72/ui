@@ -1,6 +1,8 @@
+"use client";
+
 import { useState } from "react";
-import Tooltip from "@/components/Tooltip";
-import Image from "@/components/Image";
+import Tooltip from "@/style-reference/components/Tooltip";
+import Image from "@/style-reference/components/Image";
 
 import { compatibility } from "@/mocks/compatibility";
 

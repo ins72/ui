@@ -1,17 +1,16 @@
 "use client";
 
-import { dataService } from "@/lib/data-service";
-import { useState } from "react";
-import Tabs from "@/components/Tabs";
-import Button from "@/components/Button";
-import DeleteItems from "@/components/DeleteItems";
+import React, { useState } from "react";
+import Tabs from "@/style-reference/components/Tabs";
+import Button from "@/style-reference/components/Button";
+import DeleteItems from "@/style-reference/components/DeleteItems";
 import { useSelection } from "@/hooks/useSelection";
 import { PublishedItem } from "@/types/promote";
 import NewPost from "./NewPost";
 import Published from "./Published";
 import Scheduled from "./Scheduled";
 
-
+import { publishedItems, scheduledItems } from "@/mocks/promote";
 
 const sortOptions = [
     { id: 1, name: "Published" },
@@ -19,30 +18,6 @@ const sortOptions = [
 ];
 
 const List = ({}) => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const response = await dataService.getProducts({ limit: 10 });
-        if (response.data) {
-          setData(response.data);
-        }
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Unknown error");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
     const [sort, setSort] = useState(sortOptions[0]);
     const {
         selectedRows,
@@ -70,11 +45,11 @@ const List = ({}) => {
                         {selectedRows.length} product
                         {selectedRows.length !== 1 ? "s" : ""} selected
                     </div>
-                    <Button
+                    <button
                         className="mr-auto"
                         isStroke
                         onClick={handleDeselect}
-                    >
+                     aria-label="Action button">
                         Deselect
                     </Button>
                     <DeleteItems

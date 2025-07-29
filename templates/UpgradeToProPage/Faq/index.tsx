@@ -1,43 +1,55 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { dataService } from "@/lib/data-service";
-import Tabs from "@/components/Tabs";
+
+export const metadata = {
+  title: "MEWAYZ - All-in-One Business Platform | E-commerce, CRM, Courses & More",
+  description: "Transform your business with MEWAYZ's comprehensive platform. Manage e-commerce, CRM, courses, social media, and marketing automation in one powerful solution. Start free today.",
+  keywords: "business platform, e-commerce platform, CRM software, online course platform, marketing automation, social media management, business intelligence, enterprise software",
+  openGraph: {
+    title: "MEWAYZ - All-in-One Business Platform | E-commerce, CRM, Courses & More",
+    description: "Transform your business with MEWAYZ's comprehensive platform. Manage e-commerce, CRM, courses, social media, and marketing automation in one powerful solution. Start free today.",
+    type: "website",
+    url: "https://mewayz.com",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "MEWAYZ - Transform Your Business"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MEWAYZ - All-in-One Business Platform | E-commerce, CRM, Courses & More",
+    description: "Transform your business with MEWAYZ's comprehensive platform. Manage e-commerce, CRM, courses, social media, and marketing automation in one powerful solution. Start free today.",
+    images: ["/og-image.jpg"]
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1
+    }
+  }
+};
+
+import { useState } from "react";
+import Tabs from "@/style-reference/components/Tabs";
 import Item from "./Item";
 import { TabsOption } from "@/types/tabs";
 
+import { faqs } from "@/mocks/faqs";
 
-
-const Faq = ({}) => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const response = await dataService.getFaqs();
-        if (response.faqs) {
-          setData(response.faqs);
-        }
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Unknown error');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-  
-  const [activeTab, setActiveTab] = useState(data[0] || { id: 1, name: 'General', items: [] });
-  const [activeItemId, setActiveItemId] = useState<number | null>(null);
+const Faq = () => {
+    const [activeTab, setActiveTab] = useState(faqs[0]);
+    const [activeItemId, setActiveItemId] = useState<number | null>(null);
     const handleTabChange = (tab: TabsOption) => {
-        setActiveTab(data[tab.id - 1] || data[0]);
+        setActiveTab(faqs[tab.id - 1]);
         setActiveItemId(null);
     };
 
@@ -45,7 +57,7 @@ const Faq = ({}) => {
         setActiveItemId(activeItemId === itemId ? null : itemId);
     };
 
-    const currentItems = data[activeTab.id - 1]?.items || data[0]?.items || [];
+    const currentItems = faqs[activeTab.id - 1]?.items || [];
 
     return (
         <div className="">
@@ -55,7 +67,7 @@ const Faq = ({}) => {
             <Tabs
                 className="justify-center mb-4 max-md:justify-stretch max-md:-mx-6 max-md:overflow-x-auto max-md:scrollbar-none max-md:before:shrink-0 max-md:before:w-5 max-md:after:shrink-0 max-md:after:w-5"
                 classButton="max-md:shrink-0"
-                items={data}
+                items={faqs}
                 value={activeTab}
                 setValue={handleTabChange}
             />

@@ -1,11 +1,13 @@
+"use client";
+
 import { useState } from "react";
-import Button from "@/components/Button";
-import Modal from "@/components/Modal";
-import Select from "@/components/Select";
-import Range from "@/components/Range";
-import Compatibility from "@/components/Compatibility";
-import Tooltip from "@/components/Tooltip";
-import Switch from "@/components/Switch";
+import Button from "@/style-reference/components/Button";
+import Modal from "@/style-reference/components/Modal";
+import Select from "@/style-reference/components/Select";
+import Range from "@/style-reference/components/Range";
+import Compatibility from "@/style-reference/components/Compatibility";
+import Tooltip from "@/style-reference/components/Tooltip";
+import Switch from "@/style-reference/components/Switch";
 
 const categories = [
     { id: 1, name: "All categories" },

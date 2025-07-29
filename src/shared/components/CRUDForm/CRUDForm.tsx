@@ -1,12 +1,15 @@
+"use client";
+
+import {  useState , useEffect } from "react";
 'use client';
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useCreateEntity, useUpdateEntity, useDeleteEntity } from '@/hooks/useApi';
 import { useNotifications } from '@/contexts/AppContext';
-import Field from '@/components/Field';
-import Button from '@/components/Button';
-import Modal from '@/components/Modal';
+import Field from "@/style-reference/components/Field";
+import Button from "@/style-reference/components/Button";
+import Modal from "@/style-reference/components/Modal";
 
 interface Field {
   name: string;

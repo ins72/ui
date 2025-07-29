@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Icon from "@/components/Icon";
+import Icon from "@/style-reference/components/Icon";
 
 type NavLinkProps = {
     value: {

@@ -1,10 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import Layout from "@/components/Layout";
-import Card from "@/components/Card";
-import Button from "@/components/Button";
-import Icon from "@/components/Icon";
+export const dynamic = 'force-static';
+export const revalidate = 3600; // Revalidate every hour
+
+import Layout from "@/style-reference/components/Layout";
+import Card from "@/style-reference/components/Card";
+import Button from "@/style-reference/components/Button";
+import Icon from "@/style-reference/components/Icon";
 
 interface Job {
     id: string;

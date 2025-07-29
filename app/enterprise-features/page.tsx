@@ -1,673 +1,588 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { useApp } from '@/contexts/AppContext';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { 
-  Building2, 
-  Database, 
-  Shield, 
-  Zap, 
-  Globe, 
-  Award,
-  CheckCircle,
-  ArrowRight,
-  Play,
-  BookOpen,
-  Terminal,
-  Cpu,
-  Server,
-  Lock,
-  Key,
-  FileText,
-  Copy,
-  ExternalLink,
-  Download,
-  Search,
-  Filter,
-  Settings,
-  Eye,
-  EyeOff,
-  RefreshCw,
-  Clock,
-  AlertCircle,
-  Info,
-  HelpCircle,
-  ChevronRight,
-  ChevronDown,
-  Hash,
-  Tag,
-  Link as LinkIcon,
-  Users,
-  Activity,
-  TrendingUp,
-  BarChart3,
-  PieChart,
-  LineChart,
-  Database as DatabaseIcon,
-  Cloud,
-  Wifi,
-  WifiOff,
-  Check,
-  X,
-  Plus,
-  Minus,
-  Edit,
-  Trash2,
-  Save,
-  RotateCcw,
-  PlayCircle,
-  PauseCircle,
-  StopCircle,
-  SkipBack,
-  SkipForward,
-  Volume2,
-  VolumeX,
-  Maximize,
-  Minimize,
-  Fullscreen,
-  FullscreenExit,
-  Monitor,
-  Smartphone,
-  Tablet,
-  Laptop,
-  Desktop,
-  Printer,
-  Camera,
-  Video,
-  Image,
-  File,
-  Folder,
-  FolderOpen,
-  FolderPlus,
-  FilePlus,
-  FileText as FileTextIcon,
-  FileImage,
-  FileVideo,
-  FileAudio,
-  FileArchive,
-  FileCode,
-  FileSpreadsheet,
-  FilePresentation,
-  FilePdf,
-  FileWord,
-  FileExcel,
-  FilePowerpoint,
-  FileZip,
-  FileX,
-  FileCheck,
-  FileSearch,
-  FileEdit,
-  FileMinus,
-  FileUp,
-  FileDown,
-  FileLeft,
-  FileRight,
-  FileUpRight,
-  FileDownLeft,
-  FileDownRight,
-  FileUpLeft,
-  FileHeart,
-  FileWarning,
-  FileQuestion,
-  FileInfo,
-  FileAlert,
-  FileX2,
-  FileCheck2,
-  FileClock,
-  FileLock,
-  FileUnlock,
-  FileKey,
-  FileShield,
-  FileShield2,
-  FileType,
-  FileType2,
-  FileJson,
-  FileJs,
-  FileTs,
-  FileJsx,
-  FileTsx,
-  FileVue,
-  FileSvelte,
-  FileReact,
-  FileAngular,
-  FileVue2,
-  FileSvelte2,
-  FileReact2,
-  FileAngular2,
-  FileHtml,
-  FileCss,
-  FileScss,
-  FileLess,
-  FileSass,
-  FileStylus,
-  FilePostcss,
-  FileTailwind,
-  FileBootstrap,
-  FileMaterial,
-  FileAntd,
-  FileMui,
-  FileChakra,
-  FileNext,
-  FileNuxt,
-  FileGatsby,
-  FileRemix,
-  FileSveltekit,
-  FileAstro,
-  FileVite,
-  FileWebpack,
-  FileRollup,
-  FileParcel,
-  FileEsbuild,
-  FileSwc,
-  FileBabel,
-  FileTypeScript,
-  FileJavaScript,
-  FilePython,
-  FileJava,
-  FileCpp,
-  FileC,
-  FileCsharp,
-  FilePhp,
-  FileRuby,
-  FileGo,
-  FileRust,
-  FileSwift,
-  FileKotlin,
-  FileScala,
-  FileClojure,
-  FileHaskell,
-  FileElixir,
-  FileErlang,
-  FileR,
-  FileMatlab,
-  FileJulia,
-  FileDart,
-  FileLua,
-  FilePerl,
-  FileBash,
-  FilePowershell,
-  FileBatch,
-  FileDocker,
-  FileKubernetes,
-  FileTerraform,
-  FileAnsible,
-  FileChef,
-  FilePuppet,
-  FileJenkins,
-  FileGitlab,
-  FileGithub,
-  FileBitbucket,
-  FileGit,
-  FileGitBranch,
-  FileGitCommit,
-  FileGitMerge,
-  FileGitPullRequest,
-  FileGitCompare,
-  FileGitFork,
-  FileGitBranch2,
-  FileGitCommit2,
-  FileGitMerge2,
-  FileGitPullRequest2,
-  FileGitCompare2,
-  FileGitFork2,
-  FileGitBranch3,
-  FileGitCommit3,
-  FileGitMerge3,
-  FileGitPullRequest3,
-  FileGitCompare3,
-  FileGitFork3,
-  FileGitBranch4,
-  FileGitCommit4,
-  FileGitMerge4,
-  FileGitPullRequest4,
-  FileGitCompare4,
-  FileGitFork4,
-  FileGitBranch5,
-  FileGitCommit5,
-  FileGitMerge5,
-  FileGitPullRequest5,
-  FileGitCompare5,
-  FileGitFork5,
-  FileGitBranch6,
-  FileGitCommit6,
-  FileGitMerge6,
-  FileGitPullRequest6,
-  FileGitCompare6,
-  FileGitFork6,
-  FileGitBranch7,
-  FileGitCommit7,
-  FileGitMerge7,
-  FileGitPullRequest7,
-  FileGitCompare7,
-  FileGitFork7,
-  FileGitBranch8,
-  FileGitCommit8,
-  FileGitMerge8,
-  FileGitPullRequest8,
-  FileGitCompare8,
-  FileGitFork8,
-  FileGitBranch9,
-  FileGitCommit9,
-  FileGitMerge9,
-  FileGitPullRequest9,
-  FileGitCompare9,
-  FileGitFork9,
-  FileGitBranch10,
-  FileGitCommit10,
-  FileGitMerge10,
-  FileGitPullRequest10,
-  FileGitCompare10,
-  FileGitFork10
-} from 'lucide-react';
-import Link from 'next/link';
+import { useState } from 'react';
+import Layout from "@/components/Layout";
+import Card from "@/components/Card";
+import Button from "@/components/Button";
+import Badge from "@/components/Badge";
+import Tabs from "@/components/Tabs";
+import DataTable from "@/components/DataTable";
 
-export default function EnterpriseFeaturesPage() {
-  const { setBreadcrumbs, setCurrentPage } = useApp();
+export const dynamic = 'force-dynamic';
 
-  React.useEffect(() => {
-    setBreadcrumbs([
-      { label: 'Enterprise Features', href: '/enterprise-features' }
-    ]);
-    setCurrentPage('Enterprise Features');
-  }, [setBreadcrumbs, setCurrentPage]);
+// Enterprise Features Hub - Professional Business Solutions Platform
+// SEO-optimized for: enterprise software, business automation, professional platform features
+const EnterpriseFeaturesPage = () => {
+    const [activeTab, setActiveTab] = useState({ id: 1, name: "Security & Compliance" });
 
-  const enterpriseFeatures = [
-    {
-      title: 'Advanced Security',
-      description: 'Enterprise-grade security with multi-factor authentication, SSO, and advanced threat protection',
-      icon: Shield,
-      color: 'bg-red-500',
-      features: [
-        'Multi-factor authentication (MFA)',
-        'Single sign-on (SSO)',
-        'Advanced threat protection',
-        'Data encryption at rest and in transit',
-        'Role-based access control (RBAC)',
-        'Audit logging and compliance'
-      ]
-    },
-    {
-      title: 'Scalability & Performance',
-      description: 'Built to handle enterprise-scale workloads with high availability and performance',
-      icon: Zap,
-      color: 'bg-blue-500',
-      features: [
-        'Auto-scaling infrastructure',
-        'Load balancing and failover',
-        '99.99% uptime SLA',
-        'Global CDN and edge locations',
-        'Database optimization',
-        'Performance monitoring and alerts'
-      ]
-    },
-    {
-      title: 'Compliance & Governance',
-      description: 'Meet regulatory requirements with comprehensive compliance features',
-      icon: FileCheck,
-      color: 'bg-green-500',
-      features: [
-        'SOC 2 Type II compliance',
-        'GDPR and data privacy',
-        'HIPAA compliance',
-        'ISO 27001 certification',
-        'Custom compliance frameworks',
-        'Data retention policies'
-      ]
-    },
-    {
-      title: 'Custom Integration',
-      description: 'Seamlessly integrate with your existing enterprise systems and workflows',
-      icon: Link,
-      color: 'bg-purple-500',
-      features: [
-        'RESTful APIs and webhooks',
-        'Custom connector development',
-        'Third-party integrations',
-        'Data synchronization',
-        'Workflow automation',
-        'Real-time data streaming'
-      ]
-    },
-    {
-      title: 'Advanced Analytics',
-      description: 'Powerful analytics and reporting capabilities for data-driven decision making',
-      icon: BarChart3,
-      color: 'bg-orange-500',
-      features: [
-        'Real-time dashboards',
-        'Custom reporting',
-        'Data visualization',
-        'Predictive analytics',
-        'Business intelligence',
-        'Export and sharing capabilities'
-      ]
-    },
-    {
-      title: 'Dedicated Support',
-      description: '24/7 dedicated support with enterprise-grade service level agreements',
-      icon: Users,
-      color: 'bg-indigo-500',
-      features: [
-        '24/7 phone and email support',
-        'Dedicated account manager',
-        'Priority ticket routing',
-        'Custom training programs',
-        'On-site support available',
-        'Escalation management'
-      ]
-    }
-  ];
+    // Professional enterprise feature categories for comprehensive business solutions
+    const tabOptions = [
+        { id: 1, name: "Security & Compliance" },
+        { id: 2, name: "Multi-Tenant Architecture" },
+        { id: 3, name: "Integration Platform" },
+        { id: 4, name: "Industry Modules" },
+        { id: 5, name: "Global Deployment" }
+    ];
 
-  const enterpriseStats = [
-    {
-      title: 'Enterprise Customers',
-      value: '500+',
-      change: '+25%',
-      changeType: 'positive',
-      icon: Building2
-    },
-    {
-      title: 'Uptime SLA',
-      value: '99.99%',
-      change: '+0.01%',
-      changeType: 'positive',
-      icon: CheckCircle
-    },
-    {
-      title: 'Security Certifications',
-      value: '15+',
-      change: '+2',
-      changeType: 'positive',
-      icon: Shield
-    },
-    {
-      title: 'Global Data Centers',
-      value: '25+',
-      change: '+3',
-      changeType: 'positive',
-      icon: Globe
-    }
-  ];
+    // Enterprise security compliance standards for professional certification
+    const complianceStandards = [
+        { 
+            id: 1, 
+            name: "SOC 2 Type II", 
+            status: "certified", 
+            coverage: "95%",
+            lastAudit: "Nov 2024",
+            description: "Service Organization Control reporting for security, availability, and confidentiality"
+        },
+        { 
+            id: 2, 
+            name: "ISO 27001", 
+            status: "ready", 
+            coverage: "92%",
+            lastAudit: "Oct 2024",
+            description: "International standard for information security management systems"
+        },
+        { 
+            id: 3, 
+            name: "HIPAA", 
+            status: "certified", 
+            coverage: "98%",
+            lastAudit: "Dec 2024",
+            description: "Healthcare information privacy and security compliance"
+        },
+        { 
+            id: 4, 
+            name: "GDPR", 
+            status: "certified", 
+            coverage: "100%",
+            lastAudit: "Jan 2025",
+            description: "European Union data protection and privacy regulation"
+        },
+        { 
+            id: 5, 
+            name: "PCI DSS", 
+            status: "in-progress", 
+            coverage: "87%",
+            lastAudit: "Dec 2024",
+            description: "Payment Card Industry Data Security Standard compliance"
+        }
+    ];
 
-  const complianceStandards = [
-    {
-      name: 'SOC 2 Type II',
-      description: 'Service Organization Control 2 compliance for security, availability, and confidentiality',
-      icon: Shield,
-      status: 'Certified'
-    },
-    {
-      name: 'GDPR',
-      description: 'General Data Protection Regulation compliance for EU data protection',
-      icon: Lock,
-      status: 'Compliant'
-    },
-    {
-      name: 'HIPAA',
-      description: 'Health Insurance Portability and Accountability Act compliance',
-      icon: FileCheck,
-      status: 'Certified'
-    },
-    {
-      name: 'ISO 27001',
-      description: 'International standard for information security management',
-      icon: Award,
-      status: 'Certified'
-    },
-    {
-      name: 'PCI DSS',
-      description: 'Payment Card Industry Data Security Standard compliance',
-      icon: CreditCard,
-      status: 'Compliant'
-    },
-    {
-      name: 'FedRAMP',
-      description: 'Federal Risk and Authorization Management Program',
-      icon: Building2,
-      status: 'In Progress'
-    }
-  ];
+    // Multi-tenant architecture capabilities for enterprise scalability
+    const multiTenantFeatures = [
+        {
+            feature: "Hierarchical Organizations",
+            description: "Multi-level organization structure with role-based access control",
+            status: "active",
+            usage: "247 organizations"
+        },
+        {
+            feature: "Resource Isolation",
+            description: "Complete data segregation between tenant organizations",
+            status: "active",
+            usage: "99.99% isolation"
+        },
+        {
+            feature: "Custom Branding",
+            description: "White-label solutions with custom domains and branding",
+            status: "active",
+            usage: "156 branded portals"
+        },
+        {
+            feature: "Federated Authentication",
+            description: "Single sign-on integration with enterprise identity providers",
+            status: "active",
+            usage: "34 SSO integrations"
+        }
+    ];
 
-  const deploymentOptions = [
-    {
-      title: 'Cloud Hosted',
-      description: 'Fully managed cloud deployment with automatic updates and maintenance',
-      icon: Cloud,
-      color: 'bg-blue-500',
-      features: ['Fully managed', 'Automatic updates', 'Global CDN', '99.99% uptime']
-    },
-    {
-      title: 'Private Cloud',
-      description: 'Dedicated private cloud infrastructure for enhanced security and control',
-      icon: Server,
-      color: 'bg-green-500',
-      features: ['Dedicated infrastructure', 'Enhanced security', 'Custom configurations', 'Isolated environment']
-    },
-    {
-      title: 'On-Premises',
-      description: 'Deploy within your own data center for maximum control and compliance',
-      icon: Building2,
-      color: 'bg-purple-500',
-      features: ['Full control', 'Data sovereignty', 'Custom integrations', 'Air-gapped deployment']
-    },
-    {
-      title: 'Hybrid',
-      description: 'Combination of cloud and on-premises deployment for flexibility',
-      icon: Link,
-      color: 'bg-orange-500',
-      features: ['Flexible deployment', 'Data synchronization', 'Disaster recovery', 'Cost optimization']
-    }
-  ];
+    // Industry-specific modules for vertical market specialization
+    const industryModules = [
+        {
+            id: 1,
+            industry: "Healthcare",
+            features: ["HIPAA Compliance", "EHR Integration", "Telemedicine", "Patient Management"],
+            compliance: "HIPAA, HITECH",
+            clients: 127,
+            status: "production"
+        },
+        {
+            id: 2,
+            industry: "Education",
+            features: ["FERPA Compliance", "Student Information System", "Grade Management", "Learning Analytics"],
+            compliance: "FERPA, COPPA",
+            clients: 89,
+            status: "production"
+        },
+        {
+            id: 3,
+            industry: "Financial Services",
+            features: ["PCI DSS", "Fraud Detection", "Risk Management", "Regulatory Reporting"],
+            compliance: "PCI DSS, SOX",
+            clients: 45,
+            status: "production"
+        },
+        {
+            id: 4,
+            industry: "Government",
+            features: ["FedRAMP Ready", "Section 508", "Public Records Management", "Citizen Services"],
+            compliance: "FedRAMP, FISMA",
+            clients: 23,
+            status: "beta"
+        }
+    ];
+
+    // Global deployment infrastructure for worldwide enterprise operations
+    const globalRegions = [
+        {
+            region: "North America",
+            locations: ["US East", "US West", "Canada"],
+            status: "active",
+            latency: "< 50ms",
+            compliance: "SOC 2, HIPAA"
+        },
+        {
+            region: "Europe",
+            locations: ["Ireland", "Germany", "UK"],
+            status: "active",
+            latency: "< 40ms",
+            compliance: "GDPR, ISO 27001"
+        },
+        {
+            region: "Asia Pacific",
+            locations: ["Singapore", "Tokyo", "Sydney"],
+            status: "active",
+            latency: "< 60ms",
+            compliance: "ISO 27001, Local Regulations"
+        },
+        {
+            region: "Latin America",
+            locations: ["Brazil", "Mexico"],
+            status: "expanding",
+            latency: "< 80ms",
+            compliance: "LGPD, Local Data Laws"
+        }
+    ];
+
+    const getStatusColor = (status: string) => {
+        switch (status) {
+            case 'certified': case 'active': case 'production': return 'green';
+            case 'ready': case 'beta': return 'blue';
+            case 'in-progress': case 'expanding': return 'yellow';
+            case 'failed': case 'inactive': return 'red';
+            default: return 'gray';
+        }
+    };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-white dark:bg-slate-900 py-20">
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-600/10 to-gray-600/10"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="flex justify-center mb-6">
-              <div className="p-3 bg-slate-100 dark:bg-slate-800 rounded-full">
-                <Building2 className="h-8 w-8 text-slate-600 dark:text-slate-400" />
+        <Layout title="Enterprise Features - Professional Business Solutions Platform">
+            <div className="mb-5">
+                <div className="mb-6">
+                    <h1 className="text-h2 mb-3">Enterprise-Grade Business Solutions</h1>
+                    <p className="text-base text-gray-600 mb-4">
+                        Comprehensive enterprise platform with advanced security, compliance, and scalability features. 
+                        Built for Fortune 500 companies and growing businesses requiring professional-grade infrastructure, 
+                        multi-tenant architecture, and industry-specific compliance standards.
+                    </p>
+                    
+                    {/* Professional enterprise value propositions */}
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                        <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+                            <div className="text-sm font-semibold text-green-800 mb-1">Bank-Level Security</div>
+                            <div className="text-xs text-green-600">SOC 2, ISO 27001, HIPAA certified infrastructure</div>
+                        </div>
+                        <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                            <div className="text-sm font-semibold text-blue-800 mb-1">Global Scalability</div>
+                            <div className="text-xs text-blue-600">Multi-region deployment with 99.99% uptime SLA</div>
+                        </div>
+                        <div className="bg-purple-50 p-4 rounded-lg border border-purple-200">
+                            <div className="text-sm font-semibold text-purple-800 mb-1">Industry Specialization</div>
+                            <div className="text-xs text-purple-600">Healthcare, education, finance, government modules</div>
+                        </div>
+                        <div className="bg-orange-50 p-4 rounded-lg border border-orange-200">
+                            <div className="text-sm font-semibold text-orange-800 mb-1">Enterprise Integration</div>
+                            <div className="text-xs text-orange-600">500+ pre-built connectors and custom APIs</div>
+                  </div>
+                </div>
+
+                    <Tabs
+                        items={tabOptions}
+                        value={activeTab}
+                        setValue={setActiveTab}
+                    />
+                </div>
+
+                {/* Following style-reference HomePage two-column layout pattern */}
+                <div className="flex max-lg:block">
+                    <div className="col-left">
+                        {/* Security & Compliance Dashboard */}
+                        {activeTab.id === 1 && (
+                            <>
+                                <Card title="Security & Compliance Standards" className="mb-6">
+                                    <div className="p-4">
+                                        <DataTable
+                                            data={complianceStandards}
+                                            columns={[
+                                                { key: 'name', title: 'Standard' },
+                                                { 
+                                                    key: 'status', 
+                                                    title: 'Status',
+                                                    render: (value: string) => (
+                                                        <Badge variant={getStatusColor(value) as any}>
+                                                            {value}
+                                                        </Badge>
+                                                    )
+                                                },
+                                                { 
+                                                    key: 'coverage', 
+                                                    title: 'Coverage',
+                                                    render: (value: string) => (
+                                                        <span className="font-medium text-green-600">{value}</span>
+                                                    )
+                                                },
+                                                { key: 'lastAudit', title: 'Last Audit' }
+                                            ]}
+                                        />
               </div>
+            </Card>
+
+                                <Card title="Advanced Authentication Systems" className="mb-6">
+                                    <div className="p-4 space-y-4">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                                                <div className="font-semibold text-blue-800 mb-2">SAML 2.0 Integration</div>
+                                                <div className="text-sm text-blue-700 mb-2">
+                                                    Enterprise single sign-on with identity provider federation
+                                                </div>
+                                                <div className="text-xs text-blue-600">
+                                                    ✓ Active Directory • ✓ Okta • ✓ Azure AD • ✓ Google Workspace
+                                                </div>
+                                            </div>
+                                            <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+                                                <div className="font-semibold text-green-800 mb-2">Risk-Based Authentication</div>
+                                                <div className="text-sm text-green-700 mb-2">
+                                                    Intelligent security with behavioral analysis and device fingerprinting
+                                                </div>
+                                                <div className="text-xs text-green-600">
+                                                    ✓ Location Analysis • ✓ Device Trust • ✓ Behavioral Patterns
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="bg-gray-50 p-4 rounded-lg">
+                                            <div className="text-sm font-medium text-gray-700 mb-2">Security Metrics</div>
+                                            <div className="grid grid-cols-3 gap-4 text-sm">
+                                                <div className="text-center">
+                                                    <div className="font-bold text-green-600">99.9%</div>
+                                                    <div className="text-gray-600">Uptime</div>
+                                                </div>
+                                                <div className="text-center">
+                                                    <div className="font-bold text-blue-600">&lt; 200ms</div>
+                                                    <div className="text-gray-600">Response Time</div>
+                                                </div>
+                                                <div className="text-center">
+                                                    <div className="font-bold text-purple-600">Zero</div>
+                                                    <div className="text-gray-600">Security Breaches</div>
+                      </div>
+                      </div>
+                                        </div>
+                                    </div>
+                                </Card>
+                            </>
+                        )}
+
+                        {/* Multi-Tenant Architecture */}
+                        {activeTab.id === 2 && (
+                            <>
+                                <Card title="Multi-Tenant Architecture Overview" className="mb-6">
+                                    <div className="p-4 space-y-4">
+                                        {multiTenantFeatures.map((feature, index) => (
+                                            <div key={index} className="border border-gray-200 rounded-lg p-4">
+                                                <div className="flex items-center justify-between mb-2">
+                                                    <div className="font-semibold text-gray-900">{feature.feature}</div>
+                                                    <Badge variant={getStatusColor(feature.status) as any} size="sm">
+                                                        {feature.status}
+                                                    </Badge>
+                                                </div>
+                                                <div className="text-sm text-gray-600 mb-2">
+                                                    {feature.description}
+                                                </div>
+                                                <div className="text-xs font-medium text-blue-600">
+                                                    Current Usage: {feature.usage}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Card>
+
+                                <Card title="White-Label Solutions" className="mb-6">
+                                    <div className="p-4 space-y-4">
+                                        <div className="bg-purple-50 p-4 rounded-lg border border-purple-200">
+                                            <div className="font-semibold text-purple-800 mb-2">
+                                                Complete Brand Customization
+                                            </div>
+                                            <div className="text-sm text-purple-700 space-y-1">
+                                                <div>• Custom domain management with SSL certificates</div>
+                                                <div>• Full visual branding (logos, colors, themes)</div>
+                                                <div>• Branded email templates and communications</div>
+                                                <div>• Custom mobile app generation</div>
+                                                <div>• API white-labeling for reseller programs</div>
+                                            </div>
+                                        </div>
+
+                                        <Button className="btn-purple w-full">
+                                            Configure White-Label Settings
+                                        </Button>
+                                    </div>
+                                </Card>
+                            </>
+                        )}
+
+                        {/* Integration Platform */}
+                        {activeTab.id === 3 && (
+                            <>
+                                <Card title="Enterprise Integration Hub" className="mb-6">
+                                    <div className="p-4 space-y-4">
+                                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                                            <div className="bg-blue-50 p-4 rounded-lg">
+                                                <div className="text-2xl font-bold text-blue-600">500+</div>
+                                                <div className="text-sm text-blue-700">Pre-built Connectors</div>
+                                            </div>
+                                            <div className="bg-green-50 p-4 rounded-lg">
+                                                <div className="text-2xl font-bold text-green-600">99.9%</div>
+                                                <div className="text-sm text-green-700">Sync Reliability</div>
+                                            </div>
+                                            <div className="bg-purple-50 p-4 rounded-lg">
+                                                <div className="text-2xl font-bold text-purple-600">&lt; 1s</div>
+                                                <div className="text-sm text-purple-700">Real-time Sync</div>
+                                            </div>
+                                        </div>
+
+                                        <div className="bg-gray-50 p-4 rounded-lg">
+                                            <div className="text-sm font-medium text-gray-700 mb-3">
+                                                Popular Enterprise Integrations
+                                            </div>
+                                            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+                                                <div className="bg-white p-2 rounded border text-center">Salesforce</div>
+                                                <div className="bg-white p-2 rounded border text-center">Microsoft 365</div>
+                                                <div className="bg-white p-2 rounded border text-center">SAP</div>
+                                                <div className="bg-white p-2 rounded border text-center">Oracle</div>
+                                                <div className="bg-white p-2 rounded border text-center">Workday</div>
+                                                <div className="bg-white p-2 rounded border text-center">ServiceNow</div>
+                                                <div className="bg-white p-2 rounded border text-center">Slack</div>
+                                                <div className="bg-white p-2 rounded border text-center">Zoom</div>
+                                            </div>
+                                        </div>
+
+                                        <Button className="btn-blue w-full">
+                                            Browse Integration Marketplace
+                                        </Button>
+                                    </div>
+                                </Card>
+
+                                <Card title="API Management Platform" className="mb-6">
+                                    <div className="p-4 space-y-4">
+                                        <div className="grid grid-cols-2 gap-4 text-sm">
+                                            <div className="bg-green-50 p-3 rounded-lg text-center">
+                                                <div className="font-bold text-green-600">2,847</div>
+                                                <div className="text-green-700">API Calls/Day</div>
+                                            </div>
+                                            <div className="bg-blue-50 p-3 rounded-lg text-center">
+                                                <div className="font-bold text-blue-600">99.99%</div>
+                                                <div className="text-blue-700">API Uptime</div>
+                                            </div>
+                      </div>
+
+                                        <div className="text-sm text-gray-600 space-y-1">
+                                            <div>• Comprehensive API gateway with intelligent rate limiting</div>
+                                            <div>• Developer portal with interactive documentation</div>
+                                            <div>• Automated SDK generation for multiple languages</div>
+                                            <div>• Real-time usage analytics and billing integration</div>
+                      </div>
+                    </div>
+                                </Card>
+                            </>
+                        )}
+
+                        {/* Industry Modules */}
+                        {activeTab.id === 4 && (
+                            <Card title="Industry-Specific Solutions" className="mb-6">
+                                <div className="p-4">
+                                    <DataTable
+                                        data={industryModules}
+                                        columns={[
+                                            { key: 'industry', title: 'Industry' },
+                                            { 
+                                                key: 'features', 
+                                                title: 'Key Features',
+                                                render: (value: string[]) => (
+                                                    <div className="flex flex-wrap gap-1">
+                                                        {value.slice(0, 2).map((feature, idx) => (
+                                                            <Badge key={idx} variant="blue" size="sm">
+                                                                {feature}
+                                                            </Badge>
+                                                        ))}
+                                                        {value.length > 2 && (
+                                                            <Badge variant="gray" size="sm">
+                                                                +{value.length - 2} more
+                                                            </Badge>
+                                                        )}
+                                                    </div>
+                                                )
+                                            },
+                                            { key: 'compliance', title: 'Compliance' },
+                                            { key: 'clients', title: 'Active Clients' },
+                                            { 
+                                                key: 'status', 
+                                                title: 'Status',
+                                                render: (value: string) => (
+                                                    <Badge variant={getStatusColor(value) as any}>
+                                                        {value}
+                                                    </Badge>
+                                                )
+                                            }
+                                        ]}
+                                    />
+                  </div>
+                            </Card>
+                        )}
+
+                        {/* Global Deployment */}
+                        {activeTab.id === 5 && (
+                            <Card title="Global Infrastructure & Deployment" className="mb-6">
+                                <div className="p-4">
+                                    <DataTable
+                                        data={globalRegions}
+                                        columns={[
+                                            { key: 'region', title: 'Region' },
+                                            { 
+                                                key: 'locations', 
+                                                title: 'Data Centers',
+                                                render: (value: string[]) => (
+                                                    <div className="text-sm">{value.join(', ')}</div>
+                                                )
+                                            },
+                                            { 
+                                                key: 'status', 
+                                                title: 'Status',
+                                                render: (value: string) => (
+                                                    <Badge variant={getStatusColor(value) as any}>
+                                                        {value}
+                                                    </Badge>
+                                                )
+                                            },
+                                            { key: 'latency', title: 'Avg Latency' },
+                                            { key: 'compliance', title: 'Regional Compliance' }
+                                        ]}
+                                    />
+              </div>
+            </Card>
+                        )}
+          </div>
+
+          <div className="col-right">
+                        {/* Enterprise Metrics Overview */}
+                        <Card title="Enterprise Platform Metrics" className="mb-6">
+                            <div className="p-4 space-y-4">
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="text-center p-3 bg-green-50 rounded-lg">
+                                        <div className="text-xl font-bold text-green-600">99.99%</div>
+                                        <div className="text-sm text-green-700">Uptime SLA</div>
+                                    </div>
+                                    <div className="text-center p-3 bg-blue-50 rounded-lg">
+                                        <div className="text-xl font-bold text-blue-600">2,847</div>
+                                        <div className="text-sm text-blue-700">Enterprise Clients</div>
+                                    </div>
+                                    <div className="text-center p-3 bg-purple-50 rounded-lg">
+                                        <div className="text-xl font-bold text-purple-600">156</div>
+                                        <div className="text-sm text-purple-700">White-label Instances</div>
+                                    </div>
+                                    <div className="text-center p-3 bg-orange-50 rounded-lg">
+                                        <div className="text-xl font-bold text-orange-600">500+</div>
+                                        <div className="text-sm text-orange-700">Integrations</div>
+                                    </div>
+                      </div>
+
+                                <div className="border-t pt-4">
+                                    <div className="text-sm font-medium text-gray-700 mb-2">Enterprise Benefits</div>
+                                    <div className="space-y-2 text-sm text-gray-600">
+                                        <div>• Dedicated account management and priority support</div>
+                                        <div>• Custom SLA agreements with guaranteed uptime</div>
+                                        <div>• Advanced security and compliance certifications</div>
+                                        <div>• Unlimited white-label branding and customization</div>
+                                        <div>• Priority feature development and roadmap input</div>
+                    </div>
+                  </div>
+              </div>
+            </Card>
+
+                        {/* Compliance Certification Status */}
+                        <Card title="Certification Status" className="mb-6">
+                            <div className="p-4 space-y-3">
+                                <div className="flex items-center justify-between p-2 bg-green-50 rounded">
+                                    <div className="flex items-center">
+                                        <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                                        <span className="text-sm font-medium">SOC 2 Type II</span>
+                                    </div>
+                                    <span className="text-xs text-green-600">Certified</span>
+                                </div>
+
+                                <div className="flex items-center justify-between p-2 bg-green-50 rounded">
+                                    <div className="flex items-center">
+                                        <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                                        <span className="text-sm font-medium">HIPAA</span>
+                                    </div>
+                                    <span className="text-xs text-green-600">Certified</span>
+                                </div>
+
+                                <div className="flex items-center justify-between p-2 bg-blue-50 rounded">
+                                    <div className="flex items-center">
+                                        <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                                        <span className="text-sm font-medium">ISO 27001</span>
+                                    </div>
+                                    <span className="text-xs text-blue-600">Ready</span>
+                                </div>
+
+                                <div className="flex items-center justify-between p-2 bg-yellow-50 rounded">
+                                    <div className="flex items-center">
+                                        <div className="w-2 h-2 bg-yellow-500 rounded-full mr-3"></div>
+                                        <span className="text-sm font-medium">PCI DSS</span>
+                    </div>
+                                    <span className="text-xs text-yellow-600">In Progress</span>
+                  </div>
+
+                                <Button className="btn-outline-green w-full mt-4 btn-small">
+                                    Download Compliance Reports
+                                </Button>
+              </div>
+            </Card>
+
+                        {/* Enterprise Support Tiers */}
+                        <Card title="Enterprise Support" className="mb-6">
+                            <div className="p-4 space-y-4">
+                                <div className="bg-gradient-to-r from-purple-50 to-blue-50 p-4 rounded-lg border">
+                                    <div className="text-sm font-semibold text-purple-800 mb-2">
+                                        Dedicated Enterprise Support
+                                    </div>
+                                    <div className="text-xs text-purple-700 space-y-1">
+                                        <div>• 24/7 priority support with 4-hour response SLA</div>
+                                        <div>• Dedicated customer success manager</div>
+                                        <div>• Direct engineering escalation channel</div>
+                                        <div>• Custom training and onboarding programs</div>
+                                        <div>• Priority feature development requests</div>
+                                    </div>
+                                </div>
+
+                                <Button className="btn-purple w-full btn-small">
+                                    Contact Enterprise Sales
+                </Button>
+              </div>
+                        </Card>
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6">
-              Enterprise Features
-            </h1>
-            <p className="text-xl text-slate-600 dark:text-slate-300 mb-8 max-w-3xl mx-auto">
-              Built for enterprise-scale organizations with advanced security, compliance, and scalability features.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-slate-600 hover:bg-slate-700 text-white">
-                <Play className="mr-2 h-5 w-5" />
-                Watch Demo
-              </Button>
-              <Button size="lg" variant="outline" className="border-slate-300 dark:border-slate-600">
-                <Phone className="mr-2 h-5 w-5" />
-                Contact Sales
-              </Button>
-            </div>
           </div>
         </div>
-      </section>
-
-      {/* Enterprise Stats */}
-      <section className="py-16 bg-slate-50 dark:bg-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {enterpriseStats.map((stat, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-sm font-medium text-slate-600 dark:text-slate-400">
-                        {stat.title}
-                      </p>
-                      <p className="text-2xl font-bold text-slate-900 dark:text-white">
-                        {stat.value}
-                      </p>
-                      <p className={`text-sm ${
-                        stat.changeType === 'positive' ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
-                      }`}>
-                        {stat.change} from last year
-                      </p>
-                    </div>
-                    <div className="p-3 bg-slate-100 dark:bg-slate-700 rounded-full">
-                      <stat.icon className="h-6 w-6 text-slate-600 dark:text-slate-400" />
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Enterprise Features */}
-      <section className="py-16 bg-white dark:bg-slate-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">
-              Enterprise-Grade Features
-            </h2>
-            <p className="text-lg text-slate-600 dark:text-slate-300">
-              Everything you need to run mission-critical applications at scale
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {enterpriseFeatures.map((feature, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex items-center mb-4">
-                    <div className={`w-12 h-12 ${feature.color} rounded-lg flex items-center justify-center mr-4`}>
-                      <feature.icon className="h-6 w-6 text-white" />
-                    </div>
-                    <div>
-                      <CardTitle className="text-xl">{feature.title}</CardTitle>
-                      <CardDescription className="text-base">{feature.description}</CardDescription>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2">
-                    {feature.features.map((item, idx) => (
-                      <li key={idx} className="flex items-center text-slate-600 dark:text-slate-300">
-                        <CheckCircle className="h-4 w-4 text-green-600 dark:text-green-400 mr-3 flex-shrink-0" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Compliance Standards */}
-      <section className="py-16 bg-slate-50 dark:bg-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">
-              Compliance & Certifications
-            </h2>
-            <p className="text-lg text-slate-600 dark:text-slate-300">
-              Meet the highest standards of security and compliance
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {complianceStandards.map((standard, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="p-2 bg-slate-100 dark:bg-slate-700 rounded-lg">
-                      <standard.icon className="h-5 w-5 text-slate-600 dark:text-slate-400" />
-                    </div>
-                    <Badge className={`${
-                      standard.status === 'Certified' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' :
-                      standard.status === 'Compliant' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' :
-                      'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200'
-                    }`}>
-                      {standard.status}
-                    </Badge>
-                  </div>
-                  <CardTitle className="text-lg">{standard.name}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-slate-600 dark:text-slate-300">
-                    {standard.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Deployment Options */}
-      <section className="py-16 bg-white dark:bg-slate-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">
-              Flexible Deployment Options
-            </h2>
-            <p className="text-lg text-slate-600 dark:text-slate-300">
-              Choose the deployment model that best fits your organization's needs
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {deploymentOptions.map((option, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className={`w-12 h-12 ${option.color} rounded-lg flex items-center justify-center mb-4`}>
-                    <option.icon className="h-6 w-6 text-white" />
-                  </div>
-                  <CardTitle>{option.title}</CardTitle>
-                  <CardDescription>{option.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2">
-                    {option.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center text-sm text-slate-600 dark:text-slate-300">
-                        <CheckCircle className="h-3 w-3 text-green-600 dark:text-green-400 mr-2 flex-shrink-0" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 bg-slate-600">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">
-            Ready for Enterprise?
-          </h2>
-          <p className="text-xl text-slate-200 mb-8 max-w-2xl mx-auto">
-            Discover how our enterprise features can transform your organization
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-slate-600 hover:bg-slate-50">
-              <Play className="mr-2 h-5 w-5" />
-              Watch Demo
-            </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-slate-700">
-              <Phone className="mr-2 h-5 w-5" />
-              Contact Sales
-            </Button>
-          </div>
-        </div>
-      </section>
-    </div>
+      </Layout>
   );
-} 
+};
+
+export default EnterpriseFeaturesPage; 

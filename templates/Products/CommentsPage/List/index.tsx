@@ -1,11 +1,51 @@
+"use client";
+
+
+export const metadata = {
+  title: "E-commerce Platform | Online Store Builder | MEWAYZ",
+  description: "Build and manage your online store with MEWAYZ's powerful e-commerce platform. Product management, inventory tracking, payment processing, and sales analytics included.",
+  keywords: "e-commerce platform, online store builder, product management, inventory management, payment processing, sales analytics",
+  openGraph: {
+    title: "E-commerce Platform | Online Store Builder | MEWAYZ",
+    description: "Build and manage your online store with MEWAYZ's powerful e-commerce platform. Product management, inventory tracking, payment processing, and sales analytics included.",
+    type: "website",
+    url: "https://mewayz.com",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "MEWAYZ - Transform Your Business"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "E-commerce Platform | Online Store Builder | MEWAYZ",
+    description: "Build and manage your online store with MEWAYZ's powerful e-commerce platform. Product management, inventory tracking, payment processing, and sales analytics included.",
+    images: ["/og-image.jpg"]
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1
+    }
+  }
+};
+
 import { useState } from "react";
-import Table from "@/components/Table";
-import TableRow from "@/components/TableRow";
-import Image from "@/components/Image";
-import Icon from "@/components/Icon";
-import DeleteItems from "@/components/DeleteItems";
-import LikeButton from "@/components/LikeButton";
-import Message from "@/components/Message";
+import Table from "@/style-reference/components/Table";
+import TableRow from "@/style-reference/components/TableRow";
+import Image from "@/style-reference/components/Image";
+import Icon from "@/style-reference/components/Icon";
+import DeleteItems from "@/style-reference/components/DeleteItems";
+import LikeButton from "@/style-reference/components/LikeButton";
+import Message from "@/style-reference/components/Message";
 import Answer from "./Answer";
 import { Comment } from "@/types/comment";
 
@@ -108,7 +148,7 @@ const List = ({
                             className={`action hidden absolute z-3 top-9.5 right-3 max-lg:inline-flex max-lg:border-s-stroke2 max-lg:text-t-primary max-lg:fill-t-primary max-md:top-15 ${
                                 activeId === item.id ? "visible" : "invisible"
                             }`}
-                            onClick={() => {
+                            onClick={() = aria-label="Action button"> {
                                 handleReplyClick(item.id);
                                 setActiveId(null);
                             }}
@@ -144,7 +184,7 @@ const List = ({
                             <div className="absolute top-1/2 -left-1 -translate-y-1/2 flex flex-wrap gap-2 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
                                 <button
                                     className="action"
-                                    onClick={() => handleReplyClick(item.id)}
+                                    onClick={() = aria-label="Action button"> handleReplyClick(item.id)}
                                 >
                                     <Icon name="edit" />
                                     Reply

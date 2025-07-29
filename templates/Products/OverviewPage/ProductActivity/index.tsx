@@ -1,12 +1,49 @@
 "use client";
 
-import { dataService } from "@/lib/data-service";
+
+export const metadata = {
+  title: "E-commerce Platform | Online Store Builder | MEWAYZ",
+  description: "Build and manage your online store with MEWAYZ's powerful e-commerce platform. Product management, inventory tracking, payment processing, and sales analytics included.",
+  keywords: "e-commerce platform, online store builder, product management, inventory management, payment processing, sales analytics",
+  openGraph: {
+    title: "E-commerce Platform | Online Store Builder | MEWAYZ",
+    description: "Build and manage your online store with MEWAYZ's powerful e-commerce platform. Product management, inventory tracking, payment processing, and sales analytics included.",
+    type: "website",
+    url: "https://mewayz.com",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "MEWAYZ - Transform Your Business"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "E-commerce Platform | Online Store Builder | MEWAYZ",
+    description: "Build and manage your online store with MEWAYZ's powerful e-commerce platform. Product management, inventory tracking, payment processing, and sales analytics included.",
+    images: ["/og-image.jpg"]
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1
+    }
+  }
+};
+
 import { useState } from "react";
-import Card from "@/components/Card";
-import Percentage from "@/components/Percentage";
-import Tabs from "@/components/Tabs";
+import Card from "@/style-reference/components/Card";
+import Percentage from "@/style-reference/components/Percentage";
+import Tabs from "@/style-reference/components/Tabs";
 
-
+import { productActivity } from "@/mocks/products";
 
 const durations = [
     { id: 1, name: "Last 2 weeks" },
@@ -21,30 +58,6 @@ const categories = [
 ];
 
 const ProductActivity = ({}) => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const response = await dataService.getProducts({ limit: 10 });
-        if (response.data) {
-          setData(response.data);
-        }
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Unknown error");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
     const [duration, setDuration] = useState(durations[0]);
     const [category, setCategory] = useState(categories[0]);
 

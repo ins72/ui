@@ -1,12 +1,12 @@
+
 "use client";
 
 import { useState, useEffect } from "react";
-import { apiClient } from "@/infrastructure/api/apiClient";
+import { apiClient } from "@/lib/api-client";
 import Layout from "@/components/Layout";
 import Card from "@/components/Card";
 import Button from "@/components/Button";
 import Table from "@/components/Table";
-import Product from "@/components/Product";
 
 interface Product {
     id: string;
@@ -105,18 +105,18 @@ const ProductManagementPage = () => {
             label: "Actions",
             render: (product: Product) => (
                 <div className="flex space-x-2">
-                    <Button 
+                    <Button
                         href={`/products/edit/${product.id}`}
                         size="sm"
                         isStroke
-                    >
+                        aria-label="Action button">
                         Edit
                     </Button>
-                    <Button 
+                    <Button
                         onClick={() => handleDeleteProduct(product.id)}
                         size="sm"
                         className="bg-red-600 hover:bg-red-700"
-                    >
+                        aria-label="Action button">
                         Delete
                     </Button>
                 </div>
@@ -141,7 +141,7 @@ const ProductManagementPage = () => {
                     <Card 
                         title="Products" 
                         headContent={
-                            <Button href="/products/create">
+                            <Button href="/products/create" aria-label="Action button">
                                 Add Product
                             </Button>
                         }

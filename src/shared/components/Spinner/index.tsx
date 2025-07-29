@@ -1,4 +1,5 @@
-import Image from "@/components/Image";
+import React from "react";
+import Image from "@/style-reference/components/Image";
 
 type SpinnerProps = {
     className?: string;

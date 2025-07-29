@@ -1,5 +1,5 @@
 import { useTheme } from "next-themes";
-import Icon from "@/components/Icon";
+import Icon from "@/style-reference/components/Icon";
 
 type ThemeButtonProps = {
     className?: string;

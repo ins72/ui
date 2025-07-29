@@ -1,9 +1,49 @@
+"use client";
+
+
+export const metadata = {
+  title: "MEWAYZ - All-in-One Business Platform | E-commerce, CRM, Courses & More",
+  description: "Transform your business with MEWAYZ's comprehensive platform. Manage e-commerce, CRM, courses, social media, and marketing automation in one powerful solution. Start free today.",
+  keywords: "business platform, e-commerce platform, CRM software, online course platform, marketing automation, social media management, business intelligence, enterprise software",
+  openGraph: {
+    title: "MEWAYZ - All-in-One Business Platform | E-commerce, CRM, Courses & More",
+    description: "Transform your business with MEWAYZ's comprehensive platform. Manage e-commerce, CRM, courses, social media, and marketing automation in one powerful solution. Start free today.",
+    type: "website",
+    url: "https://mewayz.com",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "MEWAYZ - Transform Your Business"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MEWAYZ - All-in-One Business Platform | E-commerce, CRM, Courses & More",
+    description: "Transform your business with MEWAYZ's comprehensive platform. Manage e-commerce, CRM, courses, social media, and marketing automation in one powerful solution. Start free today.",
+    images: ["/og-image.jpg"]
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1
+    }
+  }
+};
+
 import { useState } from "react";
-import Button from "@/components/Button";
-import Modal from "@/components/Modal";
-import Icon from "@/components/Icon";
-import Image from "@/components/Image";
-import DateAndTime from "@/components/DateAndTime";
+import Button from "@/style-reference/components/Button";
+import Modal from "@/style-reference/components/Modal";
+import Icon from "@/style-reference/components/Icon";
+import Image from "@/style-reference/components/Image";
+import DateAndTime from "@/style-reference/components/DateAndTime";
 import PostTo from "./PostTo";
 
 type SchedulePostProps = {
@@ -26,16 +66,16 @@ const SchedulePost = ({
             {isSmallButton ? (
                 <button
                     className={`action ${className || ""}`}
-                    onClick={() => setIsOpen(true)}
+                    onClick={() = aria-label="Action button"> setIsOpen(true)}
                 >
                     <Icon name="calendar" />
                     Publish
                 </button>
             ) : (
-                <Button
+                <button
                     className={`max-md:flex-1 ${className || ""}`}
                     isStroke
-                    onClick={() => setIsOpen(true)}
+                    onClick={() = aria-label="Action button"> setIsOpen(true)}
                 >
                     {title}
                 </Button>
@@ -77,7 +117,7 @@ const SchedulePost = ({
                             with sleek components and modern layouts to elevate
                             your projects.
                         </div>
-                        <button className="action ml-6 shrink-0 max-md:mt-3 max-md:ml-0">
+                        <button className="action ml-6 shrink-0 max-md:mt-3 max-md:ml-0" aria-label="Action button">
                             <Icon name="edit" />
                             Edit
                         </button>
@@ -94,14 +134,14 @@ const SchedulePost = ({
                     setStartTime={setStartTime}
                 />
                 <div className="flex justify-end gap-3 mt-12 max-md:mt-6">
-                    <Button
+                    <button
                         className="max-md:flex-1"
                         isStroke
-                        onClick={() => setIsOpen(false)}
+                        onClick={() = aria-label="Action button"> setIsOpen(false)}
                     >
                         Cancel
                     </Button>
-                    <Button className="max-md:flex-1" isBlack>
+                    <button className="max-md:flex-1" isBlack aria-label="Action button">
                         Schedule
                     </Button>
                 </div>

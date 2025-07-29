@@ -1,76 +1,48 @@
-"use client";
 
-import React, { useState, useEffect } from "react";
-import { dataService } from "@/lib/data-service";
-import { NumericFormat } from "react-number-format";
-import Icon from "@/components/Icon";
-import Tooltip from "@/components/Tooltip";
-
-interface StatisticsData {
-  id: string;
-  title: string;
-  price: number;
-  counter: number;
-  icon: string;
-  tooltip: string;
-}
-
-const Statistics = ({}) => {
-  const [statistics, setStatistics] = useState<StatisticsData[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const [payoutsResponse, incomeResponse] = await Promise.all([
-          dataService.getPayouts({ limit: 10 }),
-          dataService.getIncome({ limit: 1 })
-        ]);
-
-        const stats: StatisticsData[] = [
-          {
-            id: "1",
-            title: "Total Payouts",
-            price: payoutsResponse.payouts?.reduce((sum: number, payout: any) => sum + payout.amount, 0) || 0,
-            counter: 0,
-            icon: "wallet",
-            tooltip: "Total amount paid out"
-          },
-          {
-            id: "2",
-            title: "Pending Payouts",
-            price: payoutsResponse.payouts?.filter((p: any) => p.status === 'pending').reduce((sum: number, payout: any) => sum + payout.amount, 0) || 0,
-            counter: 0,
-            icon: "clock",
-            tooltip: "Amount pending payout"
-          },
-          {
-            id: "3",
-            title: "Future payouts",
-            price: (incomeResponse.income?.[0]?.amount || 0) - (payoutsResponse.payouts?.reduce((sum: number, payout: any) => sum + payout.amount, 0) || 0),
-            counter: 0,
-            icon: "arrow",
-            tooltip: "Available for future payouts"
-          }
-        ];
-
-        setStatistics(stats);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'An error occurred');
-      } finally {
-        setLoading(false);
+export const metadata = {
+  title: "MEWAYZ - All-in-One Business Platform | E-commerce, CRM, Courses & More",
+  description: "Transform your business with MEWAYZ's comprehensive platform. Manage e-commerce, CRM, courses, social media, and marketing automation in one powerful solution. Start free today.",
+  keywords: "business platform, e-commerce platform, CRM software, online course platform, marketing automation, social media management, business intelligence, enterprise software",
+  openGraph: {
+    title: "MEWAYZ - All-in-One Business Platform | E-commerce, CRM, Courses & More",
+    description: "Transform your business with MEWAYZ's comprehensive platform. Manage e-commerce, CRM, courses, social media, and marketing automation in one powerful solution. Start free today.",
+    type: "website",
+    url: "https://mewayz.com",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "MEWAYZ - Transform Your Business"
       }
-    };
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MEWAYZ - All-in-One Business Platform | E-commerce, CRM, Courses & More",
+    description: "Transform your business with MEWAYZ's comprehensive platform. Manage e-commerce, CRM, courses, social media, and marketing automation in one powerful solution. Start free today.",
+    images: ["/og-image.jpg"]
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1
+    }
+  }
+};
 
-    fetchData();
-  }, []);
+import { NumericFormat } from "react-number-format";
+import Icon from "@/style-reference/components/Icon";
+import Tooltip from "@/style-reference/components/Tooltip";
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+import { statistics } from "@/mocks/payouts";
 
-  return (
+const Statistics = ({}) => (
     <div className="card">
         <div className="flex gap-8 p-5 max-2xl:gap-6 max-lg:p-3 max-md:flex-col">
             {statistics.map((item) => (
@@ -111,7 +83,6 @@ const Statistics = ({}) => {
             ))}
         </div>
     </div>
-  );
-};
+);
 
 export default Statistics;

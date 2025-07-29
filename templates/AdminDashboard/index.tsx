@@ -1,8 +1,46 @@
 "use client";
 
+
+export const metadata = {
+  title: "Business Dashboard | MEWAYZ Analytics & Insights",
+  description: "Access powerful business analytics, real-time insights, and comprehensive reporting with MEWAYZ dashboard. Make data-driven decisions to grow your business.",
+  keywords: "business dashboard, analytics, insights, reporting, business intelligence, data visualization",
+  openGraph: {
+    title: "Business Dashboard | MEWAYZ Analytics & Insights",
+    description: "Access powerful business analytics, real-time insights, and comprehensive reporting with MEWAYZ dashboard. Make data-driven decisions to grow your business.",
+    type: "website",
+    url: "https://mewayz.com",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "MEWAYZ - Transform Your Business"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Business Dashboard | MEWAYZ Analytics & Insights",
+    description: "Access powerful business analytics, real-time insights, and comprehensive reporting with MEWAYZ dashboard. Make data-driven decisions to grow your business.",
+    images: ["/og-image.jpg"]
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1
+    }
+  }
+};
+
 import { useState, useEffect } from "react";
 import { Element } from "react-scroll";
-import Layout from "@/components/Layout";
+import Layout from "@/style-reference/components/Layout";
 import AdminMenu from "./AdminMenu";
 import SystemOverview from "./SystemOverview";
 import UserManagement from "./UserManagement";

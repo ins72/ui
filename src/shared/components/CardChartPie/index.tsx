@@ -1,8 +1,10 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { PieChart, Pie, Cell, Tooltip } from "recharts";
 import { NumericFormat } from "react-number-format";
-import Card from "@/components/Card";
-import Icon from "@/components/Icon";
+import Card from "@/style-reference/components/Card";
+import Icon from "@/style-reference/components/Icon";
 
 const COLORS = [
     "rgba(123, 123, 123, 0.3)",

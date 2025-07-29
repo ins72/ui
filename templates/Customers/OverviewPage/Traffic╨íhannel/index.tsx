@@ -1,4 +1,45 @@
-import { useState, useEffect } from "react";
+"use client";
+
+
+export const metadata = {
+  title: "CRM Software | Customer Relationship Management | MEWAYZ",
+  description: "Streamline customer relationships with MEWAYZ's advanced CRM. Lead tracking, sales pipeline management, customer analytics, and automated workflows.",
+  keywords: "CRM software, customer relationship management, lead tracking, sales pipeline, customer analytics, sales automation",
+  openGraph: {
+    title: "CRM Software | Customer Relationship Management | MEWAYZ",
+    description: "Streamline customer relationships with MEWAYZ's advanced CRM. Lead tracking, sales pipeline management, customer analytics, and automated workflows.",
+    type: "website",
+    url: "https://mewayz.com",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "MEWAYZ - Transform Your Business"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CRM Software | Customer Relationship Management | MEWAYZ",
+    description: "Streamline customer relationships with MEWAYZ's advanced CRM. Lead tracking, sales pipeline management, customer analytics, and automated workflows.",
+    images: ["/og-image.jpg"]
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1
+    }
+  }
+};
+
+import { Search } from "lucide-react";
+import { useState } from "react";
 import {
     BarChart,
     Bar,
@@ -10,9 +51,9 @@ import {
 } from "recharts";
 import millify from "millify";
 import { NumericFormat } from "react-number-format";
-import Card from "@/components/Card";
+import Card from "@/style-reference/components/Card";
 
-import { dataService } from "@/lib/data-service";
+import { trafficСhannelChartData } from "@/mocks/charts";
 
 const durations = [
     { id: 1, name: "Last 7 days" },
@@ -22,24 +63,6 @@ const durations = [
 
 const TrafficСhannel = ({}) => {
     const [duration, setDuration] = useState(durations[0]);
-    const [chartData, setChartData] = useState([]);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await dataService.getTrafficChannels({ limit: 7 });
-                if (response.data) {
-                    setChartData(response.data);
-                }
-            } catch (error) {
-                console.error('Error fetching traffic channels:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchData();
-    }, []);
 
     const formatterYAxis = (value: number) => {
         if (value === 0) {
@@ -109,7 +132,7 @@ const TrafficСhannel = ({}) => {
                         <BarChart
                             width={500}
                             height={280}
-                            data={chartData}
+                            data={trafficСhannelChartData}
                             // barCategoryGap={16}
                             barSize={20}
                             margin={{

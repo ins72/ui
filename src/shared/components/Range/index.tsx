@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import ReactSlider from "react-slider";
 import { NumericFormat } from "react-number-format";
-import Tooltip from "@/components/Tooltip";
+import Tooltip from "@/style-reference/components/Tooltip";
 
 type RangeProps = {
     label?: string;

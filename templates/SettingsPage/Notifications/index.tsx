@@ -1,7 +1,9 @@
+"use client";
+
 import { useState } from "react";
-import Card from "@/components/Card";
-import Switch from "@/components/Switch";
-import Tooltip from "@/components/Tooltip";
+import Card from "@/style-reference/components/Card";
+import Switch from "@/style-reference/components/Switch";
+import Tooltip from "@/style-reference/components/Tooltip";
 
 const Notifications = ({}) => {
     const [productUpdates, setProductUpdates] = useState(true);

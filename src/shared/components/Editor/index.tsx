@@ -4,8 +4,8 @@ import Link from "@tiptap/extension-link";
 import Underline from "@tiptap/extension-underline";
 import TextAlign from "@tiptap/extension-text-align";
 import { EmojiClickData } from "emoji-picker-react";
-import Emoji from "@/components/Emoji";
-import Tooltip from "@/components/Tooltip";
+import Emoji from "@/style-reference/components/Emoji";
+import Tooltip from "@/style-reference/components/Tooltip";
 
 type EditorProps = {
     className?: string;

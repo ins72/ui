@@ -1,8 +1,8 @@
-import Logo from "@/components/Logo";
+import Logo from "@/style-reference/components/Logo";
 import { RemoveScroll } from "react-remove-scroll";
-import ThemeButton from "@/components/ThemeButton";
-import NavLink from "@/components/NavLink";
-import Button from "@/components/Button";
+import ThemeButton from "@/style-reference/components/ThemeButton";
+import NavLink from "@/style-reference/components/NavLink";
+import Button from "@/style-reference/components/Button";
 import Dropdown from "./Dropdown";
 
 import { navigation } from "@/contstants/navigation";

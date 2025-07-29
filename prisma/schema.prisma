@@ -5,373 +5,190 @@ generator client {
   provider = "prisma-client-js"
 }
 
-// MongoDB configuration for production
 datasource db {
-  provider = "mongodb"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-// For SQLite development fallback, uncomment and configure:
-// datasource db {
-//   provider = "sqlite"
-//   url      = "file:./dev.db"
-// }
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
 
 model User {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  email     String   @unique
-  name      String?
-  image     String?
-  password  String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  // Relations
-  products         Product[]
-  customers        Customer[]
-  transactions     Transaction[]
-  comments         Comment[]
-  messages         Message[]
-  notifications    Notification[]
-  income           Income[]
-  countries        Country[]
-  chartData        ChartData[]
-  activeTimes      ActiveTime[]
-  promotes         Promote[]
-  payouts          Payout[]
-  refunds          Refund[]
-  statements       Statement[]
-  affiliateData    AffiliateData?
-
-  @@map("users")
-}
-
-model Product {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
-  title         String
-  description   String
-  price         Float
-  image         String
-  category      String
-  status        String   @default("draft") // draft, scheduled, released, archived
-  userId String @db.ObjectId
-  sales         Int      @default(0)
-  views         Int      @default(0)
-  likes         Int      @default(0)
-  commentsCount Int      @default(0)
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-
-  // Relations
-  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  transactions Transaction[]
-  comments     Comment[]
-  refunds      Refund[]
-  notifications Notification[]
-
-  @@map("products")
-}
-
-model Customer {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
-  name          String
-  email         String
-  avatar        String?
-  userId String @db.ObjectId
-  totalSpent    Float     @default(0)
-  purchases     Int       @default(0)
-  lastPurchase  DateTime?
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  role          String    @default("user")
+  organizationId String?
+  businessType  String?
+  experienceLevel String?
+  onboardingCompleted Boolean @default(false)
+  onboardingStep String? @default("not_started")
+  lastOnboardingUpdate DateTime?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
-  // Relations
-  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  transactions Transaction[]
-  comments     Comment[]
-  messages     Message[]
-  refunds      Refund[]
-  notifications Notification[]
-
-  @@map("customers")
+  accounts      Account[]
+  sessions      Session[]
+  organization  Organization? @relation(fields: [organizationId], references: [id])
+  blogPosts     BlogPost[]
+  comments      Comment[]
+  onboardingAssessments OnboardingAssessment[]
 }
 
-model Transaction {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  amount     Float
-  type       String   // sale, refund, payout
-  status     String   @default("pending") // pending, completed, failed
-  userId String @db.ObjectId
-  productId String? @db.ObjectId
-  customerId String? @db.ObjectId
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
 
-  // Relations
-  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  product  Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
-  customer Customer? @relation(fields: [customerId], references: [id], onDelete: SetNull)
+  @@unique([identifier, token])
+}
 
-  @@map("transactions")
+model Organization {
+  id                String   @id @default(cuid())
+  name              String
+  description       String?
+  owner             String
+  businessType      String?
+  experienceLevel   String?
+  goals             String[] // JSON array of goal IDs
+  painPoints        String[] // JSON array of pain point IDs
+  goalsDetails      Json?    // JSON object with detailed goal information
+  onboardingCompleted Boolean @default(false)
+  onboardingData    Json?    // JSON object with complete onboarding data
+  settings          Json?    // JSON object with organization settings
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  users             User[]
+  blogPosts         BlogPost[]
+  onboardingAssessments OnboardingAssessment[]
+}
+
+model BlogPost {
+  id              String   @id @default(cuid())
+  title           String
+  slug            String   @unique
+  excerpt         String
+  content         String   @db.Text
+  authorId        String
+  organizationId  String?
+  category        String
+  tags            String[] // JSON array of tags
+  featuredImage   Json?    // JSON object with image data
+  status          String   @default("draft") // draft, published, archived
+  publishedAt     DateTime?
+  metaTitle       String?
+  metaDescription String?
+  featured        Boolean  @default(false)
+  allowComments   Boolean  @default(true)
+  readTime        Int      @default(5)
+  viewCount       Int      @default(0)
+  seoTitle        String?
+  seoDescription  String?
+  targetAudience  String?
+  readingLevel    String   @default("intermediate")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  author          User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  organization    Organization? @relation(fields: [organizationId], references: [id])
+  comments        Comment[]
+
+  @@index([category])
+  @@index([status])
+  @@index([publishedAt])
+  @@index([authorId])
+  @@index([organizationId])
 }
 
 model Comment {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  content    String
-  userId String @db.ObjectId
-  productId String @db.ObjectId   
-  customerId String @db.ObjectId   
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-
-  // Relations
-  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  product  Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
-  customer Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
-
-  @@map("comments")
-}
-
-model Message {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  content    String
-  userId String @db.ObjectId
-  customerId String @db.ObjectId   
-  read       Boolean  @default(false)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-
-  // Relations
-  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  customer Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
-
-  @@map("messages")
-}
-
-model Notification {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  type       String   // purchase, comment, like, refund, payout
-  message    String
-  userId String @db.ObjectId
-  productId String? @db.ObjectId
-  customerId String? @db.ObjectId
-  read       Boolean  @default(false)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-
-  // Relations
-  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  product  Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
-  customer Customer? @relation(fields: [customerId], references: [id], onDelete: SetNull)
-
-  @@map("notifications")
-}
-
-model Income {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  amount    Float
-  type      String   // revenue, commission, bonus
-  source    String
-  date      DateTime
-  userId String @db.ObjectId
+  id        String   @id @default(cuid())
+  content   String   @db.Text
+  authorId  String
+  postId    String
+  parentId  String?  // For nested comments
+  approved  Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  // Relations
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  post      BlogPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+  parent    Comment? @relation("CommentReplies", fields: [parentId], references: [id])
+  replies   Comment[] @relation("CommentReplies")
 
-  @@map("income")
+  @@index([postId])
+  @@index([authorId])
+  @@index([approved])
 }
 
-model Country {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  name       String
-  flag       String
-  percentage Float
-  userId String @db.ObjectId
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+model OnboardingAssessment {
+  id                String   @id @default(cuid())
+  userId            String
+  organizationId    String
+  businessType      Json     // JSON object with business type data
+  experienceLevel   Json     // JSON object with experience level data
+  goals             Json     // JSON array of goal objects
+  painPoints        Json     // JSON array of pain point objects
+  goalsDetails      Json?    // JSON object with detailed goal information
+  workspaceName     String
+  workspaceDescription String?
+  profileImage      String?
+  recommendations   Json?    // JSON array of recommendation objects
+  milestones        Json?    // JSON array of milestone objects
+  dashboardConfig   Json?    // JSON object with dashboard configuration
+  progress          Json?    // JSON object with progress tracking
+  preferences       Json?    // JSON object with user preferences
+  completedAt       DateTime @default(now())
+  lastUpdated       DateTime @default(now())
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
 
-  // Relations
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organization      Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 
-  @@map("countries")
+  @@index([userId])
+  @@index([organizationId])
+  @@index([completedAt])
 }
 
-model ShopItem {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  title       String
-  description String
-  price       Float
-  image       String
-  category    String
-  isActive    Boolean  @default(true)
+model Workspace {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  ownerId     String
+  members     Json?    // JSON array of member objects
+  settings    Json?    // JSON object with workspace settings
+  modules     Json?    // JSON array of enabled modules
+  analytics   Json?    // JSON object with analytics data
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  @@map("shop_items")
-}
-
-model ChartData {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  name      String
-  value     Float
-  type      String   // balance, productView, sales, traffic
-  userId String @db.ObjectId
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  // Relations
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@map("chart_data")
-}
-
-model ActiveTime {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  hour      Int
-  activity  Int
-  userId String @db.ObjectId
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  // Relations
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@map("active_times")
-}
-
-model Promote {
-  id             String   @id @default(auto()) @map("_id") @db.ObjectId
-  title          String
-  value          String
-  icon           String
-  percentage     Float
-  tooltip        String
-  newCustomers   Int
-  productReached Int
-  userId String @db.ObjectId
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-
-  // Relations
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@map("promotes")
-}
-
-model Payout {
-  id          String    @id @default(auto()) @map("_id") @db.ObjectId
-  amount      Float
-  status      String    @default("pending") // pending, completed, failed
-  method      String    // bank, paypal, stripe
-  userId String @db.ObjectId
-  processedAt DateTime?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-
-  // Relations
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@map("payouts")
-}
-
-model Refund {
-  id          String    @id @default(auto()) @map("_id") @db.ObjectId
-  amount      Float
-  reason      String
-  status      String    @default("pending") // pending, completed, rejected
-  userId String @db.ObjectId
-  productId String @db.ObjectId    
-  customerId String @db.ObjectId    
-  processedAt DateTime?
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-
-  // Relations
-  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  product  Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
-  customer Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
-
-  @@map("refunds")
-}
-
-model Statement {
-  id             String   @id @default(auto()) @map("_id") @db.ObjectId
-  period         String   // weekly, monthly, yearly
-  startDate      DateTime
-  endDate        DateTime
-  totalEarnings  Float
-  totalSales     Int
-  totalCustomers Int
-  totalProducts  Int
-  userId String @db.ObjectId
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-
-  // Relations
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@map("statements")
-}
-
-model Creator {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  login     String
-  details   String
-  avatar    String
-  isOnline  Boolean  @default(false)
-  label     String
-  tags      String
-  time      String
-  rating    Float
-  items     Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("creators")
-}
-
-model PricingPlan {
-  id             String   @id @default(auto()) @map("_id") @db.ObjectId
-  title          String
-  percentage     Float?
-  description    String
-  features       String
-  isActive       Boolean  @default(true)
-  isRecommended  Boolean  @default(false)
-  sortOrder      Int      @default(0)
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-
-  @@map("pricing_plans")
-}
-
-model FAQ {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  category  String
-  title     String
-  content   String
-  sortOrder Int      @default(0)
-  isActive  Boolean  @default(true)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("faqs")
-}
-
-model AffiliateData {
-  id               String   @id @default(auto()) @map("_id") @db.ObjectId
-  affiliateCode    String   @unique
-  commissionRate   Float
-  totalEarnings    Float    @default(0)
-  totalReferrals   Int      @default(0)
-  activeReferrals  Int      @default(0)
-  userId String @unique @db.ObjectId
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
-
-  // Relations
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@map("affiliate_data")
+  @@index([ownerId])
 }

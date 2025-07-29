@@ -1,7 +1,8 @@
+import React from "react";
 import Link from "next/link";
-import Card from "@/components/Card";
-import Image from "@/components/Image";
-import Button from "@/components/Button";
+import Card from "@/style-reference/components/Card";
+import Image from "@/style-reference/components/Image";
+import Button from "@/style-reference/components/Button";
 
 const RefundRequests = ({}) => {
     return (

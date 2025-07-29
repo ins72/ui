@@ -1,384 +1,477 @@
-'use client';
-
-import React from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { 
-  CheckCircle,
-  Star,
-  Zap,
-  Shield,
-  Users,
-  Database,
-  Globe,
-  ArrowRight,
-  TrendingUp,
-  Award,
-  Clock,
-  MessageSquare
-} from 'lucide-react';
+import { Metadata } from 'next';
 import Link from 'next/link';
+import { Button } from "@/style-reference/components/Button";
+import { Icon } from "@/style-reference/components/Icon";
+
+export const metadata: Metadata = {
+  title: 'MEWAYZ Pricing - Choose Your Growth Plan | Free Trial Available',
+  description: 'MEWAYZ offers flexible pricing plans: Free (30% revenue share), Pro ($49/month), and Enterprise (15% revenue share). All plans include complete feature access. Start free today!',
+  keywords: 'MEWAYZ pricing, business platform pricing, e-commerce pricing, CRM pricing, marketing automation pricing, course creation pricing',
+  openGraph: {
+    title: 'MEWAYZ Pricing - Choose Your Growth Plan',
+    description: 'MEWAYZ offers flexible pricing plans: Free (30% revenue share), Pro ($49/month), and Enterprise (15% revenue share). All plans include complete feature access.',
+    type: 'website',
+    url: 'https://mewayz.com/pricing',
+    siteName: 'MEWAYZ',
+    images: [
+      {
+        url: '/images/pricing-og.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'MEWAYZ Pricing Plans',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'MEWAYZ Pricing - Choose Your Growth Plan',
+    description: 'MEWAYZ offers flexible pricing plans: Free (30% revenue share), Pro ($49/month), and Enterprise (15% revenue share). All plans include complete feature access.',
+    images: ['/images/pricing-twitter.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: 'https://mewayz.com/pricing',
+  },
+};
+
+export const dynamic = 'force-static';
+export const revalidate = 3600;
 
 export default function PricingPage() {
-  const plans = [
-    {
-      name: 'Starter',
-      price: '$99',
-      period: '/month',
-      description: 'Perfect for small teams getting started',
-      features: [
-        'Up to 1,000 records',
-        'Basic CRUD operations',
-        'Email support',
-        'Standard security',
-        'Mobile responsive',
-        'Basic analytics'
-      ],
-      popular: false,
-      color: 'bg-gray-500'
-    },
-    {
-      name: 'Professional',
-      price: '$299',
-      period: '/month',
-      description: 'Ideal for growing businesses',
-      features: [
-        'Up to 10,000 records',
-        'Advanced CRUD operations',
-        'Priority support',
-        'Enhanced security',
-        'API access',
-        'Custom integrations',
-        'Advanced analytics',
-        'Team collaboration'
-      ],
-      popular: true,
-      color: 'bg-blue-500'
-    },
-    {
-      name: 'Enterprise',
-      price: 'Custom',
-      period: '',
-      description: 'For large organizations with complex needs',
-      features: [
-        'Unlimited records',
-        'Full CRUD operations',
-        '24/7 support',
-        'Enterprise security',
-        'Custom development',
-        'Dedicated account manager',
-        'Advanced reporting',
-        'Multi-tenant support',
-        'Custom integrations',
-        'SLA guarantees'
-      ],
-      popular: false,
-      color: 'bg-purple-500'
-    }
-  ];
-
-  const features = [
-    {
-      title: 'Complete CRUD Operations',
-      description: 'Full Create, Read, Update, Delete functionality for all your data',
-      icon: Database,
-      color: 'bg-blue-500'
-    },
-    {
-      title: 'Advanced Security',
-      description: 'Bank-level security with encryption and compliance',
-      icon: Shield,
-      color: 'bg-green-500'
-    },
-    {
-      title: 'Real-time Analytics',
-      description: 'Live insights and reporting for better decision making',
-      icon: TrendingUp,
-      color: 'bg-purple-500'
-    },
-    {
-      title: '24/7 Support',
-      description: 'Round-the-clock support from our expert team',
-      icon: Clock,
-      color: 'bg-yellow-500'
-    },
-    {
-      title: 'API Access',
-      description: 'RESTful APIs for seamless integrations',
-      icon: Globe,
-      color: 'bg-red-500'
-    },
-    {
-      title: 'Mobile Responsive',
-      description: 'Works perfectly on all devices and screen sizes',
-      icon: Zap,
-      color: 'bg-indigo-500'
-    }
-  ];
-
-  const faqs = [
-    {
-      question: 'Can I change my plan at any time?',
-      answer: 'Yes, you can upgrade or downgrade your plan at any time. Changes will be prorated and reflected in your next billing cycle.'
-    },
-    {
-      question: 'Is there a free trial available?',
-      answer: 'Yes, we offer a 14-day free trial for all plans. No credit card required to start your trial.'
-    },
-    {
-      question: 'What payment methods do you accept?',
-      answer: 'We accept all major credit cards, PayPal, and bank transfers for annual plans. Enterprise customers can also pay by invoice.'
-    },
-    {
-      question: 'Do you offer discounts for annual plans?',
-      answer: 'Yes, we offer a 20% discount when you choose annual billing instead of monthly billing.'
-    },
-    {
-      question: 'What happens if I exceed my plan limits?',
-      answer: 'We\'ll notify you when you\'re approaching your limits. You can upgrade your plan or purchase additional capacity as needed.'
-    },
-    {
-      question: 'Is my data secure?',
-      answer: 'Absolutely. We use enterprise-grade encryption, regular security audits, and comply with industry standards like SOC 2 and GDPR.'
-    }
-  ];
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-white dark:bg-gray-900 py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-4xl mx-auto">
-            <Badge className="mb-6 text-sm">
-              Pricing Plans
-            </Badge>
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+      <section className="py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
               Simple, Transparent
-              <span className="text-blue-600 dark:text-blue-400"> Pricing</span>
+              <span className="text-blue-600 block">Pricing</span>
             </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
-              Choose the perfect plan for your business. All plans include our core features 
-              with no hidden fees or surprises.
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+              Choose the plan that fits your business. All plans include our complete feature set 
+              with different pricing models to match your growth stage.
             </p>
-            <div className="flex justify-center">
-              <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
-                <span className="px-4 py-2 text-sm font-medium text-gray-900 dark:text-white">
-                  Monthly
-                </span>
-                <span className="px-4 py-2 text-sm font-medium text-gray-500 dark:text-gray-400">
-                  Annual (Save 20%)
-                </span>
+            <div className="flex justify-center mb-8">
+              <div className="bg-white rounded-full p-1 shadow-lg">
+                <div className="flex">
+                  <button className="px-6 py-2 rounded-full bg-blue-600 text-white font-semibold">
+                    Monthly
+                  </button>
+                  <button className="px-6 py-2 rounded-full text-gray-600 font-semibold">
+                    Annual (Save 20%)
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Pricing Plans */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800">
-        <div className="container mx-auto px-4">
-          <div className="grid gap-8 lg:grid-cols-3">
-            {plans.map((plan) => (
-              <Card key={plan.name} className={`relative hover:shadow-lg transition-shadow ${plan.popular ? 'ring-2 ring-blue-500 scale-105' : ''}`}>
-                {plan.popular && (
-                  <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white">
-                    Most Popular
-                  </Badge>
-                )}
-                <CardHeader className="text-center">
-                  <div className={`p-3 rounded-lg ${plan.color} w-fit mx-auto`}>
-                    <Star className="h-6 w-6 text-white" />
-                  </div>
-                  <CardTitle className="text-2xl">{plan.name}</CardTitle>
-                  <div className="flex items-baseline justify-center">
-                    <span className="text-4xl font-bold text-gray-900 dark:text-white">
-                      {plan.price}
-                    </span>
-                    <span className="text-gray-500 dark:text-gray-400 ml-1">
-                      {plan.period}
-                    </span>
-                  </div>
-                  <CardDescription className="text-base">
-                    {plan.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-3 mb-6">
-                    {plan.features.map((feature) => (
-                      <li key={feature} className="flex items-center">
-                        <CheckCircle className="h-5 w-5 text-green-500 mr-3" />
-                        <span className="text-gray-600 dark:text-gray-300">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Button 
-                    className={`w-full ${plan.popular ? 'bg-blue-600 hover:bg-blue-700' : ''}`}
-                    variant={plan.popular ? 'default' : 'outline'}
-                  >
-                    {plan.name === 'Enterprise' ? 'Contact Sales' : 'Get Started'}
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+      {/* Pricing Cards */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* Free Plan */}
+            <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 relative">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Free Plan</h3>
+                <div className="text-5xl font-bold text-gray-900 mb-2">$0</div>
+                <p className="text-gray-600 mb-4">30% Revenue Share</p>
+                <p className="text-sm text-gray-500">Perfect for startups and small businesses</p>
+              </div>
+              
+              <div className="space-y-4 mb-8">
+                <div className="flex items-center">
+                  <Icon name="check" className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-gray-700">Complete feature access</span>
+                </div>
+                <div className="flex items-center">
+                  <Icon name="check" className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-gray-700">E-commerce platform</span>
+                </div>
+                <div className="flex items-center">
+                  <Icon name="check" className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-gray-700">CRM system</span>
+                </div>
+                <div className="flex items-center">
+                  <Icon name="check" className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-gray-700">Marketing automation</span>
+                </div>
+                <div className="flex items-center">
+                  <Icon name="check" className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-gray-700">Course creation platform</span>
+                </div>
+                <div className="flex items-center">
+                  <Icon name="check" className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-gray-700">Social media management</span>
+                </div>
+                <div className="flex items-center">
+                  <Icon name="check" className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-gray-700">Advanced analytics</span>
+                </div>
+                <div className="flex items-center">
+                  <Icon name="check" className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-gray-700">MEWAYZ branding</span>
+                </div>
+                <div className="flex items-center">
+                  <Icon name="check" className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-gray-700">Standard support</span>
+                </div>
+                <div className="flex items-center">
+                  <Icon name="check" className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-gray-700">Community forum access</span>
+                </div>
+              </div>
+
+              <Button variant="outline" className="w-full" asChild>
+                <Link href="/signup">Start Free</Link>
+              </Button>
+              
+              <p className="text-xs text-gray-500 text-center mt-4">
+                No credit card required • Cancel anytime
+              </p>
+            </div>
+
+            {/* Pro Plan */}
+            <div className="bg-white rounded-2xl p-8 shadow-xl border-2 border-blue-500 relative transform scale-105">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <span className="bg-blue-500 text-white px-6 py-2 rounded-full text-sm font-semibold">
+                  Most Popular
+                </span>
+              </div>
+              
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Pro Plan</h3>
+                <div className="text-5xl font-bold text-gray-900 mb-2">$49</div>
+                <p className="text-gray-600 mb-4">per month</p>
+                <p className="text-sm text-gray-500">Perfect for growing businesses</p>
+              </div>
+              
+              <div className="space-y-4 mb-8">
+                <div className="flex items-center">
+                  <Icon name="check" className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-gray-700">Everything in Free</span>
+                </div>
+                <div className="flex items-center">
+                  <Icon name="check" className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-gray-700">Custom branding</span>
+                </div>
+                <div className="flex items-center">
+                  <Icon name="check" className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-gray-700">Premium support</span>
+                </div>
+                <div className="flex items-center">
+                  <Icon name="check" className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-gray-700">Phone support</span>
+                </div>
+                <div className="flex items-center">
+                  <Icon name="check" className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-gray-700">Priority feature requests</span>
+                </div>
+                <div className="flex items-center">
+                  <Icon name="check" className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-gray-700">Advanced integrations</span>
+                </div>
+                <div className="flex items-center">
+                  <Icon name="check" className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-gray-700">Custom domain support</span>
+                </div>
+                <div className="flex items-center">
+                  <Icon name="check" className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-gray-700">API access</span>
+                </div>
+                <div className="flex items-center">
+                  <Icon name="check" className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-gray-700">Advanced analytics</span>
+                </div>
+                <div className="flex items-center">
+                  <Icon name="check" className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-gray-700">White-label options</span>
+                </div>
+              </div>
+
+              <Button variant="primary" className="w-full" asChild>
+                <Link href="/signup?plan=pro">Start Pro Trial</Link>
+              </Button>
+              
+              <p className="text-xs text-gray-500 text-center mt-4">
+                14-day free trial • No credit card required
+              </p>
+            </div>
+
+            {/* Enterprise Plan */}
+            <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 relative">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Enterprise</h3>
+                <div className="text-5xl font-bold text-gray-900 mb-2">15%</div>
+                <p className="text-gray-600 mb-4">Revenue Share + $99/month min</p>
+                <p className="text-sm text-gray-500">Perfect for large organizations</p>
+              </div>
+              
+              <div className="space-y-4 mb-8">
+                <div className="flex items-center">
+                  <Icon name="check" className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-gray-700">Everything in Pro</span>
+                </div>
+                <div className="flex items-center">
+                  <Icon name="check" className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-gray-700">Complete white-label platform</span>
+                </div>
+                <div className="flex items-center">
+                  <Icon name="check" className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-gray-700">Dedicated account manager</span>
+                </div>
+                <div className="flex items-center">
+                  <Icon name="check" className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-gray-700">24/7 priority support</span>
+                </div>
+                <div className="flex items-center">
+                  <Icon name="check" className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-gray-700">SLA guarantees</span>
+                </div>
+                <div className="flex items-center">
+                  <Icon name="check" className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-gray-700">Custom integrations</span>
+                </div>
+                <div className="flex items-center">
+                  <Icon name="check" className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-gray-700">Advanced security features</span>
+                </div>
+                <div className="flex items-center">
+                  <Icon name="check" className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-gray-700">Custom training sessions</span>
+                </div>
+                <div className="flex items-center">
+                  <Icon name="check" className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-gray-700">Multi-tenant architecture</span>
+                </div>
+                <div className="flex items-center">
+                  <Icon name="check" className="w-5 h-5 text-green-500 mr-3" />
+                  <span className="text-gray-700">Compliance certifications</span>
+                </div>
+              </div>
+
+              <Button variant="outline" className="w-full" asChild>
+                <Link href="/contact">Contact Sales</Link>
+              </Button>
+              
+              <p className="text-xs text-gray-500 text-center mt-4">
+                Custom pricing • Enterprise features
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="container mx-auto px-4">
+      {/* FAQ Section */}
+      <section className="py-24 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Everything You Need
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+              Frequently Asked Questions
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300">
-              Powerful features included in every plan
+            <p className="text-xl text-gray-600">
+              Everything you need to know about MEWAYZ pricing and plans
             </p>
           </div>
-          
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {features.map((feature) => (
-              <Card key={feature.title} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className={`p-3 rounded-lg ${feature.color} w-fit`}>
-                    <feature.icon className="h-6 w-6 text-white" />
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <CardTitle className="text-xl mb-2">{feature.title}</CardTitle>
-                  <CardDescription className="text-base">
-                    {feature.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
-            ))}
+
+          <div className="space-y-8">
+            <div className="border-b border-gray-200 pb-8">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                What's the difference between the Free and Pro plans?
+              </h3>
+              <p className="text-gray-600">
+                Both plans include all features, but the Pro plan removes MEWAYZ branding, 
+                provides custom branding options, premium support, and advanced integrations. 
+                The Free plan uses a revenue-sharing model (30%), while Pro is a flat monthly fee.
+              </p>
+            </div>
+
+            <div className="border-b border-gray-200 pb-8">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                Can I switch between plans?
+              </h3>
+              <p className="text-gray-600">
+                Yes, you can upgrade or downgrade your plan at any time. When upgrading, 
+                you'll be charged the prorated difference. When downgrading, changes take 
+                effect at the next billing cycle.
+              </p>
+            </div>
+
+            <div className="border-b border-gray-200 pb-8">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                Is there a free trial?
+              </h3>
+              <p className="text-gray-600">
+                Yes! The Free plan is always free with no time limit. The Pro plan includes 
+                a 14-day free trial with no credit card required. You can start using all 
+                features immediately.
+              </p>
+            </div>
+
+            <div className="border-b border-gray-200 pb-8">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                What payment methods do you accept?
+              </h3>
+              <p className="text-gray-600">
+                We accept all major credit cards (Visa, Mastercard, American Express), 
+                PayPal, and bank transfers for Enterprise plans. All payments are processed 
+                securely through Stripe.
+              </p>
+            </div>
+
+            <div className="border-b border-gray-200 pb-8">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                Can I cancel my subscription?
+              </h3>
+              <p className="text-gray-600">
+                Yes, you can cancel your subscription at any time from your account settings. 
+                There are no cancellation fees, and you'll continue to have access until the 
+                end of your current billing period.
+              </p>
+            </div>
+
+            <div className="pb-8">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                Do you offer refunds?
+              </h3>
+              <p className="text-gray-600">
+                We offer a 30-day money-back guarantee for Pro plan subscriptions. 
+                If you're not satisfied with MEWAYZ, contact our support team within 
+                30 days of your first payment for a full refund.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Comparison Table */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800">
-        <div className="container mx-auto px-4">
+      <section className="py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Plan Comparison
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+              Feature Comparison
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300">
-              See how our plans stack up against each other
+            <p className="text-xl text-gray-600">
+              See how our plans compare across all features
             </p>
           </div>
-          
-          <Card className="overflow-hidden">
-            <CardContent className="p-0">
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead className="bg-gray-50 dark:bg-gray-800">
-                    <tr>
-                      <th className="px-6 py-4 text-left text-sm font-medium text-gray-900 dark:text-white">
-                        Feature
-                      </th>
-                      <th className="px-6 py-4 text-center text-sm font-medium text-gray-900 dark:text-white">
-                        Starter
-                      </th>
-                      <th className="px-6 py-4 text-center text-sm font-medium text-blue-600 dark:text-blue-400">
-                        Professional
-                      </th>
-                      <th className="px-6 py-4 text-center text-sm font-medium text-gray-900 dark:text-white">
-                        Enterprise
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                    <tr>
-                      <td className="px-6 py-4 text-sm text-gray-900 dark:text-white">Records</td>
-                      <td className="px-6 py-4 text-center text-sm text-gray-600 dark:text-gray-400">1,000</td>
-                      <td className="px-6 py-4 text-center text-sm text-gray-600 dark:text-gray-400">10,000</td>
-                      <td className="px-6 py-4 text-center text-sm text-gray-600 dark:text-gray-400">Unlimited</td>
-                    </tr>
-                    <tr>
-                      <td className="px-6 py-4 text-sm text-gray-900 dark:text-white">API Access</td>
-                      <td className="px-6 py-4 text-center text-sm text-gray-600 dark:text-gray-400">-</td>
-                      <td className="px-6 py-4 text-center text-sm text-gray-600 dark:text-gray-400">✓</td>
-                      <td className="px-6 py-4 text-center text-sm text-gray-600 dark:text-gray-400">✓</td>
-                    </tr>
-                    <tr>
-                      <td className="px-6 py-4 text-sm text-gray-900 dark:text-white">Support</td>
-                      <td className="px-6 py-4 text-center text-sm text-gray-600 dark:text-gray-400">Email</td>
-                      <td className="px-6 py-4 text-center text-sm text-gray-600 dark:text-gray-400">Priority</td>
-                      <td className="px-6 py-4 text-center text-sm text-gray-600 dark:text-gray-400">24/7</td>
-                    </tr>
-                    <tr>
-                      <td className="px-6 py-4 text-sm text-gray-900 dark:text-white">Custom Integrations</td>
-                      <td className="px-6 py-4 text-center text-sm text-gray-600 dark:text-gray-400">-</td>
-                      <td className="px-6 py-4 text-center text-sm text-gray-600 dark:text-gray-400">✓</td>
-                      <td className="px-6 py-4 text-center text-sm text-gray-600 dark:text-gray-400">✓</td>
-                    </tr>
-                    <tr>
-                      <td className="px-6 py-4 text-sm text-gray-900 dark:text-white">Account Manager</td>
-                      <td className="px-6 py-4 text-center text-sm text-gray-600 dark:text-gray-400">-</td>
-                      <td className="px-6 py-4 text-center text-sm text-gray-600 dark:text-gray-400">-</td>
-                      <td className="px-6 py-4 text-center text-sm text-gray-600 dark:text-gray-400">✓</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
 
-      {/* FAQ Section */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300">
-              Everything you need to know about our pricing
-            </p>
-          </div>
-          
-          <div className="grid gap-8 md:grid-cols-2">
-            {faqs.map((faq, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <CardTitle className="text-lg">{faq.question}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    {faq.answer}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
+          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Feature</th>
+                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-900">Free</th>
+                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-900">Pro</th>
+                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-900">Enterprise</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  <tr>
+                    <td className="px-6 py-4 text-sm text-gray-900">E-commerce Platform</td>
+                    <td className="px-6 py-4 text-center"><Icon name="check" className="w-5 h-5 text-green-500 mx-auto" /></td>
+                    <td className="px-6 py-4 text-center"><Icon name="check" className="w-5 h-5 text-green-500 mx-auto" /></td>
+                    <td className="px-6 py-4 text-center"><Icon name="check" className="w-5 h-5 text-green-500 mx-auto" /></td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-4 text-sm text-gray-900">CRM System</td>
+                    <td className="px-6 py-4 text-center"><Icon name="check" className="w-5 h-5 text-green-500 mx-auto" /></td>
+                    <td className="px-6 py-4 text-center"><Icon name="check" className="w-5 h-5 text-green-500 mx-auto" /></td>
+                    <td className="px-6 py-4 text-center"><Icon name="check" className="w-5 h-5 text-green-500 mx-auto" /></td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-4 text-sm text-gray-900">Marketing Automation</td>
+                    <td className="px-6 py-4 text-center"><Icon name="check" className="w-5 h-5 text-green-500 mx-auto" /></td>
+                    <td className="px-6 py-4 text-center"><Icon name="check" className="w-5 h-5 text-green-500 mx-auto" /></td>
+                    <td className="px-6 py-4 text-center"><Icon name="check" className="w-5 h-5 text-green-500 mx-auto" /></td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-4 text-sm text-gray-900">Course Creation</td>
+                    <td className="px-6 py-4 text-center"><Icon name="check" className="w-5 h-5 text-green-500 mx-auto" /></td>
+                    <td className="px-6 py-4 text-center"><Icon name="check" className="w-5 h-5 text-green-500 mx-auto" /></td>
+                    <td className="px-6 py-4 text-center"><Icon name="check" className="w-5 h-5 text-green-500 mx-auto" /></td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-4 text-sm text-gray-900">Social Media Management</td>
+                    <td className="px-6 py-4 text-center"><Icon name="check" className="w-5 h-5 text-green-500 mx-auto" /></td>
+                    <td className="px-6 py-4 text-center"><Icon name="check" className="w-5 h-5 text-green-500 mx-auto" /></td>
+                    <td className="px-6 py-4 text-center"><Icon name="check" className="w-5 h-5 text-green-500 mx-auto" /></td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-4 text-sm text-gray-900">Advanced Analytics</td>
+                    <td className="px-6 py-4 text-center"><Icon name="check" className="w-5 h-5 text-green-500 mx-auto" /></td>
+                    <td className="px-6 py-4 text-center"><Icon name="check" className="w-5 h-5 text-green-500 mx-auto" /></td>
+                    <td className="px-6 py-4 text-center"><Icon name="check" className="w-5 h-5 text-green-500 mx-auto" /></td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-4 text-sm text-gray-900">Custom Branding</td>
+                    <td className="px-6 py-4 text-center"><Icon name="x" className="w-5 h-5 text-gray-400 mx-auto" /></td>
+                    <td className="px-6 py-4 text-center"><Icon name="check" className="w-5 h-5 text-green-500 mx-auto" /></td>
+                    <td className="px-6 py-4 text-center"><Icon name="check" className="w-5 h-5 text-green-500 mx-auto" /></td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-4 text-sm text-gray-900">White-label Platform</td>
+                    <td className="px-6 py-4 text-center"><Icon name="x" className="w-5 h-5 text-gray-400 mx-auto" /></td>
+                    <td className="px-6 py-4 text-center"><Icon name="x" className="w-5 h-5 text-gray-400 mx-auto" /></td>
+                    <td className="px-6 py-4 text-center"><Icon name="check" className="w-5 h-5 text-green-500 mx-auto" /></td>
+                  </tr>
+                  <tr>
+                    <td className="px-6 py-4 text-sm text-gray-900">Dedicated Support</td>
+                    <td className="px-6 py-4 text-center"><Icon name="x" className="w-5 h-5 text-gray-400 mx-auto" /></td>
+                    <td className="px-6 py-4 text-center"><Icon name="x" className="w-5 h-5 text-gray-400 mx-auto" /></td>
+                    <td className="px-6 py-4 text-center"><Icon name="check" className="w-5 h-5 text-green-500 mx-auto" /></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-blue-600 dark:bg-blue-700">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold text-white mb-4">
+      <section className="py-24 bg-blue-600">
+        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Ready to Get Started?
           </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Start your free trial today and see how Core 2.0 can transform your data management.
+          <p className="text-xl text-blue-100 mb-8">
+            Join thousands of businesses already growing with MEWAYZ. 
+            Start your free trial today and see the difference.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/contact">
-              <Button className="text-lg px-8 py-3">
+            <Button 
+              size="lg" 
+              variant="secondary"
+              className="text-lg px-8 py-4"
+              asChild
+            >
+              <Link href="/signup">
                 Start Free Trial
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-            <Link href="/contact">
-              <Button variant="outline" className="text-lg px-8 py-3 border-white text-white hover:bg-white hover:text-blue-600">
+              </Link>
+            </Button>
+            <Button 
+              size="lg" 
+              variant="outline"
+              className="text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-blue-600"
+              asChild
+            >
+              <Link href="/contact">
                 Contact Sales
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </div>
         </div>
       </section>

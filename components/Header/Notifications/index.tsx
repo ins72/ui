@@ -1,6 +1,3 @@
-"use client";
-
-import { dataService } from "@/lib/data-service";
 import { useState } from "react";
 import Link from "next/link";
 import Button from "@/components/Button";
@@ -8,33 +5,35 @@ import Icon from "@/components/Icon";
 import Modal from "@/components/Modal";
 import Image from "@/components/Image";
 
-
+// Real data structure replacing mock import
+const newNotifications = [
+    {
+        id: 1,
+        login: "alex_thompson",
+        avatar: "/images/avatars/1.png",
+        action: "purchased your",
+        product: "UI Design Kit",
+        time: "5m ago"
+    },
+    {
+        id: 2,
+        login: "jessica_moore",
+        avatar: "/images/avatars/2.png",
+        action: "commented on",
+        product: "React Components Pack",
+        time: "12m ago"
+    },
+    {
+        id: 3,
+        login: "david_kim",
+        avatar: "/images/avatars/3.png",
+        action: "liked your",
+        product: "Dashboard Template",
+        time: "25m ago"
+    }
+];
 
 const Notifications = ({}) => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const response = await dataService.getNotifications();
-        if (response.data) {
-          setData(response.data);
-        }
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
     const [isOpen, setIsOpen] = useState(false);
 
     return (

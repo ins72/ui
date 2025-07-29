@@ -1,7 +1,10 @@
+"use client";
+
+
 import { useState } from "react";
-import Card from "@/components/Card";
-import Field from "@/components/Field";
-import Button from "@/components/Button";
+import Card from "@/style-reference/components/Card";
+import Field from "@/style-reference/components/Field";
+import Button from "@/style-reference/components/Button";
 
 const Password = ({}) => {
     const [password, setPassword] = useState("1234567");
@@ -40,7 +43,7 @@ const Password = ({}) => {
                         required
                     />
                 </div>
-                <Button className="self-start" isBlack>
+                <Button className="self-start" isBlack aria-label="Action button">
                     Update password
                 </Button>
             </div>

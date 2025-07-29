@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
-import Layout from "@/components/Layout";
-import Card from "@/components/Card";
-import Field from "@/components/Field";
-import Button from "@/components/Button";
+import Layout from "@/style-reference/components/Layout";
+import Card from "@/style-reference/components/Card";
+import Field from "@/style-reference/components/Field";
+import Button from "@/style-reference/components/Button";
 
 const LoginPage = () => {
     const [formData, setFormData] = useState({
@@ -70,7 +70,7 @@ const LoginPage = () => {
                         
                         <Button 
                             type="submit" 
-                            className="w-full"
+                            className="w-full bg-primary-01 text-white"
                             disabled={loading}
                         >
                             {loading ? "Signing In..." : "Sign In"}

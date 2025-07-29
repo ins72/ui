@@ -1,240 +1,130 @@
-"use client";
+export const dynamic = 'force-static';
+export const revalidate = 3600; // Revalidate every hour
 
-import { useState } from "react";
-import Layout from "@/components/Layout";
-import Card from "@/components/Card";
-import Button from "@/components/Button";
-import Icon from "@/components/Icon";
+import Layout from "@/style-reference/components/Layout";
+import Card from "@/style-reference/components/Card";
+import Icon from "@/style-reference/components/Icon";
+import Button from "@/style-reference/components/Button";
+
+const knowledgeCategories = [
+    {
+        id: 1,
+        title: "Getting Started",
+        description: "Learn the basics of MEWAYZ platform and how to set up your business",
+        icon: "rocket",
+        articles: 12,
+        color: "primary"
+    },
+    {
+        id: 2,
+        title: "E-commerce",
+        description: "Set up your online store, manage products, and process orders",
+        icon: "shopping-cart",
+        articles: 8,
+        color: "success"
+    },
+    {
+        id: 3,
+        title: "CRM & Customers",
+        description: "Manage customer relationships and track sales performance",
+        icon: "users",
+        articles: 15,
+        color: "warning"
+    },
+    {
+        id: 4,
+        title: "Course Creation",
+        description: "Create and sell online courses to your audience",
+        icon: "book-open",
+        articles: 10,
+        color: "info"
+    }
+];
+
+const featuredArticles = [
+    {
+        id: 1,
+        title: "How to Set Up Your First Store",
+        description: "Complete guide to creating your first e-commerce store on MEWAYZ",
+        category: "Getting Started",
+        readTime: "5 min read"
+    },
+    {
+        id: 2,
+        title: "Understanding Revenue Sharing Plans",
+        description: "Learn about our Free, Pro, and Enterprise plan structures",
+        category: "Billing & Plans",
+        readTime: "3 min read"
+    }
+];
 
 const KnowledgeBasePage = () => {
-    const [searchQuery, setSearchQuery] = useState("");
-
-    const stakeholderCategories = [
-        {
-            title: "Business & Operations",
-            description: "Strategic planning, operations management, and business processes",
-            icon: "briefcase",
-            href: "/knowledge-base/business",
-            color: "blue",
-            articles: 24,
-            featured: [
-                "Business Strategy Guide",
-                "Operations Management",
-                "Customer Success Framework"
-            ]
-        },
-        {
-            title: "Development & Technical",
-            description: "API documentation, development guides, and technical resources",
-            icon: "code",
-            href: "/knowledge-base/technical",
-            color: "green",
-            articles: 42,
-            featured: [
-                "API Reference",
-                "Development Setup",
-                "Architecture Overview"
-            ]
-        },
-        {
-            title: "Marketing & Growth",
-            description: "Marketing strategies, growth tactics, and brand resources",
-            icon: "trending-up",
-            href: "/knowledge-base/marketing",
-            color: "purple",
-            articles: 18,
-            featured: [
-                "Marketing Strategy",
-                "Content Marketing",
-                "SEO Best Practices"
-            ]
-        },
-        {
-            title: "Investor Relations",
-            description: "Financial reports, investor updates, and business metrics",
-            icon: "pie-chart",
-            href: "/knowledge-base/investors",
-            color: "orange",
-            articles: 12,
-            featured: [
-                "Financial Reports",
-                "Investor Updates",
-                "Business Metrics"
-            ]
-        }
-    ];
-
-    const quickActions = [
-        {
-            title: "Search Documentation",
-            description: "Find specific information across all resources",
-            icon: "search",
-            href: "/knowledge-base/search",
-            color: "gray"
-        },
-        {
-            title: "Request Content",
-            description: "Request new documentation or resources",
-            icon: "plus-circle",
-            href: "/knowledge-base/request",
-            color: "blue"
-        },
-        {
-            title: "Download Resources",
-            description: "Access downloadable templates and guides",
-            icon: "download",
-            href: "/knowledge-base/downloads",
-            color: "green"
-        },
-        {
-            title: "View Analytics",
-            description: "See usage statistics and popular content",
-            icon: "bar-chart",
-            href: "/knowledge-base/analytics",
-            color: "purple"
-        }
-    ];
-
-    const recentUpdates = [
-        {
-            title: "API v2.1 Documentation Updated",
-            category: "Technical",
-            date: "2 days ago",
-            author: "Dev Team"
-        },
-        {
-            title: "New Marketing Strategy Guide",
-            category: "Marketing",
-            date: "1 week ago",
-            author: "Marketing Team"
-        },
-        {
-            title: "Q4 Financial Report Available",
-            category: "Investors",
-            date: "2 weeks ago",
-            author: "Finance Team"
-        },
-        {
-            title: "Customer Success Playbook",
-            category: "Business",
-            date: "3 weeks ago",
-            author: "Customer Success"
-        }
-    ];
-
     return (
-        <Layout title="Knowledge Base">
-            <div className="flex max-lg:block">
-                <div className="col-left">
-                    <Card title="Knowledge Base Hub">
-                        <div className="mb-6">
-                            <div className="relative">
-                                <input
-                                    type="text"
-                                    placeholder="Search across all documentation..."
-                                    value={searchQuery}
-                                    onChange={(e) => setSearchQuery(e.target.value)}
-                                    className="w-full px-4 py-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                />
-                                <Icon name="search" className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-                            </div>
-                        </div>
-
-                        <div className="grid grid-cols-1 gap-6">
-                            {stakeholderCategories.map((category, index) => (
-                                <div key={index} className="p-6 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors">
-                                    <div className="flex items-start justify-between mb-4">
-                                        <div className="flex items-center space-x-3">
-                                            <div className={`p-3 rounded-lg bg-${category.color}-100`}>
-                                                <Icon name={category.icon} className={`w-6 h-6 text-${category.color}-600`} />
-                                            </div>
-                                            <div>
-                                                <h3 className="text-lg font-semibold text-gray-900">{category.title}</h3>
-                                                <p className="text-sm text-gray-600">{category.description}</p>
-                                            </div>
-                                        </div>
-                                        <div className="text-right">
-                                            <div className="text-sm text-gray-500">{category.articles} articles</div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="mb-4">
-                                        <h4 className="text-sm font-medium text-gray-700 mb-2">Featured Articles:</h4>
-                                        <ul className="space-y-1">
-                                            {category.featured.map((article, articleIndex) => (
-                                                <li key={articleIndex} className="text-sm text-gray-600">
-                                                    • {article}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                    
-                                    <Button href={category.href} className="w-full">
-                                        Explore {category.title}
-                                    </Button>
-                                </div>
-                            ))}
-                        </div>
-                    </Card>
+        <Layout title="Knowledge Base - MEWAYZ Help Center">
+            <div className="container mx-auto px-6 py-12">
+                <div className="text-center mb-12">
+                    <h1 className="text-h1 mb-4">Knowledge Base</h1>
+                    <p className="text-lg text-t-secondary max-w-2xl mx-auto mb-8">
+                        Find answers, learn new skills, and get the most out of your MEWAYZ platform.
+                    </p>
                 </div>
-                
-                <div className="col-right">
-                    <Card title="Quick Actions">
-                        <div className="space-y-3">
-                            {quickActions.map((action, index) => (
-                                <div key={index} className="p-3 border border-gray-200 rounded-lg hover:border-gray-300 transition-colors">
-                                    <div className="flex items-center space-x-3">
-                                        <div className={`p-2 rounded-lg bg-${action.color}-100`}>
-                                            <Icon name={action.icon} className={`w-4 h-4 text-${action.color}-600`} />
-                                        </div>
-                                        <div className="flex-1">
-                                            <h4 className="text-sm font-medium text-gray-900">{action.title}</h4>
-                                            <p className="text-xs text-gray-600">{action.description}</p>
-                                        </div>
-                                        <Button href={action.href} size="sm" isStroke>
-                                            Go
-                                        </Button>
+
+                <div className="mb-16">
+                    <h2 className="text-h3 mb-6">Featured Articles</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {featuredArticles.map((article) => (
+                            <Card key={article.id} className="hover:shadow-lg transition-shadow">
+                                <div className="p-6">
+                                    <div className="text-sm text-primary-01 font-medium mb-2">
+                                        {article.category}
+                                    </div>
+                                    <h3 className="text-button mb-3">{article.title}</h3>
+                                    <p className="text-body text-t-secondary mb-4">
+                                        {article.description}
+                                    </p>
+                                    <div className="text-sm text-t-secondary">
+                                        {article.readTime}
                                     </div>
                                 </div>
-                            ))}
-                        </div>
-                    </Card>
-                    
-                    <Card title="Recent Updates" className="mt-4">
-                        <div className="space-y-3">
-                            {recentUpdates.map((update, index) => (
-                                <div key={index} className="p-3 border border-gray-200 rounded-lg">
-                                    <div className="flex items-start justify-between">
-                                        <div className="flex-1">
-                                            <h4 className="text-sm font-medium text-gray-900">{update.title}</h4>
-                                            <div className="flex items-center space-x-2 mt-1">
-                                                <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">
-                                                    {update.category}
-                                                </span>
-                                                <span className="text-xs text-gray-500">by {update.author}</span>
-                                            </div>
-                                        </div>
-                                        <span className="text-xs text-gray-500">{update.date}</span>
+                            </Card>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="mb-16">
+                    <h2 className="text-h3 mb-6">Browse by Category</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {knowledgeCategories.map((category) => (
+                            <Card key={category.id} className="hover:shadow-lg transition-shadow">
+                                <div className="p-6 text-center">
+                                    <div className={`inline-flex p-3 rounded-xl bg-primary-01/10 mb-4`}>
+                                        <Icon 
+                                            name={category.icon} 
+                                            className="size-6 text-primary-01" 
+                                        />
+                                    </div>
+                                    <h3 className="text-button mb-2">{category.title}</h3>
+                                    <p className="text-caption text-t-secondary mb-4">
+                                        {category.description}
+                                    </p>
+                                    <div className="text-sm text-t-secondary">
+                                        {category.articles} articles
                                     </div>
                                 </div>
-                            ))}
-                        </div>
-                    </Card>
-                    
-                    <Card title="Statistics" className="mt-4">
-                        <div className="space-y-4">
-                            <div>
-                                <div className="text-2xl font-bold text-blue-600">96</div>
-                                <div className="text-sm text-gray-600">Total Articles</div>
-                            </div>
-                            <div>
-                                <div className="text-2xl font-bold text-green-600">1,247</div>
-                                <div className="text-sm text-gray-600">Monthly Views</div>
-                            </div>
-                            <div>
-                                <div className="text-2xl font-bold text-purple-600">89%</div>
-                                <div className="text-sm text-gray-600">Satisfaction Rate</div>
-                            </div>
+                            </Card>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="text-center">
+                    <Card className="max-w-2xl mx-auto p-8">
+                        <h2 className="text-h3 mb-4">Can't find what you're looking for?</h2>
+                        <p className="text-body text-t-secondary mb-6">
+                            Our support team is ready to help you with any questions or issues.
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                            <Button variant="primary">Contact Support</Button>
+                            <Button variant="outline">Join Community</Button>
                         </div>
                     </Card>
                 </div>

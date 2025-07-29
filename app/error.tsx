@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { AlertTriangle, RefreshCw, Home } from 'lucide-react';
+import { useEffect } from "react";
+import Button from "@/style-reference/components/Button";
+import Card from "@/style-reference/components/Card";
+import Icon from "@/style-reference/components/Icon";
 import Link from 'next/link';
 
 export default function Error({
@@ -22,61 +22,61 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 p-4">
-      <Card className="w-full max-w-md">
-        <CardHeader className="text-center">
-          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-100 dark:bg-red-900">
-            <AlertTriangle className="h-6 w-6 text-red-600 dark:text-red-400" />
-          </div>
-          <CardTitle className="text-xl font-semibold text-gray-900 dark:text-gray-100">
-            Something went wrong!
-          </CardTitle>
-          <CardDescription className="text-gray-600 dark:text-gray-400">
-            An unexpected error occurred. Please try again or contact support if the problem persists.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          {process.env.NODE_ENV === 'development' && (
-            <div className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg">
-              <p className="text-sm font-mono text-gray-700 dark:text-gray-300">
-                Error: {error.message}
-              </p>
-              {error.digest && (
-                <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
-                  Error ID: {error.digest}
-                </p>
-              )}
+    <div className="min-h-screen flex items-center justify-center bg-b-surface p-4">
+      <div className="w-full max-w-md">
+        <div className="card">
+          <div className="text-center p-6">
+            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary-03">
+              <Icon name="warning" className="h-6 w-6 text-t-light" />
             </div>
-          )}
-          
-          <div className="flex flex-col space-y-2">
-            <Button
-              onClick={reset}
-              className="w-full"
-              variant="default"
-            >
-              <RefreshCw className="mr-2 h-4 w-4" />
-              Try again
-            </Button>
-            
-            <Link href="/">
-              <Button
-                className="w-full"
-                variant="outline"
-              >
-                <Home className="mr-2 h-4 w-4" />
-                Go to Dashboard
-              </Button>
-            </Link>
-          </div>
-          
-          <div className="text-center">
-            <p className="text-xs text-gray-500 dark:text-gray-400">
-              If this problem persists, please contact support with error ID: {error.digest || 'N/A'}
+            <h2 className="text-xl font-semibold text-t-primary mb-2">
+              Something went wrong!
+            </h2>
+            <p className="text-t-secondary mb-6">
+              An unexpected error occurred. Please try again or contact support if the problem persists.
             </p>
+            
+            {process.env.NODE_ENV === 'development' && (
+              <div className="p-4 bg-b-surface2 rounded-lg mb-6">
+                <p className="text-sm font-mono text-t-secondary">
+                  Error: {error.message}
+                </p>
+                {error.digest && (
+                  <p className="text-xs text-t-tertiary mt-2">
+                    Error ID: {error.digest}
+                  </p>
+                )}
+              </div>
+            )}
+            
+            <div className="flex flex-col space-y-3">
+              <Button
+                onClick={reset}
+                className="w-full"
+              >
+                <Icon name="refresh" className="mr-2 h-4 w-4" />
+                Try again
+              </Button>
+              
+              <Link href="/">
+                <Button
+                  className="w-full"
+                  isStroke
+                >
+                  <Icon name="home" className="mr-2 h-4 w-4" />
+                  Go to Dashboard
+                </Button>
+              </Link>
+            </div>
+            
+            <div className="text-center mt-6">
+              <p className="text-xs text-t-tertiary">
+                If this problem persists, please contact support with error ID: {error.digest || 'N/A'}
+              </p>
+            </div>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 } 

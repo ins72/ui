@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { NumericFormat } from "react-number-format";
-import Image from "@/components/Image";
+import Image from "@/style-reference/components/Image";
 
 type ProductProps = {
     value: {

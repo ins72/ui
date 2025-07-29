@@ -1,3 +1,4 @@
+import React from "react";
 // Comprehensive TypeScript interfaces for all data types
 
 export interface User {

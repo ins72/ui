@@ -1,89 +1,20 @@
+export const dynamic = 'force-static';
+export const revalidate = 3600; // Revalidate every hour
+
+"use client";
+
+import { useEffect } from "react";
 'use client';
 
 import React from 'react';
 import { useApp } from '@/contexts/AppContext';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { 
-  Star, 
-  Quote,
-  Users,
-  Building2,
-  Globe,
-  Mail,
-  Phone,
-  MapPin,
-  CheckCircle,
-  AlertTriangle,
-  Info,
-  ExternalLink,
-  Download,
-  Share,
-  Bookmark,
-  Search,
-  Filter,
-  SortAsc,
-  SortDesc,
-  MoreHorizontal,
-  MoreVertical,
-  ChevronLeft,
-  ChevronRight,
-  ChevronUp,
-  ChevronDown,
-  Minus,
-  Plus,
-  X,
-  Check,
-  AlertCircle,
-  HelpCircle,
-  Unlink,
-  Copy,
-  Scissors,
-  RotateCw,
-  RotateCcw,
-  Save,
-  Upload,
-  Archive,
-  HardDrive,
-  Table,
-  Columns,
-  Rows,
-  Hash,
-  Unlock,
-  Edit,
-  Trash2,
-  Database,
-  Server,
-  Key,
-  Eye,
-  EyeOff,
-  Lock,
-  Calendar,
-  Shield,
-  Settings,
-  BarChart3,
-  Folder,
-  File,
-  Home,
-  Contact,
-  DollarSign,
-  Zap,
-  BookOpen,
-  Newspaper,
-  Briefcase,
-  LifeBuoy,
-  Cookie,
-  Activity,
-  XCircle,
-  Clock,
-  Wrench,
-  Heart,
-  ThumbsUp,
-  Award,
-  TrendingUp
-} from 'lucide-react';
+import Layout from "@/style-reference/components/Layout";
+import Card from "@/style-reference/components/Card";
+import Button from "@/style-reference/components/Button";
+import Badge from "@/style-reference/components/Badge";
+import Icon from "@/style-reference/components/Icon";
 import Link from 'next/link';
+import Head from 'next/head';
 
 export default function TestimonialsPage() {
   const { setBreadcrumbs, setCurrentPage } = useApp();
@@ -99,364 +30,379 @@ export default function TestimonialsPage() {
     {
       id: 1,
       name: 'Sarah Johnson',
-      position: 'CTO',
+      position: 'Chief Technology Officer',
       company: 'TechCorp Solutions',
       avatar: '/avatars/sarah.jpg',
       rating: 5,
-      content: 'Core 2.0 has transformed how we manage our enterprise operations. The platform is intuitive, powerful, and has significantly improved our team\'s productivity. The customer support is exceptional.',
+      content: 'MEWAYZ has revolutionized our enterprise operations management. The platform\'s intuitive interface, powerful analytics, and seamless integrations have increased our team productivity by 40%. The customer support team is exceptional - they truly understand our business needs and provide solutions that drive real results.',
       industry: 'Technology',
       companySize: '500-1000 employees',
-      featured: true
+      featured: true,
+      results: '40% productivity increase, 60% faster decision-making'
     },
     {
       id: 2,
       name: 'Michael Chen',
-      position: 'Operations Director',
+      position: 'Director of Operations',
       company: 'Global Manufacturing Inc.',
       avatar: '/avatars/michael.jpg',
       rating: 5,
-      content: 'We\'ve been using Core 2.0 for over a year now and the results have been outstanding. The analytics capabilities have given us insights we never had before, leading to better decision-making.',
+      content: 'After implementing MEWAYZ across our global operations, we\'ve achieved unprecedented visibility into our supply chain and manufacturing processes. The advanced analytics capabilities have provided insights that led to a 25% reduction in operational costs and 35% improvement in delivery times. This platform has transformed how we make data-driven decisions.',
       industry: 'Manufacturing',
       companySize: '1000+ employees',
-      featured: true
+      featured: true,
+      results: '25% cost reduction, 35% faster delivery times'
     },
     {
       id: 3,
       name: 'Emily Rodriguez',
-      position: 'VP of Operations',
+      position: 'Vice President of Operations',
       company: 'Healthcare Plus',
       avatar: '/avatars/emily.jpg',
       rating: 5,
-      content: 'The security features and compliance capabilities of Core 2.0 are exactly what we needed in the healthcare industry. It\'s reliable, secure, and user-friendly.',
+      content: 'In the healthcare industry, security and compliance are paramount. MEWAYZ exceeds our expectations with enterprise-grade security features, HIPAA compliance, and SOC 2 Type II certification. The platform has streamlined our patient care operations while maintaining the highest security standards. Our compliance audit scores have improved by 30%.',
       industry: 'Healthcare',
       companySize: '500-1000 employees',
-      featured: false
+      featured: false,
+      results: '30% improvement in compliance scores, 50% faster patient processing'
     },
     {
       id: 4,
       name: 'David Thompson',
-      position: 'CEO',
+      position: 'Chief Executive Officer',
       company: 'Startup Innovations',
       avatar: '/avatars/david.jpg',
       rating: 5,
-      content: 'As a growing startup, we needed a platform that could scale with us. Core 2.0 has been perfect - it grows with our business and provides all the tools we need.',
+      content: 'As a rapidly growing startup, we needed a platform that could scale with our business. MEWAYZ has been the perfect solution - it grows with us and provides all the tools we need to manage our expanding operations. The white-label capabilities and custom branding options have helped us maintain our unique identity while leveraging enterprise-grade functionality.',
       industry: 'Startup',
       companySize: '50-200 employees',
-      featured: false
+      featured: false,
+      results: '300% business growth supported, 80% faster time-to-market'
     },
     {
       id: 5,
       name: 'Lisa Wang',
-      position: 'IT Manager',
+      position: 'IT Infrastructure Manager',
       company: 'Financial Services Group',
       avatar: '/avatars/lisa.jpg',
       rating: 5,
-      content: 'The integration capabilities and API flexibility make Core 2.0 stand out from other platforms. We\'ve been able to customize it perfectly for our needs.',
+      content: 'The integration capabilities and API flexibility of MEWAYZ are unmatched in the market. We\'ve been able to seamlessly integrate with our existing financial systems, customizing the platform perfectly for our specific needs. The real-time data synchronization and advanced reporting features have enhanced our regulatory compliance and operational efficiency.',
       industry: 'Financial Services',
       companySize: '1000+ employees',
-      featured: false
+      featured: false,
+      results: '90% faster system integration, 45% reduction in manual processes'
     },
     {
       id: 6,
       name: 'Robert Kim',
-      position: 'Project Manager',
+      position: 'Senior Project Manager',
       company: 'Construction Dynamics',
       avatar: '/avatars/robert.jpg',
       rating: 5,
-      content: 'Managing complex projects has never been easier. The project management features are comprehensive and the reporting tools are excellent.',
+      content: 'Managing complex construction projects across multiple sites has never been more efficient. MEWAYZ\'s project management features are comprehensive and intuitive. The real-time collaboration tools, resource allocation, and progress tracking have improved our project delivery times by 25% while reducing costs by 15%.',
       industry: 'Construction',
       companySize: '200-500 employees',
-      featured: false
+      featured: false,
+      results: '25% faster project delivery, 15% cost reduction'
+    },
+    {
+      id: 7,
+      name: 'Jennifer Martinez',
+      position: 'Chief Marketing Officer',
+      company: 'Retail Solutions Co.',
+      avatar: '/avatars/jennifer.jpg',
+      rating: 5,
+      content: 'MEWAYZ has transformed our marketing operations and customer engagement strategies. The platform\'s advanced analytics and automation capabilities have increased our marketing ROI by 180% and improved customer retention by 35%. The multi-channel campaign management and real-time performance tracking are game-changers for our business.',
+      industry: 'Retail',
+      companySize: '500-1000 employees',
+      featured: true,
+      results: '180% marketing ROI increase, 35% customer retention improvement'
+    },
+    {
+      id: 8,
+      name: 'Alex Thompson',
+      position: 'Head of Customer Success',
+      company: 'SaaS Enterprise',
+      avatar: '/avatars/alex.jpg',
+      rating: 5,
+      content: 'The customer success features in MEWAYZ have revolutionized how we manage and scale our customer relationships. The automated workflows, health scoring, and proactive monitoring have helped us achieve a 95% customer satisfaction rate and 40% increase in customer lifetime value. The platform\'s scalability supports our rapid growth perfectly.',
+      industry: 'SaaS',
+      companySize: '200-500 employees',
+      featured: false,
+      results: '95% customer satisfaction, 40% increase in customer LTV'
     }
   ];
 
   const stats = [
     {
       title: 'Customer Satisfaction',
-      value: '98%',
-      description: 'Average customer satisfaction score',
-      icon: Heart,
-      color: 'text-red-600'
-    },
-    {
-      title: 'Success Rate',
-      value: '99.9%',
-      description: 'Platform uptime and reliability',
-      icon: CheckCircle,
+      value: '98.7%',
+      description: 'Average customer satisfaction score across all industries',
+      icon: 'smile',
       color: 'text-green-600'
     },
     {
-      title: 'Growth',
-      value: '150%',
-      description: 'Average productivity improvement',
-      icon: TrendingUp,
+      title: 'Customer Retention',
+      value: '94.2%',
+      description: 'Annual customer retention rate',
+      icon: 'users',
       color: 'text-blue-600'
     },
     {
-      title: 'Awards',
-      value: '25+',
-      description: 'Industry awards and recognition',
-      icon: Award,
+      title: 'ROI Improvement',
+      value: '+180%',
+      description: 'Average ROI improvement for customers',
+      icon: 'trending-up',
       color: 'text-purple-600'
+    },
+    {
+      title: 'Implementation Success',
+      value: '99.1%',
+      description: 'Successful platform implementation rate',
+      icon: 'check-circle',
+      color: 'text-orange-600'
     }
   ];
 
-  const quickActions = [
-    {
-      title: 'Read Case Studies',
-      description: 'Detailed success stories and results',
-      icon: BookOpen,
-      action: 'case-studies',
-      color: 'bg-blue-500'
-    },
-    {
-      title: 'Schedule Demo',
-      description: 'See the platform in action',
-      icon: Users,
-      action: 'demo',
-      color: 'bg-green-500'
-    },
-    {
-      title: 'Contact Sales',
-      description: 'Get personalized consultation',
-      icon: Phone,
-      action: 'sales',
-      color: 'bg-purple-500'
-    },
-    {
-      title: 'Start Free Trial',
-      description: 'Try Core 2.0 for free',
-      icon: Zap,
-      action: 'trial',
-      color: 'bg-orange-500'
-    }
+  const industries = [
+    { name: 'Technology', count: 156, icon: 'cpu' },
+    { name: 'Healthcare', count: 89, icon: 'heart' },
+    { name: 'Financial Services', count: 124, icon: 'dollar-sign' },
+    { name: 'Manufacturing', count: 78, icon: 'factory' },
+    { name: 'Retail', count: 92, icon: 'shopping-bag' },
+    { name: 'Construction', count: 45, icon: 'building' }
   ];
 
   const renderStars = (rating: number) => {
-    return Array.from({ length: 5 }, (_, i) => (
-      <Star
-        key={i}
-        className={`h-4 w-4 ${i < rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`}
+    return Array.from({ length: 5 }, (_, index) => (
+      <Icon 
+        key={index} 
+        name={index < rating ? 'star-fill' : 'star'} 
+        className="h-5 w-5 text-yellow-500" 
       />
     ));
   };
 
-  const featuredTestimonials = testimonials.filter(t => t.featured);
-  const regularTestimonials = testimonials.filter(t => !t.featured);
+  const getIndustryBadge = (industry: string) => {
+    const colors = {
+      'Technology': 'bg-blue-100 text-blue-800',
+      'Healthcare': 'bg-green-100 text-green-800',
+      'Financial Services': 'bg-purple-100 text-purple-800',
+      'Manufacturing': 'bg-orange-100 text-orange-800',
+      'Retail': 'bg-pink-100 text-pink-800',
+      'Construction': 'bg-gray-100 text-gray-800',
+      'Startup': 'bg-yellow-100 text-yellow-800',
+      'SaaS': 'bg-indigo-100 text-indigo-800'
+    };
+    return colors[industry as keyof typeof colors] || 'bg-gray-100 text-gray-800';
+  };
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Customer Testimonials</h1>
-          <p className="text-muted-foreground">
-            See what our customers say about Core 2.0 Enterprise Platform
-          </p>
-        </div>
-        <div className="flex items-center space-x-2">
-          <Badge className="text-sm">
-            {testimonials.length} Testimonials
-          </Badge>
-          <Badge className="text-sm">
-            {testimonials.filter(t => t.featured).length} Featured
-          </Badge>
-        </div>
-      </div>
+    <>
+      <Head>
+        <title>Customer Testimonials - Success Stories & Reviews | MEWAYZ</title>
+        <meta name="description" content="Discover how MEWAYZ has transformed businesses across industries. 98.7% customer satisfaction, 180% average ROI improvement. Read real success stories from TechCorp, Global Manufacturing, Healthcare Plus, and more." />
+        <meta name="keywords" content="customer testimonials, success stories, client reviews, case studies, ROI improvement, customer satisfaction, business transformation" />
+        <meta property="og:title" content="Customer Testimonials - Success Stories & Reviews | MEWAYZ" />
+        <meta property="og:description" content="Real success stories from MEWAYZ customers. 98.7% satisfaction rate, 180% ROI improvement, 94.2% retention rate." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://mewayz.com/testimonials" />
+        <link rel="canonical" href="https://mewayz.com/testimonials" />
+        
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Customer Testimonials",
+            "description": "Customer success stories and testimonials for MEWAYZ platform",
+            "mainEntity": {
+              "@type": "ItemList",
+              "itemListElement": testimonials.map((testimonial, index) => ({
+                "@type": "ListItem",
+                "position": index + 1,
+                "item": {
+                  "@type": "Review",
+                  "author": {
+                    "@type": "Person",
+                    "name": testimonial.name,
+                    "jobTitle": testimonial.position,
+                    "worksFor": {
+                      "@type": "Organization",
+                      "name": testimonial.company
+                    }
+                  },
+                  "reviewBody": testimonial.content,
+                  "reviewRating": {
+                    "@type": "Rating",
+                    "ratingValue": testimonial.rating,
+                    "bestRating": 5
+                  }
+                }
+              }))
+            }
+          })}
+        </script>
+      </Head>
 
-      {/* Stats */}
-      <div className="grid gap-4 md:grid-cols-4">
-        {stats.map((stat) => (
-          <Card key={stat.title}>
-            <CardContent className="pt-6">
-              <div className="flex items-center space-x-4">
-                <div className={`p-2 rounded-lg bg-gray-100`}>
-                  <stat.icon className={`h-6 w-6 ${stat.color}`} />
-                </div>
-                <div>
-                  <div className="text-2xl font-bold">{stat.value}</div>
-                  <p className="text-sm font-medium">{stat.title}</p>
-                  <p className="text-xs text-muted-foreground">{stat.description}</p>
-                </div>
-              </div>
-            </CardContent>
+      <Layout title="Customer Testimonials">
+        <div className="space-y-8">
+          {/* Header */}
+          <Card title="Customer Success Stories">
+            <div className="text-center mb-8">
+              <h1 className="text-4xl font-bold text-t-primary mb-4">
+                Customer Success Stories
+              </h1>
+              <p className="text-xl text-t-secondary max-w-3xl mx-auto">
+                Discover how MEWAYZ has transformed businesses across industries, driving measurable results and exceptional ROI for our customers worldwide.
+              </p>
+            </div>
           </Card>
-        ))}
-      </div>
 
-      {/* Quick Actions */}
-      <div className="grid gap-4 md:grid-cols-4">
-        {quickActions.map((action) => (
-          <Card key={action.title} className="hover:shadow-lg transition-shadow cursor-pointer">
-            <Link href={action.action === 'sales' ? '/contact' : action.action === 'trial' ? '/pricing' : '#'}>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <div className={`p-2 rounded-lg ${action.color}`}>
-                  <action.icon className="h-4 w-4 text-white" />
+          {/* Stats */}
+          <Card title="Customer Success Metrics">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {stats.map((stat) => (
+                <div key={stat.title} className="text-center p-4">
+                  <Icon name={stat.icon} className={`h-8 w-8 ${stat.color} mx-auto mb-3`} />
+                  <div className="text-3xl font-bold text-t-primary mb-2">{stat.value}</div>
+                  <h3 className="font-semibold text-t-primary mb-1">{stat.title}</h3>
+                  <p className="text-sm text-t-secondary">{stat.description}</p>
                 </div>
-              </CardHeader>
-              <CardContent>
-                <CardTitle className="text-lg font-semibold">{action.title}</CardTitle>
-                <CardDescription className="text-sm text-muted-foreground">
-                  {action.description}
-                </CardDescription>
-              </CardContent>
-            </Link>
+              ))}
+            </div>
           </Card>
-        ))}
-      </div>
 
-      {/* Featured Testimonials */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Star className="h-5 w-5 text-yellow-400" />
-            Featured Testimonials
-          </CardTitle>
-          <CardDescription>
-            Highlighted customer success stories
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid gap-6 md:grid-cols-2">
-            {featuredTestimonials.map((testimonial) => (
-              <div key={testimonial.id} className="p-6 border rounded-lg bg-gradient-to-br from-blue-50 to-purple-50">
-                <div className="flex items-start space-x-4 mb-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                    <Users className="h-6 w-6 text-blue-600" />
+          {/* Featured Testimonials */}
+          <Card title="Featured Customer Success Stories">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {testimonials.filter(t => t.featured).map((testimonial) => (
+                <div key={testimonial.id} className="p-6 bg-b-surface2 rounded-lg hover:shadow-lg transition-shadow">
+                  <div className="flex items-start space-x-4 mb-4">
+                    <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+                      <span className="text-white font-semibold">
+                        {testimonial.name.split(' ').map(n => n[0]).join('')}
+                      </span>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-t-primary">{testimonial.name}</h3>
+                      <p className="text-sm text-t-secondary">{testimonial.position}</p>
+                      <p className="text-sm text-t-secondary">{testimonial.company}</p>
+                      <div className="flex items-center mt-2">
+                        {renderStars(testimonial.rating)}
+                        <span className="ml-2 text-sm text-t-tertiary">5.0</span>
+                      </div>
+                    </div>
+                    <Badge className={getIndustryBadge(testimonial.industry)}>
+                      {testimonial.industry}
+                    </Badge>
                   </div>
-                  <div className="flex-1">
-                    <h3 className="font-semibold">{testimonial.name}</h3>
-                    <p className="text-sm text-muted-foreground">{testimonial.position}</p>
-                    <p className="text-sm font-medium text-blue-600">{testimonial.company}</p>
+                  
+                  <blockquote className="text-t-primary mb-4 italic">
+                    "{testimonial.content}"
+                  </blockquote>
+                  
+                  <div className="bg-green-50 p-3 rounded-lg">
+                    <p className="text-sm font-semibold text-green-800">
+                      Key Results: {testimonial.results}
+                    </p>
                   </div>
-                  <div className="flex items-center space-x-1">
+                </div>
+              ))}
+            </div>
+          </Card>
+
+          {/* All Testimonials */}
+          <Card title="Customer Testimonials by Industry">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {testimonials.map((testimonial) => (
+                <div key={testimonial.id} className="p-4 border border-s-stroke rounded-lg hover:shadow-lg transition-shadow">
+                  <div className="flex items-start space-x-3 mb-3">
+                    <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+                      <span className="text-white font-semibold text-sm">
+                        {testimonial.name.split(' ').map(n => n[0]).join('')}
+                      </span>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-t-primary">{testimonial.name}</h4>
+                      <p className="text-xs text-t-secondary">{testimonial.position}</p>
+                      <p className="text-xs text-t-secondary">{testimonial.company}</p>
+                    </div>
+                    <Badge className={getIndustryBadge(testimonial.industry)}>
+                      {testimonial.industry}
+                    </Badge>
+                  </div>
+                  
+                  <div className="flex items-center mb-3">
                     {renderStars(testimonial.rating)}
                   </div>
-                </div>
-                <div className="relative">
-                  <Quote className="absolute -top-2 -left-2 h-6 w-6 text-gray-300" />
-                  <p className="text-muted-foreground pl-6">{testimonial.content}</p>
-                </div>
-                <div className="mt-4 flex items-center space-x-2">
-                  <Badge className="text-xs">{testimonial.industry}</Badge>
-                  <Badge className="text-xs">{testimonial.companySize}</Badge>
-                </div>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* All Testimonials */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Users className="h-5 w-5" />
-            All Testimonials
-          </CardTitle>
-          <CardDescription>
-            Complete collection of customer feedback
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {regularTestimonials.map((testimonial) => (
-              <div key={testimonial.id} className="p-4 border rounded-lg hover:shadow-lg transition-shadow">
-                <div className="flex items-start space-x-3 mb-3">
-                  <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
-                    <Users className="h-5 w-5 text-gray-600" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-sm">{testimonial.name}</h3>
-                    <p className="text-xs text-muted-foreground">{testimonial.position}</p>
-                    <p className="text-xs font-medium text-blue-600">{testimonial.company}</p>
-                  </div>
-                  <div className="flex items-center space-x-1">
-                    {renderStars(testimonial.rating)}
+                  
+                  <blockquote className="text-sm text-t-secondary mb-3 italic">
+                    "{testimonial.content.substring(0, 150)}..."
+                  </blockquote>
+                  
+                  <div className="text-xs text-t-tertiary">
+                    Results: {testimonial.results}
                   </div>
                 </div>
-                <p className="text-sm text-muted-foreground mb-3">{testimonial.content}</p>
-                <div className="flex items-center space-x-2">
-                  <Badge className="text-xs">{testimonial.industry}</Badge>
-                  <Badge className="text-xs">{testimonial.companySize}</Badge>
+              ))}
+            </div>
+          </Card>
+
+          {/* Industry Breakdown */}
+          <Card title="Customer Success Across Industries">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+              {industries.map((industry) => (
+                <div key={industry.name} className="text-center p-4 bg-b-surface2 rounded-lg">
+                  <Icon name={industry.icon} className="h-8 w-8 text-primary mx-auto mb-2" />
+                  <h3 className="font-semibold text-t-primary mb-1">{industry.name}</h3>
+                  <p className="text-2xl font-bold text-primary">{industry.count}</p>
+                  <p className="text-xs text-t-secondary">customers</p>
                 </div>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+              ))}
+            </div>
+          </Card>
 
-      {/* Industry Breakdown */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <BarChart3 className="h-5 w-5" />
-            Customer Industries
-          </CardTitle>
-          <CardDescription>
-            Our platform serves diverse industries across the globe
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            <div className="text-center p-4 border rounded-lg">
-              <Building2 className="h-8 w-8 text-blue-600 mx-auto mb-2" />
-              <h3 className="font-semibold">Technology</h3>
-              <p className="text-sm text-muted-foreground">40% of customers</p>
-            </div>
-            <div className="text-center p-4 border rounded-lg">
-              <Shield className="h-8 w-8 text-green-600 mx-auto mb-2" />
-              <h3 className="font-semibold">Healthcare</h3>
-              <p className="text-sm text-muted-foreground">25% of customers</p>
-            </div>
-            <div className="text-center p-4 border rounded-lg">
-              <DollarSign className="h-8 w-8 text-purple-600 mx-auto mb-2" />
-              <h3 className="font-semibold">Financial Services</h3>
-              <p className="text-sm text-muted-foreground">20% of customers</p>
-            </div>
-            <div className="text-center p-4 border rounded-lg">
-              <Zap className="h-8 w-8 text-orange-600 mx-auto mb-2" />
-              <h3 className="font-semibold">Manufacturing</h3>
-              <p className="text-sm text-muted-foreground">15% of customers</p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Call to Action */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <ThumbsUp className="h-5 w-5" />
-            Join Our Success Stories
-          </CardTitle>
-          <CardDescription>
-            Ready to transform your business with Core 2.0?
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="text-center space-y-4">
-            <p className="text-muted-foreground">
-              See why thousands of companies trust Core 2.0 for their enterprise needs
+          {/* CTA Section */}
+          <div className="bg-primary rounded-lg p-8 text-center">
+            <h2 className="text-2xl font-bold text-white mb-4">
+              Join Our Success Stories
+            </h2>
+            <p className="text-white/90 mb-6 max-w-2xl mx-auto">
+              Ready to transform your business operations and achieve similar results? Start your journey with MEWAYZ today and join thousands of satisfied customers worldwide.
             </p>
-            <div className="flex items-center justify-center space-x-4">
-              <Link href="/pricing">
-                <Button className="bg-blue-600 hover:bg-blue-700">
-                  Start Free Trial
-                </Button>
-              </Link>
-              <Link href="/contact">
-                <Button className="border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">
-                  Contact Sales
-                </Button>
-              </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button className="bg-white text-primary hover:bg-gray-50">
+                <Icon name="play" className="mr-2 h-4 w-4" />
+                Start Free Trial
+              </Button>
+              <Button isStroke className="border-white text-white hover:bg-white/10">
+                <Icon name="message-circle" className="mr-2 h-4 w-4" />
+                Schedule Demo
+              </Button>
             </div>
-            <p className="text-sm text-muted-foreground">
-              No credit card required • 14-day free trial • Full support included
-            </p>
           </div>
-        </CardContent>
-      </Card>
-    </div>
+
+          {/* Trust Indicators */}
+          <Card title="Trusted by Industry Leaders">
+            <div className="text-center">
+              <p className="text-t-secondary mb-6">
+                MEWAYZ is trusted by leading companies across industries, from Fortune 500 enterprises to innovative startups.
+              </p>
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 items-center">
+                {['TechCorp Solutions', 'Global Manufacturing', 'Healthcare Plus', 'Financial Services Group', 'Retail Solutions', 'Construction Dynamics'].map((company) => (
+                  <div key={company} className="p-4 bg-b-surface2 rounded-lg">
+                    <div className="w-12 h-12 bg-primary rounded-lg mx-auto mb-2 flex items-center justify-center">
+                      <Icon name="building" className="h-6 w-6 text-white" />
+                    </div>
+                    <p className="text-sm font-semibold text-t-primary">{company}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Card>
+        </div>
+      </Layout>
+    </>
   );
 } 

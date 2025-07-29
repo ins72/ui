@@ -1,273 +1,17 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React, { useEffect } from "react";
 import { useApp } from '@/contexts/AppContext';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { 
-  Star, 
-  Database, 
-  Shield, 
-  Zap, 
-  Globe, 
-  Award,
-  CheckCircle,
-  ArrowRight,
-  Play,
-  BookOpen,
-  Terminal,
-  Cpu,
-  Server,
-  Lock,
-  Key,
-  FileText,
-  Copy,
-  ExternalLink,
-  Download,
-  Search,
-  Filter,
-  Settings,
-  Eye,
-  EyeOff,
-  RefreshCw,
-  Clock,
-  AlertCircle,
-  Info,
-  HelpCircle,
-  ChevronRight,
-  ChevronDown,
-  Hash,
-  Tag,
-  Link as LinkIcon,
-  Users,
-  Activity,
-  TrendingUp,
-  BarChart3,
-  PieChart,
-  LineChart,
-  Database as DatabaseIcon,
-  Cloud,
-  Wifi,
-  WifiOff,
-  Check,
-  X,
-  Plus,
-  Minus,
-  Edit,
-  Trash2,
-  Save,
-  RotateCcw,
-  PlayCircle,
-  PauseCircle,
-  StopCircle,
-  SkipBack,
-  SkipForward,
-  Volume2,
-  VolumeX,
-  Maximize,
-  Minimize,
-  Fullscreen,
-  FullscreenExit,
-  Monitor,
-  Smartphone,
-  Tablet,
-  Laptop,
-  Desktop,
-  Printer,
-  Camera,
-  Video,
-  Image,
-  File,
-  Folder,
-  FolderOpen,
-  FolderPlus,
-  FilePlus,
-  FileText as FileTextIcon,
-  FileImage,
-  FileVideo,
-  FileAudio,
-  FileArchive,
-  FileCode,
-  FileSpreadsheet,
-  FilePresentation,
-  FilePdf,
-  FileWord,
-  FileExcel,
-  FilePowerpoint,
-  FileZip,
-  FileX,
-  FileCheck,
-  FileSearch,
-  FileEdit,
-  FileMinus,
-  FileUp,
-  FileDown,
-  FileLeft,
-  FileRight,
-  FileUpRight,
-  FileDownLeft,
-  FileDownRight,
-  FileUpLeft,
-  FileHeart,
-  FileWarning,
-  FileQuestion,
-  FileInfo,
-  FileAlert,
-  FileX2,
-  FileCheck2,
-  FileClock,
-  FileLock,
-  FileUnlock,
-  FileKey,
-  FileShield,
-  FileShield2,
-  FileType,
-  FileType2,
-  FileJson,
-  FileJs,
-  FileTs,
-  FileJsx,
-  FileTsx,
-  FileVue,
-  FileSvelte,
-  FileReact,
-  FileAngular,
-  FileVue2,
-  FileSvelte2,
-  FileReact2,
-  FileAngular2,
-  FileHtml,
-  FileCss,
-  FileScss,
-  FileLess,
-  FileSass,
-  FileStylus,
-  FilePostcss,
-  FileTailwind,
-  FileBootstrap,
-  FileMaterial,
-  FileAntd,
-  FileMui,
-  FileChakra,
-  FileNext,
-  FileNuxt,
-  FileGatsby,
-  FileRemix,
-  FileSveltekit,
-  FileAstro,
-  FileVite,
-  FileWebpack,
-  FileRollup,
-  FileParcel,
-  FileEsbuild,
-  FileSwc,
-  FileBabel,
-  FileTypeScript,
-  FileJavaScript,
-  FilePython,
-  FileJava,
-  FileCpp,
-  FileC,
-  FileCsharp,
-  FilePhp,
-  FileRuby,
-  FileGo,
-  FileRust,
-  FileSwift,
-  FileKotlin,
-  FileScala,
-  FileClojure,
-  FileHaskell,
-  FileElixir,
-  FileErlang,
-  FileR,
-  FileMatlab,
-  FileJulia,
-  FileDart,
-  FileLua,
-  FilePerl,
-  FileBash,
-  FilePowershell,
-  FileBatch,
-  FileDocker,
-  FileKubernetes,
-  FileTerraform,
-  FileAnsible,
-  FileChef,
-  FilePuppet,
-  FileJenkins,
-  FileGitlab,
-  FileGithub,
-  FileBitbucket,
-  FileGit,
-  FileGitBranch,
-  FileGitCommit,
-  FileGitMerge,
-  FileGitPullRequest,
-  FileGitCompare,
-  FileGitFork,
-  FileGitBranch2,
-  FileGitCommit2,
-  FileGitMerge2,
-  FileGitPullRequest2,
-  FileGitCompare2,
-  FileGitFork2,
-  FileGitBranch3,
-  FileGitCommit3,
-  FileGitMerge3,
-  FileGitPullRequest3,
-  FileGitCompare3,
-  FileGitFork3,
-  FileGitBranch4,
-  FileGitCommit4,
-  FileGitMerge4,
-  FileGitPullRequest4,
-  FileGitCompare4,
-  FileGitFork4,
-  FileGitBranch5,
-  FileGitCommit5,
-  FileGitMerge5,
-  FileGitPullRequest5,
-  FileGitCompare5,
-  FileGitFork5,
-  FileGitBranch6,
-  FileGitCommit6,
-  FileGitMerge6,
-  FileGitPullRequest6,
-  FileGitCompare6,
-  FileGitFork6,
-  FileGitBranch7,
-  FileGitCommit7,
-  FileGitMerge7,
-  FileGitPullRequest7,
-  FileGitCompare7,
-  FileGitFork7,
-  FileGitBranch8,
-  FileGitCommit8,
-  FileGitMerge8,
-  FileGitPullRequest8,
-  FileGitCompare8,
-  FileGitFork8,
-  FileGitBranch9,
-  FileGitCommit9,
-  FileGitMerge9,
-  FileGitPullRequest9,
-  FileGitCompare9,
-  FileGitFork9,
-  FileGitBranch10,
-  FileGitCommit10,
-  FileGitMerge10,
-  FileGitPullRequest10,
-  FileGitCompare10,
-  FileGitFork10
-} from 'lucide-react';
+import Card from "@/components/Card";
+import Button from "@/components/Button";
+import Badge from "@/components/Badge";
+import Icon from "@/components/Icon";
 import Link from 'next/link';
 
 export default function SuccessStoriesPage() {
   const { setBreadcrumbs, setCurrentPage } = useApp();
 
-  React.useEffect(() => {
+  useEffect(() => {
     setBreadcrumbs([
       { label: 'Success Stories', href: '/success-stories' }
     ]);
@@ -378,7 +122,7 @@ export default function SuccessStoriesPage() {
       title: 'Customer Success Rate',
       value: '98%',
       description: 'of customers achieve their goals',
-      icon: CheckCircle,
+      icon: 'check',
       color: 'bg-green-500'
     },
     {
@@ -392,33 +136,33 @@ export default function SuccessStoriesPage() {
       title: 'Implementation Time',
       value: '30 days',
       description: 'average time to full deployment',
-      icon: Clock,
+      icon: 'clock',
       color: 'bg-purple-500'
     },
     {
       title: 'Customer Satisfaction',
       value: '4.9/5',
       description: 'average customer satisfaction score',
-      icon: Star,
+      icon: 'star',
       color: 'bg-yellow-500'
     }
   ];
 
   const customerQuotes = [
     {
-      quote: '"The platform has revolutionized our business operations. We've seen incredible efficiency gains and cost savings."',
+      quote: "The platform has revolutionized our business operations. We've seen incredible efficiency gains and cost savings.",
       author: 'Jennifer Smith',
       role: 'CEO, InnovateTech',
       company: 'InnovateTech'
     },
     {
-      quote: '"Implementation was smooth and the results exceeded our expectations. Highly recommended!"',
+      quote: "Implementation was smooth and the results exceeded our expectations. Highly recommended!",
       author: 'David Wilson',
       role: 'CTO, DataFlow Systems',
       company: 'DataFlow Systems'
     },
     {
-      quote: '"The customer support and platform reliability are outstanding. It's been a game-changer for us."',
+      quote: "The customer support and platform reliability are outstanding. It's been a game-changer for us.",
       author: 'Maria Garcia',
       role: 'VP of IT, Global Solutions',
       company: 'Global Solutions'
@@ -434,7 +178,7 @@ export default function SuccessStoriesPage() {
           <div className="text-center">
             <div className="flex justify-center mb-6">
               <div className="p-3 bg-emerald-100 dark:bg-emerald-900/30 rounded-full">
-                <Star className="h-8 w-8 text-emerald-600 dark:text-emerald-400" />
+                <Icon name="Star.toLowerCase()" className="h-8 w-8 text-emerald-600 dark:text-emerald-400" />
               </div>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6">
@@ -445,11 +189,11 @@ export default function SuccessStoriesPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white">
-                <Play className="mr-2 h-5 w-5" />
+                <Icon name="Play.toLowerCase()" className="mr-2 h-5 w-5" />
                 Watch Stories
               </Button>
               <Button size="lg" variant="outline" className="border-slate-300 dark:border-slate-600">
-                <FileText className="mr-2 h-5 w-5" />
+                <Icon name="FileText.toLowerCase()" className="mr-2 h-5 w-5" />
                 Download Case Studies
               </Button>
             </div>
@@ -463,7 +207,7 @@ export default function SuccessStoriesPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {successMetrics.map((metric, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-6">
+                <Icon name="CardContent.toLowerCase()" className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm font-medium text-slate-600 dark:text-slate-400">
@@ -502,7 +246,7 @@ export default function SuccessStoriesPage() {
           <div className="space-y-8">
             {featuredStories.map((story, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-8">
+                <Icon name="CardContent.toLowerCase()" className="p-8">
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     <div className="lg:col-span-2">
                       <div className="flex items-center mb-4">
@@ -527,7 +271,7 @@ export default function SuccessStoriesPage() {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                         {story.results.map((result, idx) => (
                           <div key={idx} className="flex items-center">
-                            <CheckCircle className="h-5 w-5 text-emerald-600 dark:text-emerald-400 mr-3" />
+                            <Icon name="CheckCircle.toLowerCase()" className="h-5 w-5 text-emerald-600 dark:text-emerald-400 mr-3" />
                             <span className="text-slate-700 dark:text-slate-300">{result}</span>
                           </div>
                         ))}
@@ -598,7 +342,7 @@ export default function SuccessStoriesPage() {
                     </div>
                   </div>
                   <Button variant="ghost" className="w-full mt-4">
-                    View Stories <ArrowRight className="ml-2 h-4 w-4" />
+                    View Stories <Icon name="ArrowRight.toLowerCase()" className="ml-2 h-4 w-4" />
                   </Button>
                 </CardContent>
               </Card>
@@ -622,7 +366,7 @@ export default function SuccessStoriesPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {customerQuotes.map((quote, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-6">
+                <Icon name="CardContent.toLowerCase()" className="p-6">
                   <div className="flex mb-4">
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
@@ -657,11 +401,11 @@ export default function SuccessStoriesPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-white text-emerald-600 hover:bg-emerald-50">
-              <Play className="mr-2 h-5 w-5" />
+              <Icon name="Play.toLowerCase()" className="mr-2 h-5 w-5" />
               Start Free Trial
             </Button>
             <Button size="lg" variant="outline" className="border-white text-white hover:bg-emerald-700">
-              <FileText className="mr-2 h-5 w-5" />
+              <Icon name="FileText.toLowerCase()" className="mr-2 h-5 w-5" />
               Download Case Studies
             </Button>
           </div>

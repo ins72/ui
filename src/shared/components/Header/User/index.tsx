@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -8,10 +10,10 @@ import {
     MenuItems,
     MenuSeparator,
 } from "@headlessui/react";
-import Image from "@/components/Image";
-import Icon from "@/components/Icon";
-import Modal from "@/components/Modal";
-import Login from "@/components/Login";
+import Image from "@/style-reference/components/Image";
+import Icon from "@/style-reference/components/Icon";
+import Modal from "@/style-reference/components/Modal";
+import Login from "@/style-reference/components/Login";
 import { navigationUser } from "@/contstants/navigation";
 
 const User = ({}) => {

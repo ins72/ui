@@ -1,5 +1,6 @@
+import React from "react";
 import Link from "next/link";
-import Icon from "@/components/Icon";
+import Icon from "@/style-reference/components/Icon";
 
 type Props = {
     className?: string;

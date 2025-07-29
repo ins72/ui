@@ -1,3 +1,4 @@
+import React from "react";
 import NextAuth from "next-auth";
 
 declare module "next-auth" {

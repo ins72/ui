@@ -1,6 +1,8 @@
+"use client";
+
 import { useState } from "react";
-import Button from "@/components/Button";
-import Field from "@/components/Field";
+import Button from "@/style-reference/components/Button";
+import Field from "@/style-reference/components/Field";
 
 type CreateAccountProps = {
     handleSignIn: () => void;

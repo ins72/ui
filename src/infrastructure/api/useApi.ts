@@ -1,3 +1,7 @@
+"use client";
+
+import { Search } from "lucide-react";
+import {  useState , useEffect } from "react";
 import { useState, useEffect, useCallback } from 'react';
 import { apiService, ApiResponse, PaginatedResponse, User } from '@/lib/api';
 

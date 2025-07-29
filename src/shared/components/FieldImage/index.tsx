@@ -1,8 +1,10 @@
+"use client";
+
 import { useState, useRef } from "react";
-import Tooltip from "@/components/Tooltip";
-import Icon from "@/components/Icon";
-import Image from "@/components/Image";
-import Button from "@/components/Button";
+import Tooltip from "@/style-reference/components/Tooltip";
+import Icon from "@/style-reference/components/Icon";
+import Image from "@/style-reference/components/Image";
+import Button from "@/style-reference/components/Button";
 
 type FieldImageProps = {
     className?: string;

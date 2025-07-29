@@ -1,8 +1,47 @@
 "use client";
 
-import Layout from "@/components/Layout";
-import Image from "@/components/Image";
-import Button from "@/components/Button";
+
+export const metadata = {
+  title: "E-commerce Platform | Online Store Builder | MEWAYZ",
+  description: "Build and manage your online store with MEWAYZ's powerful e-commerce platform. Product management, inventory tracking, payment processing, and sales analytics included.",
+  keywords: "e-commerce platform, online store builder, product management, inventory management, payment processing, sales analytics",
+  openGraph: {
+    title: "E-commerce Platform | Online Store Builder | MEWAYZ",
+    description: "Build and manage your online store with MEWAYZ's powerful e-commerce platform. Product management, inventory tracking, payment processing, and sales analytics included.",
+    type: "website",
+    url: "https://mewayz.com",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "MEWAYZ - Transform Your Business"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "E-commerce Platform | Online Store Builder | MEWAYZ",
+    description: "Build and manage your online store with MEWAYZ's powerful e-commerce platform. Product management, inventory tracking, payment processing, and sales analytics included.",
+    images: ["/og-image.jpg"]
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1
+    }
+  }
+};
+
+import React from "react";
+import Layout from "@/style-reference/components/Layout";
+import Image from "@/style-reference/components/Image";
+import Button from "@/style-reference/components/Button";
 import Gallery from "./Gallery";
 import Description from "./Description";
 import Comments from "./Comments";
@@ -34,13 +73,13 @@ const ShopPage = () => {
                             </div>
                         </div>
                         <div className="flex gap-3 shrink-0 ml-6 max-md:mt-5 max-md:ml-0">
-                            <Button
+                            <button
                                 className="max-lg:hidden max-md:flex max-md:flex-1"
                                 isStroke
-                            >
+                             aria-label="Action button">
                                 Preview
                             </Button>
-                            <Button className="max-md:flex-1" isBlack>
+                            <button className="max-md:flex-1" isBlack aria-label="Action button">
                                 Purchase<span className="ml-2">$98</span>
                             </Button>
                         </div>

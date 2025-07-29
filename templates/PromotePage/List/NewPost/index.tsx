@@ -1,10 +1,50 @@
+"use client";
+
+
+export const metadata = {
+  title: "MEWAYZ - All-in-One Business Platform | E-commerce, CRM, Courses & More",
+  description: "Transform your business with MEWAYZ's comprehensive platform. Manage e-commerce, CRM, courses, social media, and marketing automation in one powerful solution. Start free today.",
+  keywords: "business platform, e-commerce platform, CRM software, online course platform, marketing automation, social media management, business intelligence, enterprise software",
+  openGraph: {
+    title: "MEWAYZ - All-in-One Business Platform | E-commerce, CRM, Courses & More",
+    description: "Transform your business with MEWAYZ's comprehensive platform. Manage e-commerce, CRM, courses, social media, and marketing automation in one powerful solution. Start free today.",
+    type: "website",
+    url: "https://mewayz.com",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "MEWAYZ - Transform Your Business"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MEWAYZ - All-in-One Business Platform | E-commerce, CRM, Courses & More",
+    description: "Transform your business with MEWAYZ's comprehensive platform. Manage e-commerce, CRM, courses, social media, and marketing automation in one powerful solution. Start free today.",
+    images: ["/og-image.jpg"]
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1
+    }
+  }
+};
+
 import { useRef, useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
-import Button from "@/components/Button";
-import Modal from "@/components/Modal";
-import Image from "@/components/Image";
-import Icon from "@/components/Icon";
-import Emoji from "@/components/Emoji";
+import Button from "@/style-reference/components/Button";
+import Modal from "@/style-reference/components/Modal";
+import Image from "@/style-reference/components/Image";
+import Icon from "@/style-reference/components/Icon";
+import Emoji from "@/style-reference/components/Emoji";
 import SchedulePost from "../SchedulePost";
 
 const NewPost = ({}) => {
@@ -24,10 +64,10 @@ const NewPost = ({}) => {
 
     return (
         <>
-            <Button
+            <button
                 className="max-md:w-12 max-md:px-0 max-md:text-0"
                 isBlack
-                onClick={() => setIsOpen(true)}
+                onClick={() = aria-label="Action button"> setIsOpen(true)}
             >
                 New post
                 <Icon className="!hidden max-md:!block" name="plus" />
@@ -89,7 +129,7 @@ const NewPost = ({}) => {
                                 name="camera-stroke"
                             />
                         </div>
-                        <button className="flex justify-center items-center w-12 h-12 rounded-full transition-colors hover:bg-shade-07/10">
+                        <button className="flex justify-center items-center w-12 h-12 rounded-full transition-colors hover:bg-shade-07/10" aria-label="Action button">
                             <Icon
                                 className="fill-t-secondary"
                                 name="camera-video"
@@ -102,7 +142,7 @@ const NewPost = ({}) => {
                         />
                     </div>
                     <SchedulePost title="Schedule" />
-                    <Button className="ml-2 max-md:flex-1 max-md:ml-0" isBlack>
+                    <button className="ml-2 max-md:flex-1 max-md:ml-0" isBlack aria-label="Action button">
                         Post
                     </Button>
                 </div>

@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Card from "@/components/Card";
-import Button from "@/components/Button";
-import Field from "@/components/Field";
-import Icon from "@/components/Icon";
+import Card from "@/style-reference/components/Card";
+import Button from "@/style-reference/components/Button";
+import Field from "@/style-reference/components/Field";
+import Icon from "@/style-reference/components/Icon";
 import { apiClient } from "@/infrastructure/api/apiClient";
 
 interface ProductFormData {

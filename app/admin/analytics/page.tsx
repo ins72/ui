@@ -1,57 +1,16 @@
-'use client';
+"use client";
 
-import React from 'react';
+export const dynamic = 'force-dynamic';
+
+import React, { useState, useEffect } from "react";
+import { Metadata } from "next";
 import { useApp } from '@/contexts/AppContext';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import Card from "@/style-reference/components/Card";
+import Button from "@/style-reference/components/Button";
+import Badge from "@/style-reference/components/Badge";
 import { useAnalyticsOverview } from '@/hooks/useApi';
-import { 
-  BarChart3, 
-  TrendingUp, 
-  Users, 
-  Activity, 
-  Database,
-  Settings,
-  Plus,
-  Shield,
-  Zap,
-  Globe,
-  Award,
-  CheckCircle,
-  ArrowRight,
-  Play,
-  AlertTriangle,
-  Eye,
-  Edit,
-  Trash2,
-  UserCheck,
-  Server,
-  FileText,
-  Cog,
-  Lock,
-  Monitor,
-  Bell,
-  Mail,
-  Calendar,
-  CreditCard,
-  Download,
-  Filter,
-  Search,
-  RefreshCw,
-  PieChart,
-  LineChart,
-  Target,
-  DollarSign,
-  ShoppingCart,
-  Package,
-  Clock,
-  TrendingDown,
-  AlertCircle,
-  Info
-} from 'lucide-react';
+import Icon from "@/style-reference/components/Icon";
 import Link from 'next/link';
-
 export default function AdminAnalyticsPage() {
   const { setBreadcrumbs, setCurrentPage } = useApp();
   
@@ -72,7 +31,7 @@ export default function AdminAnalyticsPage() {
       value: overviewLoading ? 'Loading...' : analyticsOverview?.users?.total?.toLocaleString() || '0',
       change: '+12%',
       changeType: 'positive',
-      icon: Users,
+      icon: 'users',
       href: '/admin/users'
     },
     {
@@ -105,14 +64,14 @@ export default function AdminAnalyticsPage() {
     {
       title: 'Generate Report',
       description: 'Create custom analytics report',
-      icon: FileText,
+      icon: 'file-text',
       href: '/admin/analytics/reports',
       color: 'bg-blue-500'
     },
     {
       title: 'Export Data',
       description: 'Export analytics data to CSV/Excel',
-      icon: Download,
+      icon: 'download',
       href: '/admin/analytics/export',
       color: 'bg-green-500'
     },
@@ -126,7 +85,7 @@ export default function AdminAnalyticsPage() {
     {
       title: 'Error Tracking',
       description: 'Track and analyze system errors',
-      icon: AlertTriangle,
+      icon: 'alert-triangle',
       href: '/admin/analytics/errors',
       color: 'bg-red-500'
     }
@@ -138,14 +97,14 @@ export default function AdminAnalyticsPage() {
       value: overviewLoading ? 'Loading...' : '2.3s',
       change: '-15%',
       changeType: 'positive',
-      icon: Clock
+      icon: 'clock'
     },
     {
       title: 'Server Response',
       value: overviewLoading ? 'Loading...' : '180ms',
       change: '-8%',
       changeType: 'positive',
-      icon: Server
+      icon: 'server'
     },
     {
       title: 'Database Queries',
@@ -169,7 +128,7 @@ export default function AdminAnalyticsPage() {
       value: overviewLoading ? 'Loading...' : '23',
       change: '-12%',
       changeType: 'positive',
-      icon: AlertCircle
+      icon: 'alert-circle'
     },
     {
       title: 'Error Rate',
@@ -183,14 +142,14 @@ export default function AdminAnalyticsPage() {
       value: overviewLoading ? 'Loading...' : '2',
       change: '-50%',
       changeType: 'positive',
-      icon: AlertTriangle
+      icon: 'alert-triangle'
     },
     {
       title: 'Resolved Issues',
       value: overviewLoading ? 'Loading...' : '18',
       change: '+20%',
       changeType: 'positive',
-      icon: CheckCircle
+      icon: 'check'
     }
   ];
 
@@ -238,20 +197,20 @@ export default function AdminAnalyticsPage() {
       case 'failed':
         return 'text-red-600 bg-red-100';
       default:
-        return 'text-gray-600 bg-gray-100';
+        return 'text-t-secondary bg-gray-100';
     }
   };
 
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'completed':
-        return <CheckCircle className="w-4 h-4" />;
+        return <Icon name="CheckCircle.toLowerCase()" className="w-4 h-4" />;
       case 'processing':
-        return <RefreshCw className="w-4 h-4 animate-spin" />;
+        return <Icon name="RefreshCw.toLowerCase()" className="w-4 h-4 animate-spin" />;
       case 'failed':
-        return <AlertTriangle className="w-4 h-4" />;
+        return <Icon name="AlertTriangle.toLowerCase()" className="w-4 h-4" />;
       default:
-        return <Info className="w-4 h-4" />;
+        return <Icon name="Info.toLowerCase()" className="w-4 h-4" />;
     }
   };
 
@@ -279,12 +238,12 @@ export default function AdminAnalyticsPage() {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {analyticsStats.map((stat) => (
           <Card key={stat.title} className="hover:shadow-lg transition-shadow">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
+            <Icon name="CardHeader.toLowerCase()" className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <Icon name="CardTitle.toLowerCase()" className="text-sm font-medium">
                 {stat.title}
-              </CardTitle>
+              </Icon>
               <stat.icon className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
+            </Icon>
             <CardContent>
               <div className="text-2xl font-bold">{stat.value}</div>
               <p className="text-xs text-muted-foreground">
@@ -294,7 +253,7 @@ export default function AdminAnalyticsPage() {
                 from last month
               </p>
               <Link href={stat.href}>
-                <Button variant="ghost" size="sm" className="mt-2 p-0 h-auto">
+                <Button isStroke className="h-8 text-sm" className="mt-2 p-0 h-auto">
                   View Details →
                 </Button>
               </Link>
@@ -308,16 +267,16 @@ export default function AdminAnalyticsPage() {
         {quickActions.map((action) => (
           <Card key={action.title} className="hover:shadow-lg transition-shadow cursor-pointer">
             <Link href={action.href}>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <Icon name="CardHeader.toLowerCase()" className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <div className={`p-2 rounded-lg ${action.color}`}>
                   <action.icon className="h-4 w-4 text-white" />
                 </div>
-              </CardHeader>
+              </Icon>
               <CardContent>
-                <CardTitle className="text-lg font-semibold">{action.title}</CardTitle>
-                <CardDescription className="text-sm text-muted-foreground">
+                <Icon name="CardTitle.toLowerCase()" className="text-lg font-semibold">{action.title}</Icon>
+                <Icon name="CardDescription.toLowerCase()" className="text-sm text-muted-foreground">
                   {action.description}
-                </CardDescription>
+                </Icon>
               </CardContent>
             </Link>
           </Card>
@@ -326,15 +285,13 @@ export default function AdminAnalyticsPage() {
 
       {/* Performance Metrics */}
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Monitor className="h-5 w-5" />
-            Performance Metrics
-          </CardTitle>
-          <CardDescription>
-            Real-time system performance monitoring and analysis
-          </CardDescription>
-        </CardHeader>
+        <Icon name="CardHeader.toLowerCase()" className="flex items-center gap-2">
+          <Icon name="Monitor.toLowerCase()" className="h-5 w-5" />
+          Performance Metrics
+        </Icon>
+        <Icon name="CardDescription.toLowerCase()" className="text-sm text-muted-foreground">
+          Real-time system performance monitoring and analysis
+        </Icon>
         <CardContent>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {performanceMetrics.map((metric) => (
@@ -357,15 +314,13 @@ export default function AdminAnalyticsPage() {
 
       {/* Error Analytics */}
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <AlertTriangle className="h-5 w-5" />
-            Error Analytics
-          </CardTitle>
-          <CardDescription>
-            Error tracking, analysis, and resolution monitoring
-          </CardDescription>
-        </CardHeader>
+        <Icon name="CardHeader.toLowerCase()" className="flex items-center gap-2">
+          <Icon name="AlertTriangle.toLowerCase()" className="h-5 w-5" />
+          Error Analytics
+        </Icon>
+        <Icon name="CardDescription.toLowerCase()" className="text-sm text-muted-foreground">
+          Error tracking, analysis, and resolution monitoring
+        </Icon>
         <CardContent>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {errorMetrics.map((metric) => (
@@ -388,22 +343,20 @@ export default function AdminAnalyticsPage() {
 
       {/* Recent Reports */}
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <FileText className="h-5 w-5" />
-            Recent Reports
-          </CardTitle>
-          <CardDescription>
-            Latest generated reports and analytics exports
-          </CardDescription>
-        </CardHeader>
+        <Icon name="CardHeader.toLowerCase()" className="flex items-center gap-2">
+          <Icon name="FileText.toLowerCase()" className="h-5 w-5" />
+          Recent Reports
+        </Icon>
+        <Icon name="CardDescription.toLowerCase()" className="text-sm text-muted-foreground">
+          Latest generated reports and analytics exports
+        </Icon>
         <CardContent>
           <div className="space-y-4">
             {recentReports.map((report, index) => (
               <div key={index} className="flex items-center justify-between p-4 border rounded-lg">
                 <div className="flex items-center space-x-4">
                   <div className="p-2 rounded-lg bg-blue-100">
-                    <FileText className="h-4 w-4 text-blue-600" />
+                    <Icon name="FileText.toLowerCase()" className="h-4 w-4 text-blue-600" />
                   </div>
                   <div>
                     <h4 className="font-semibold">{report.title}</h4>
@@ -420,7 +373,7 @@ export default function AdminAnalyticsPage() {
                 </div>
                 <div className="flex items-center space-x-4">
                   <div className="flex items-center space-x-2">
-                    <Download className="h-4 w-4 text-muted-foreground" />
+                    <Icon name="Download.toLowerCase()" className="h-4 w-4 text-muted-foreground" />
                     <span className="text-sm text-muted-foreground">{report.downloads}</span>
                   </div>
                   <Badge className={`text-xs ${getStatusColor(report.status)}`}>
@@ -429,8 +382,8 @@ export default function AdminAnalyticsPage() {
                       <span>{report.status}</span>
                     </div>
                   </Badge>
-                  <Button variant="ghost" size="sm">
-                    <Eye className="h-4 w-4" />
+                  <Button isStroke className="h-8 text-sm">
+                    <Icon name="Eye.toLowerCase()" className="h-4 w-4" />
                   </Button>
                 </div>
               </div>
@@ -442,15 +395,13 @@ export default function AdminAnalyticsPage() {
       {/* Analytics Charts Placeholder */}
       <div className="grid gap-6 md:grid-cols-2">
         <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <BarChart3 className="h-5 w-5" />
-              User Growth Trends
-            </CardTitle>
-            <CardDescription>
-              Monthly user acquisition and retention analysis
-            </CardDescription>
-          </CardHeader>
+          <Icon name="CardHeader.toLowerCase()" className="flex items-center gap-2">
+            <BarChart3 className="h-5 w-5" />
+            User Growth Trends
+          </Icon>
+          <Icon name="CardDescription.toLowerCase()" className="text-sm text-muted-foreground">
+            Monthly user acquisition and retention analysis
+          </Icon>
           <CardContent>
             <div className="h-64 flex items-center justify-center bg-muted rounded-lg">
               <div className="text-center">
@@ -463,19 +414,17 @@ export default function AdminAnalyticsPage() {
         </Card>
 
         <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <PieChart className="h-5 w-5" />
-              Revenue Distribution
-            </CardTitle>
-            <CardDescription>
-              Revenue breakdown by product and service
-            </CardDescription>
-          </CardHeader>
+          <Icon name="CardHeader.toLowerCase()" className="flex items-center gap-2">
+            <Icon name="PieChart.toLowerCase()" className="h-5 w-5" />
+            Revenue Distribution
+          </Icon>
+          <Icon name="CardDescription.toLowerCase()" className="text-sm text-muted-foreground">
+            Revenue breakdown by product and service
+          </Icon>
           <CardContent>
             <div className="h-64 flex items-center justify-center bg-muted rounded-lg">
               <div className="text-center">
-                <PieChart className="h-12 w-12 text-muted-foreground mx-auto mb-2" />
+                <Icon name="PieChart.toLowerCase()" className="h-12 w-12 text-muted-foreground mx-auto mb-2" />
                 <p className="text-sm text-muted-foreground">Interactive chart will be displayed here</p>
                 <p className="text-xs text-muted-foreground">Revenue distribution analysis</p>
               </div>

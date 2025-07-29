@@ -1,44 +1,16 @@
-'use client';
+export const dynamic = 'force-static';
+export const revalidate = 3600; // Revalidate every hour
 
+import { useEffect } from "react";
 import React from 'react';
 import { useApp } from '@/contexts/AppContext';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { 
-  TrendingUp, 
-  Target, 
-  Users, 
-  BarChart3, 
-  Globe, 
-  Share2,
-  FileText,
-  Search,
-  Filter,
-  ArrowRight,
-  Calendar,
-  Clock,
-  Eye,
-  Download,
-  Star,
-  Bookmark,
-  MessageSquare,
-  HelpCircle,
-  Lightbulb,
-  Settings,
-  UserCheck,
-  DollarSign,
-  Rocket,
-  Award,
-  CheckCircle,
-  Activity,
-  Instagram,
-  Twitter,
-  Linkedin,
-  Youtube,
-  Facebook
-} from 'lucide-react';
+import Layout from "@/style-reference/components/Layout";
+import Card from "@/style-reference/components/Card";
+import Button from "@/style-reference/components/Button";
+import Badge from "@/style-reference/components/Badge";
+import Icon from "@/style-reference/components/Icon";
 import Link from 'next/link';
+import Head from 'next/head';
 
 export default function MarketingDocumentationPage() {
   const { setBreadcrumbs, setCurrentPage } = useApp();
@@ -53,436 +25,490 @@ export default function MarketingDocumentationPage() {
 
   const marketingSections = [
     {
-      title: 'Marketing Strategy',
-      description: 'Strategic marketing planning and campaign development',
-      icon: Target,
+      title: 'Marketing Strategy & Planning',
+      description: 'Comprehensive strategic marketing planning, campaign development, and market positioning for sustainable growth',
+      icon: 'target',
       color: 'bg-blue-500',
       articles: 15,
       topics: [
-        'Brand Strategy',
-        'Market Research',
-        'Campaign Planning',
-        'Competitive Analysis',
-        'Marketing Mix'
+        'Strategic Brand Development & Positioning',
+        'Market Research & Competitive Intelligence',
+        'Campaign Planning & Execution',
+        'Competitive Analysis & Differentiation',
+        'Marketing Mix Optimization & ROI'
       ]
     },
     {
-      title: 'Content Marketing',
-      description: 'Content creation, distribution, and optimization',
-      icon: FileText,
+      title: 'Content Marketing Excellence',
+      description: 'Strategic content creation, distribution, and optimization for maximum engagement and conversion',
+      icon: 'file-text',
       color: 'bg-green-500',
       articles: 22,
       topics: [
-        'Content Strategy',
-        'Blog & Articles',
-        'Video Content',
-        'Social Media Content',
-        'SEO Content'
+        'Content Strategy & Editorial Planning',
+        'Blog & Article Optimization',
+        'Video Content & Multimedia',
+        'Social Media Content Strategy',
+        'SEO Content & Keyword Optimization'
       ]
     },
     {
-      title: 'SEO & Analytics',
-      description: 'Search engine optimization and performance tracking',
-      icon: BarChart3,
+      title: 'SEO & Performance Analytics',
+      description: 'Advanced search engine optimization, performance tracking, and data-driven marketing insights',
+      icon: 'bar-chart-3',
       color: 'bg-purple-500',
       articles: 18,
       topics: [
-        'SEO Strategy',
-        'Keyword Research',
-        'Analytics & Reporting',
-        'Performance Tracking',
-        'Conversion Optimization'
+        'SEO Strategy & Technical Optimization',
+        'Keyword Research & Competitive Analysis',
+        'Analytics & Performance Reporting',
+        'Conversion Rate Optimization (CRO)',
+        'Data-Driven Marketing Insights'
       ]
     },
     {
-      title: 'Social Media',
-      description: 'Social media marketing and community management',
-      icon: Share2,
+      title: 'Social Media Marketing',
+      description: 'Comprehensive social media strategy, community management, and influencer marketing campaigns',
+      icon: 'share-2',
       color: 'bg-yellow-500',
       articles: 12,
       topics: [
-        'Social Media Strategy',
-        'Platform Management',
-        'Community Building',
-        'Influencer Marketing',
-        'Social Advertising'
+        'Social Media Strategy & Planning',
+        'Multi-Platform Management',
+        'Community Building & Engagement',
+        'Influencer Marketing & Partnerships',
+        'Social Advertising & Paid Campaigns'
       ]
     },
     {
-      title: 'Brand Guidelines',
-      description: 'Brand identity, guidelines, and asset management',
-      icon: Award,
+      title: 'Brand Identity & Guidelines',
+      description: 'Comprehensive brand identity development, visual guidelines, and brand asset management',
+      icon: 'award',
       color: 'bg-red-500',
       articles: 8,
       topics: [
-        'Brand Identity',
-        'Visual Guidelines',
-        'Voice & Tone',
-        'Asset Library',
-        'Brand Standards'
+        'Brand Identity & Visual Design',
+        'Brand Guidelines & Standards',
+        'Voice & Tone Guidelines',
+        'Digital Asset Management',
+        'Brand Consistency & Governance'
       ]
     }
   ];
 
   const featuredMarketingDocs = [
     {
-      title: '2024 Marketing Strategy',
-      description: 'Comprehensive marketing strategy and growth plan for 2024',
+      title: '2024 Marketing Strategy & Growth Framework',
+      description: 'Comprehensive marketing strategy, growth framework, and campaign planning for sustainable business expansion',
       category: 'strategy',
-      readTime: '15 min read',
-      views: 2341,
+      readTime: '20 min read',
+      views: 3247,
+      rating: 4.9,
+      author: 'Marketing Strategy Team',
+      date: '2024-01-25',
+      featured: true
+    },
+    {
+      title: 'Content Marketing ROI Optimization',
+      description: 'Advanced strategies for maximizing content marketing ROI, engagement, and conversion rates',
+      category: 'content',
+      readTime: '18 min read',
+      views: 2156,
       rating: 4.8,
-      author: 'Marketing Team',
+      author: 'Content Marketing Team',
+      date: '2024-01-23',
+      featured: true
+    },
+    {
+      title: 'SEO Performance & Analytics Guide',
+      description: 'Comprehensive guide to SEO performance tracking, analytics, and optimization strategies',
+      category: 'seo',
+      readTime: '25 min read',
+      views: 1892,
+      rating: 4.7,
+      author: 'SEO & Analytics Team',
       date: '2024-01-20',
       featured: true
     },
     {
-      title: 'Content Marketing Playbook',
-      description: 'Complete guide to content marketing and distribution',
-      category: 'content',
-      readTime: '12 min read',
-      views: 1892,
-      rating: 4.7,
-      author: 'Content Team',
-      date: '2024-01-18',
-      featured: true
-    },
-    {
-      title: 'SEO Best Practices Guide',
-      description: 'Comprehensive SEO strategy and optimization guide',
-      category: 'seo',
-      readTime: '18 min read',
-      views: 1456,
-      rating: 4.9,
-      author: 'SEO Team',
-      date: '2024-01-15',
-      featured: true
-    },
-    {
-      title: 'Brand Guidelines v2.0',
-      description: 'Updated brand guidelines and visual identity standards',
-      category: 'brand',
-      readTime: '10 min read',
-      views: 1234,
+      title: 'Social Media Marketing Playbook',
+      description: 'Complete playbook for social media marketing success, community building, and influencer partnerships',
+      category: 'social',
+      readTime: '16 min read',
+      views: 1678,
       rating: 4.6,
-      author: 'Brand Team',
-      date: '2024-01-12',
+      author: 'Social Media Team',
+      date: '2024-01-18',
       featured: true
     }
   ];
 
   const marketingMetrics = [
     {
-      title: 'Website Traffic',
-      value: '45.2K',
+      title: 'Marketing ROI',
+      value: '450%',
+      change: '+85%',
+      changeType: 'positive',
+      icon: 'trending-up',
+      color: 'text-green-600',
+      description: 'Average return on marketing investment'
+    },
+    {
+      title: 'Content Engagement',
+      value: '78%',
+      change: '+12%',
+      changeType: 'positive',
+      icon: 'users',
+      color: 'text-blue-600',
+      description: 'Average content engagement rate'
+    },
+    {
+      title: 'SEO Performance',
+      value: '+156%',
       change: '+23%',
       changeType: 'positive',
-      icon: Eye,
-      color: 'text-blue-600'
-    },
-    {
-      title: 'Lead Generation',
-      value: '1,847',
-      change: '+18%',
-      changeType: 'positive',
-      icon: Users,
-      color: 'text-green-600'
-    },
-    {
-      title: 'Conversion Rate',
-      value: '3.2%',
-      change: '+0.5%',
-      changeType: 'positive',
-      icon: TrendingUp,
-      color: 'text-purple-600'
+      icon: 'search',
+      color: 'text-purple-600',
+      description: 'Organic traffic growth year-over-year'
     },
     {
       title: 'Social Reach',
-      value: '125K',
-      change: '+12%',
+      value: '2.4M',
+      change: '+45%',
       changeType: 'positive',
-      icon: Share2,
-      color: 'text-yellow-600'
+      icon: 'share-2',
+      color: 'text-yellow-600',
+      description: 'Total social media reach'
     }
   ];
 
   const quickActions = [
     {
-      title: 'Marketing Templates',
-      description: 'Download marketing templates and assets',
-      icon: FileText,
-      href: '/knowledge-base/marketing/templates',
+      title: 'Marketing Strategy Workshop',
+      description: 'Interactive workshop for developing comprehensive marketing strategies and growth plans',
+      icon: 'target',
+      href: '/knowledge-base/marketing/strategy-workshop',
       color: 'bg-blue-500'
     },
     {
-      title: 'Campaign Calendar',
-      description: 'View upcoming marketing campaigns',
-      icon: Calendar,
-      href: '/knowledge-base/marketing/calendar',
+      title: 'Content Marketing Playbook',
+      description: 'Complete playbook for content marketing success, creation, and distribution strategies',
+      icon: 'book-open',
+      href: '/knowledge-base/marketing/content-playbook',
       color: 'bg-green-500'
     },
     {
-      title: 'Analytics Dashboard',
-      description: 'Access marketing analytics and reports',
-      icon: BarChart3,
-      href: '/knowledge-base/marketing/analytics',
+      title: 'SEO Optimization Toolkit',
+      description: 'Comprehensive toolkit for SEO optimization, keyword research, and performance tracking',
+      icon: 'search',
+      href: '/knowledge-base/marketing/seo-toolkit',
       color: 'bg-purple-500'
     },
     {
-      title: 'Brand Assets',
-      description: 'Download brand assets and guidelines',
-      icon: Download,
-      href: '/knowledge-base/marketing/assets',
+      title: 'Social Media Strategy Guide',
+      description: 'Complete guide for social media marketing success and community building',
+      icon: 'share-2',
+      href: '/knowledge-base/marketing/social-strategy',
       color: 'bg-yellow-500'
     }
   ];
 
   const getCategoryBadge = (category: string) => {
-    switch (category) {
-      case 'strategy':
-        return <Badge className="bg-blue-100 text-blue-800">Strategy</Badge>;
-      case 'content':
-        return <Badge className="bg-green-100 text-green-800">Content</Badge>;
-      case 'seo':
-        return <Badge className="bg-purple-100 text-purple-800">SEO</Badge>;
-      case 'brand':
-        return <Badge className="bg-yellow-100 text-yellow-800">Brand</Badge>;
-      default:
-        return <Badge className="bg-gray-100 text-gray-800">General</Badge>;
-    }
+    const badges = {
+      strategy: { text: 'Strategy', className: 'bg-blue-100 text-blue-800' },
+      content: { text: 'Content', className: 'bg-green-100 text-green-800' },
+      seo: { text: 'SEO', className: 'bg-purple-100 text-purple-800' },
+      social: { text: 'Social Media', className: 'bg-yellow-100 text-yellow-800' }
+    };
+    
+    const badge = badges[category as keyof typeof badges] || { text: 'General', className: 'bg-gray-100 text-gray-800' };
+    
+    return (
+      <Badge className={badge.className}>
+        {badge.text}
+      </Badge>
+    );
   };
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Marketing & Growth</h1>
-          <p className="text-muted-foreground">
-            Marketing strategies, growth tactics, and brand resources
-          </p>
-        </div>
-        <div className="flex items-center space-x-2">
-          <Badge className="bg-purple-100 text-purple-800">
-            Marketing Focus
-          </Badge>
-        </div>
-      </div>
+    <>
+      <Head>
+        <title>Marketing Documentation - Strategy, Content & Growth | MEWAYZ</title>
+        <meta name="description" content="Comprehensive marketing documentation covering strategy, content marketing, SEO, and social media. 450% marketing ROI, 2.4M social reach." />
+        <meta name="keywords" content="marketing strategy, content marketing, SEO, social media marketing, brand guidelines, marketing analytics" />
+        <meta property="og:title" content="Marketing Documentation - Strategy & Growth | MEWAYZ" />
+        <meta property="og:description" content="Comprehensive marketing documentation for strategy, content, and growth. 450% marketing ROI, 78% content engagement." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://mewayz.com/knowledge-base/marketing" />
+        <link rel="canonical" href="https://mewayz.com/knowledge-base/marketing" />
+        
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "TechArticle",
+            "name": "Marketing Documentation",
+            "description": "Comprehensive marketing documentation for strategy, content, and growth",
+            "author": {
+              "@type": "Organization",
+              "name": "MEWAYZ Marketing Team"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "MEWAYZ"
+            },
+            "mainEntity": {
+              "@type": "WebPage",
+              "name": "Marketing Documentation"
+            }
+          })}
+        </script>
+      </Head>
 
-      {/* Marketing Metrics */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {marketingMetrics.map((metric) => (
-          <Card key={metric.title} className="hover:shadow-lg transition-shadow">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                {metric.title}
-              </CardTitle>
-              <metric.icon className={`h-4 w-4 ${metric.color}`} />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{metric.value}</div>
-              <p className="text-xs text-muted-foreground">
-                <span className={metric.changeType === 'positive' ? 'text-green-600' : 'text-red-600'}>
-                  {metric.change}
-                </span>{' '}
-                from last month
-              </p>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-
-      {/* Quick Actions */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {quickActions.map((action) => (
-          <Card key={action.title} className="hover:shadow-lg transition-shadow cursor-pointer">
-            <Link href={action.href}>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <div className={`p-2 rounded-lg ${action.color}`}>
-                  <action.icon className="h-4 w-4 text-white" />
+      <Layout title="Marketing Documentation">
+        <div className="flex max-lg:block">
+          <div className="col-left">
+            {/* Header */}
+            <Card title="Marketing & Growth Excellence">
+              <div className="flex justify-between items-center mb-6">
+                <div>
+                  <h1 className="text-3xl font-bold text-t-primary mb-2">Marketing & Growth</h1>
+                  <p className="text-t-secondary">
+                    Comprehensive marketing documentation covering strategy, content marketing, SEO, and social media for sustainable growth
+                  </p>
                 </div>
-              </CardHeader>
-              <CardContent>
-                <CardTitle className="text-sm font-medium">{action.title}</CardTitle>
-                <CardDescription className="text-xs">
-                  {action.description}
-                </CardDescription>
-              </CardContent>
-            </Link>
-          </Card>
-        ))}
-      </div>
-
-      {/* Featured Marketing Documents */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Featured Marketing Documents</CardTitle>
-          <CardDescription>
-            Most important marketing resources and strategic documents
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid gap-4 md:grid-cols-2">
-            {featuredMarketingDocs.map((doc) => (
-              <div key={doc.title} className="p-4 border rounded-lg hover:bg-gray-50 cursor-pointer">
-                <div className="flex items-start justify-between mb-2">
-                  {getCategoryBadge(doc.category)}
-                  <div className="flex items-center space-x-1 text-sm text-gray-500">
-                    <Star className="w-4 h-4 text-yellow-500" />
-                    <span>{doc.rating}</span>
-                  </div>
-                </div>
-                <h3 className="font-semibold text-lg mb-2">{doc.title}</h3>
-                <p className="text-gray-600 text-sm mb-3">{doc.description}</p>
-                <div className="flex items-center justify-between text-xs text-gray-500">
-                  <div className="flex items-center space-x-4">
-                    <span>{doc.readTime}</span>
-                    <span>{doc.views} views</span>
-                    <span>By {doc.author}</span>
-                  </div>
-                  <span>{doc.date}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Marketing Sections */}
-      <div className="grid gap-6 md:grid-cols-2">
-        {marketingSections.map((section) => (
-          <Card key={section.title} className="hover:shadow-lg transition-shadow">
-            <CardHeader>
-              <div className="flex items-center space-x-3">
-                <div className={`p-2 rounded-lg ${section.color}`}>
-                  <section.icon className="h-5 w-5 text-white" />
-                </div>
-                <div className="flex-1">
-                  <CardTitle className="text-lg">{section.title}</CardTitle>
-                  <CardDescription>{section.description}</CardDescription>
-                </div>
-                <Badge className="bg-gray-100 text-gray-800">
-                  {section.articles} articles
+                <Badge className="bg-blue-100 text-blue-800">
+                  Marketing Focus
                 </Badge>
               </div>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                {section.topics.map((topic) => (
-                  <div key={topic} className="flex items-center justify-between p-2 hover:bg-gray-50 rounded cursor-pointer">
-                    <span className="text-sm font-medium">{topic}</span>
-                    <ArrowRight className="w-4 h-4 text-gray-400" />
+            </Card>
+
+            {/* Marketing Metrics */}
+            <Card title="Marketing Performance Metrics" className="mt-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {marketingMetrics.map((metric) => (
+                  <div key={metric.title} className="p-4 bg-b-surface2 rounded-lg hover:shadow-lg transition-shadow">
+                    <div className="flex items-center justify-between mb-2">
+                      <Icon name={metric.icon} className={`h-5 w-5 ${metric.color}`} />
+                    </div>
+                    <div className="text-2xl font-bold text-t-primary">{metric.value}</div>
+                    <p className="text-sm font-medium text-t-secondary mb-1">{metric.title}</p>
+                    <p className="text-xs text-t-tertiary mb-2">{metric.description}</p>
+                    <p className={`text-xs ${
+                      metric.changeType === 'positive' ? 'text-green-600' : 'text-red-600'
+                    }`}>
+                      {metric.change} from last quarter
+                    </p>
                   </div>
                 ))}
-                <div className="pt-2">
-                  <Link href={`/knowledge-base/marketing/${section.title.toLowerCase().replace(/\s+/g, '-')}`}>
-                    <Button variant="outline" className="w-full">
+              </div>
+            </Card>
+
+            {/* Quick Actions */}
+            <Card title="Marketing Resources & Tools" className="mt-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                {quickActions.map((action) => (
+                  <Link key={action.title} href={action.href}>
+                    <div className="p-4 bg-b-surface2 rounded-lg hover:shadow-lg transition-shadow cursor-pointer">
+                      <div className={`w-12 h-12 ${action.color} rounded-lg flex items-center justify-center mb-3`}>
+                        <Icon name={action.icon} className="h-6 w-6 text-white" />
+                      </div>
+                      <h3 className="font-semibold text-t-primary mb-1">{action.title}</h3>
+                      <p className="text-sm text-t-secondary">{action.description}</p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </Card>
+
+            {/* Featured Marketing Documents */}
+            <Card title="Featured Marketing Resources" className="mt-6">
+              <p className="text-t-secondary mb-6">
+                Most important marketing resources and strategic guides
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {featuredMarketingDocs.map((doc) => (
+                  <div key={doc.title} className="p-4 border border-s-stroke rounded-lg hover:bg-b-surface cursor-pointer transition-colors">
+                    <div className="flex items-start justify-between mb-3">
+                      {getCategoryBadge(doc.category)}
+                      <div className="flex items-center space-x-1 text-sm text-t-tertiary">
+                        <Icon name="star" className="w-4 h-4 text-yellow-500" />
+                        <span>{doc.rating}</span>
+                      </div>
+                    </div>
+                    <h3 className="font-semibold text-lg text-t-primary mb-2">{doc.title}</h3>
+                    <p className="text-t-secondary text-sm mb-3">{doc.description}</p>
+                    <div className="flex items-center justify-between text-xs text-t-tertiary">
+                      <div className="flex items-center space-x-4">
+                        <span>{doc.readTime}</span>
+                        <span>{doc.views.toLocaleString()} views</span>
+                        <span>By {doc.author}</span>
+                      </div>
+                      <span>{doc.date}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Card>
+          </div>
+
+          <div className="col-right">
+            {/* Marketing Sections */}
+            <Card title="Marketing Documentation Categories">
+              <div className="space-y-4">
+                {marketingSections.map((section) => (
+                  <div key={section.title} className="p-4 bg-b-surface2 rounded-lg hover:shadow-lg transition-shadow">
+                    <div className="flex items-center space-x-3 mb-3">
+                      <div className={`w-10 h-10 ${section.color} rounded-lg flex items-center justify-center`}>
+                        <Icon name={section.icon} className="h-5 w-5 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-semibold text-t-primary">{section.title}</h3>
+                        <p className="text-sm text-t-secondary">{section.description}</p>
+                      </div>
+                      <Badge className="bg-gray-100 text-gray-800">
+                        {section.articles} articles
+                      </Badge>
+                    </div>
+                    
+                    <div className="space-y-2 mb-4">
+                      {section.topics.map((topic) => (
+                        <div key={topic} className="flex items-center justify-between p-2 hover:bg-b-surface rounded cursor-pointer">
+                          <span className="text-sm font-medium text-t-primary">{topic}</span>
+                          <Icon name="arrow-right" className="w-4 h-4 text-t-tertiary" />
+                        </div>
+                      ))}
+                    </div>
+                    
+                    <Button isStroke className="w-full">
                       View All {section.title} Resources
                     </Button>
-                  </Link>
-                </div>
+                  </div>
+                ))}
               </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+            </Card>
 
-      {/* Marketing Resources */}
-      <div className="grid gap-6 md:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle>Marketing Templates</CardTitle>
-            <CardDescription>
-              Downloadable templates and assets for marketing campaigns
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              <div className="flex items-center justify-between p-2 hover:bg-gray-50 rounded cursor-pointer">
-                <div className="flex items-center space-x-3">
-                  <FileText className="w-4 h-4 text-blue-500" />
-                  <span className="text-sm font-medium">Campaign Brief Template</span>
+            {/* Marketing Tools */}
+            <Card title="Marketing Intelligence Tools" className="mt-4">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between p-3 hover:bg-b-surface rounded cursor-pointer">
+                  <div className="flex items-center space-x-3">
+                    <Icon name="bar-chart" className="w-5 h-5 text-blue-500" />
+                    <div>
+                      <span className="text-sm font-medium text-t-primary">Marketing Analytics Dashboard</span>
+                      <p className="text-xs text-t-secondary">Real-time marketing metrics</p>
+                    </div>
+                  </div>
+                  <Icon name="arrow-right" className="w-4 h-4 text-t-tertiary" />
                 </div>
-                <Download className="w-4 h-4 text-gray-400" />
+                
+                <div className="flex items-center justify-between p-3 hover:bg-b-surface rounded cursor-pointer">
+                  <div className="flex items-center space-x-3">
+                    <Icon name="search" className="w-5 h-5 text-green-500" />
+                    <div>
+                      <span className="text-sm font-medium text-t-primary">SEO Performance Monitor</span>
+                      <p className="text-xs text-t-secondary">Keyword tracking & rankings</p>
+                    </div>
+                  </div>
+                  <Icon name="arrow-right" className="w-4 h-4 text-t-tertiary" />
+                </div>
+                
+                <div className="flex items-center justify-between p-3 hover:bg-b-surface rounded cursor-pointer">
+                  <div className="flex items-center space-x-3">
+                    <Icon name="share-2" className="w-5 h-5 text-purple-500" />
+                    <div>
+                      <span className="text-sm font-medium text-t-primary">Social Media Manager</span>
+                      <p className="text-xs text-t-secondary">Multi-platform management</p>
+                    </div>
+                  </div>
+                  <Icon name="arrow-right" className="w-4 h-4 text-t-tertiary" />
+                </div>
+                
+                <div className="flex items-center justify-between p-3 hover:bg-b-surface rounded cursor-pointer">
+                  <div className="flex items-center space-x-3">
+                    <Icon name="trending-up" className="w-5 h-5 text-yellow-500" />
+                    <div>
+                      <span className="text-sm font-medium text-t-primary">Conversion Optimizer</span>
+                      <p className="text-xs text-t-secondary">A/B testing & optimization</p>
+                    </div>
+                  </div>
+                  <Icon name="arrow-right" className="w-4 h-4 text-t-tertiary" />
+                </div>
               </div>
-              <div className="flex items-center justify-between p-2 hover:bg-gray-50 rounded cursor-pointer">
-                <div className="flex items-center space-x-3">
-                  <BarChart3 className="w-4 h-4 text-green-500" />
-                  <span className="text-sm font-medium">Marketing Plan Template</span>
+            </Card>
+
+            {/* Marketing Templates */}
+            <Card title="Marketing Templates & Frameworks" className="mt-4">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between p-3 hover:bg-b-surface rounded cursor-pointer">
+                  <div className="flex items-center space-x-3">
+                    <Icon name="file-text" className="w-5 h-5 text-blue-500" />
+                    <div>
+                      <span className="text-sm font-medium text-t-primary">Marketing Strategy Template</span>
+                      <p className="text-xs text-t-secondary">Strategic planning framework</p>
+                    </div>
+                  </div>
+                  <Icon name="download" className="w-4 h-4 text-t-tertiary" />
                 </div>
-                <Download className="w-4 h-4 text-gray-400" />
+                
+                <div className="flex items-center justify-between p-3 hover:bg-b-surface rounded cursor-pointer">
+                  <div className="flex items-center space-x-3">
+                    <Icon name="file-text" className="w-5 h-5 text-green-500" />
+                    <div>
+                      <span className="text-sm font-medium text-t-primary">Content Calendar</span>
+                      <p className="text-xs text-t-secondary">Content planning template</p>
+                    </div>
+                  </div>
+                  <Icon name="download" className="w-4 h-4 text-t-tertiary" />
+                </div>
+                
+                <div className="flex items-center justify-between p-3 hover:bg-b-surface rounded cursor-pointer">
+                  <div className="flex items-center space-x-3">
+                    <Icon name="file-text" className="w-5 h-5 text-purple-500" />
+                    <div>
+                      <span className="text-sm font-medium text-t-primary">SEO Audit Checklist</span>
+                      <p className="text-xs text-t-secondary">Technical SEO framework</p>
+                    </div>
+                  </div>
+                  <Icon name="download" className="w-4 h-4 text-t-tertiary" />
+                </div>
+                
+                <div className="flex items-center justify-between p-3 hover:bg-b-surface rounded cursor-pointer">
+                  <div className="flex items-center space-x-3">
+                    <Icon name="file-text" className="w-5 h-5 text-yellow-500" />
+                    <div>
+                      <span className="text-sm font-medium text-t-primary">Social Media Calendar</span>
+                      <p className="text-xs text-t-secondary">Social media planning</p>
+                    </div>
+                  </div>
+                  <Icon name="download" className="w-4 h-4 text-t-tertiary" />
+                </div>
               </div>
-              <div className="flex items-center justify-between p-2 hover:bg-gray-50 rounded cursor-pointer">
-                <div className="flex items-center space-x-3">
-                  <Share2 className="w-4 h-4 text-purple-500" />
-                  <span className="text-sm font-medium">Social Media Calendar</span>
-                </div>
-                <Download className="w-4 h-4 text-gray-400" />
-              </div>
-              <div className="flex items-center justify-between p-2 hover:bg-gray-50 rounded cursor-pointer">
-                <div className="flex items-center space-x-3">
-                  <Target className="w-4 h-4 text-yellow-500" />
-                  <span className="text-sm font-medium">Content Strategy Template</span>
-                </div>
-                <Download className="w-4 h-4 text-gray-400" />
+            </Card>
+
+            {/* CTA Section */}
+            <div className="mt-6 p-6 bg-primary rounded-lg text-center">
+              <h2 className="text-xl font-bold text-white mb-3">
+                Accelerate Your Marketing Growth
+              </h2>
+              <p className="text-white/90 mb-4">
+                Access comprehensive marketing resources and strategic guidance
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <Button className="bg-white text-primary hover:bg-gray-50">
+                  <Icon name="book-open" className="mr-2 h-4 w-4" />
+                  Access Marketing Resources
+                </Button>
+                <Button isStroke className="border-white text-white hover:bg-white/10">
+                  <Icon name="trending-up" className="mr-2 h-4 w-4" />
+                  Schedule Marketing Consultation
+                </Button>
               </div>
             </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>Social Media Channels</CardTitle>
-            <CardDescription>
-              Manage and monitor social media presence
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              <div className="flex items-center justify-between p-2 hover:bg-gray-50 rounded cursor-pointer">
-                <div className="flex items-center space-x-3">
-                  <Linkedin className="w-4 h-4 text-blue-500" />
-                  <span className="text-sm font-medium">LinkedIn</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <span className="text-xs text-gray-500">12.5K followers</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400" />
-                </div>
-              </div>
-              <div className="flex items-center justify-between p-2 hover:bg-gray-50 rounded cursor-pointer">
-                <div className="flex items-center space-x-3">
-                  <Twitter className="w-4 h-4 text-blue-400" />
-                  <span className="text-sm font-medium">Twitter</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <span className="text-xs text-gray-500">8.9K followers</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400" />
-                </div>
-              </div>
-              <div className="flex items-center justify-between p-2 hover:bg-gray-50 rounded cursor-pointer">
-                <div className="flex items-center space-x-3">
-                  <Instagram className="w-4 h-4 text-pink-500" />
-                  <span className="text-sm font-medium">Instagram</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <span className="text-xs text-gray-500">15.2K followers</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400" />
-                </div>
-              </div>
-              <div className="flex items-center justify-between p-2 hover:bg-gray-50 rounded cursor-pointer">
-                <div className="flex items-center space-x-3">
-                  <Youtube className="w-4 h-4 text-red-500" />
-                  <span className="text-sm font-medium">YouTube</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <span className="text-xs text-gray-500">5.8K subscribers</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400" />
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    </div>
+          </div>
+        </div>
+      </Layout>
+    </>
   );
 } 

@@ -1,4 +1,5 @@
-import Select from "@/components/Select";
+import React from "react";
+import Select from "@/style-reference/components/Select";
 
 type CardProps = {
     className?: string;

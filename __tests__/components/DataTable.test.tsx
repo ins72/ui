@@ -1,3 +1,4 @@
+import Icon from "@/style-reference/components/Icon";
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { DataTable } from '@/components/DataTable/DataTable';
@@ -48,12 +49,12 @@ describe('DataTable Component', () => {
   const defaultProps = {
     endpoint: 'users',
     columns: mockColumns,
-    title: 'Users',
+    title: 'Icon name="users"',
   };
 
   it('renders the table with correct title', () => {
     render(<DataTable {...defaultProps} />);
-    expect(screen.getByText('Users')).toBeInTheDocument();
+    expect(screen.getByText('Icon name="users"')).toBeInTheDocument();
   });
 
   it('renders table headers', () => {
@@ -73,7 +74,7 @@ describe('DataTable Component', () => {
 
   it('shows search input when showSearch is true', () => {
     render(<DataTable {...defaultProps} showSearch={true} />);
-    expect(screen.getByPlaceholderText('Search...')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Icon name="search"...')).toBeInTheDocument();
   });
 
   it('shows action buttons when showActions is true', () => {
@@ -90,7 +91,7 @@ describe('DataTable Component', () => {
 
   it('handles search input', async () => {
     render(<DataTable {...defaultProps} showSearch={true} />);
-    const searchInput = screen.getByPlaceholderText('Search...');
+    const searchInput = screen.getByPlaceholderText('Icon name="search"...');
     fireEvent.change(searchInput, { target: { value: 'John' } });
     
     await waitFor(() => {

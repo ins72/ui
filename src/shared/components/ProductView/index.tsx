@@ -8,7 +8,7 @@ import {
     Cell,
 } from "recharts";
 import { NumericFormat } from "react-number-format";
-import Card from "@/components/Card";
+import Card from "@/style-reference/components/Card";
 
 import { productsProductViewChartData } from "@/mocks/charts";
 

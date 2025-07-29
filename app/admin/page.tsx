@@ -1,11 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
+export const dynamic = 'force-dynamic';
+
 import { apiClient } from "@/infrastructure/api/apiClient";
-import Layout from "@/components/Layout";
-import Card from "@/components/Card";
-import Button from "@/components/Button";
-import Icon from "@/components/Icon";
+import Layout from "@/style-reference/components/Layout";
+import Card from "@/style-reference/components/Card";
+import Button from "@/style-reference/components/Button";
+import Icon from "@/style-reference/components/Icon";
 
 interface SystemStats {
     totalUsers: number;

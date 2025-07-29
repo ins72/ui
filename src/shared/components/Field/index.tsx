@@ -1,5 +1,6 @@
-import Tooltip from "@/components/Tooltip";
-import Icon from "@/components/Icon";
+import React from "react";
+import Tooltip from "@/style-reference/components/Tooltip";
+import Icon from "@/style-reference/components/Icon";
 
 type FieldProps = {
     className?: string;

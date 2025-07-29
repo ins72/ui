@@ -1,126 +1,12 @@
-'use client';
+"use client";
 
-import React from 'react';
+import { useEffect } from "react";
+import React, { useEffect } from 'react';
 import { useApp } from '@/contexts/AppContext';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { 
-  Download, 
-  FileText,
-  Video,
-  Image,
-  BookOpen,
-  Users,
-  Globe,
-  Mail,
-  Phone,
-  MapPin,
-  CheckCircle,
-  AlertTriangle,
-  Info,
-  ExternalLink,
-  Share,
-  Bookmark,
-  Search,
-  Filter,
-  SortAsc,
-  SortDesc,
-  MoreHorizontal,
-  MoreVertical,
-  ChevronLeft,
-  ChevronRight,
-  ChevronUp,
-  ChevronDown,
-  Minus,
-  Plus,
-  X,
-  Check,
-  AlertCircle,
-  HelpCircle,
-  Unlink,
-  Copy,
-  Scissors,
-  RotateCw,
-  RotateCcw,
-  Save,
-  Upload,
-  Archive,
-  HardDrive,
-  Table,
-  Columns,
-  Rows,
-  Hash,
-  Unlock,
-  Edit,
-  Trash2,
-  Database,
-  Server,
-  Key,
-  Eye,
-  EyeOff,
-  Lock,
-  Shield,
-  Settings,
-  BarChart3,
-  Folder,
-  File,
-  Home,
-  Contact,
-  DollarSign,
-  BookOpen as BookOpenIcon,
-  Newspaper,
-  Briefcase,
-  LifeBuoy,
-  Cookie,
-  Activity,
-  XCircle,
-  Wrench,
-  Star,
-  Award,
-  TrendingUp,
-  Target,
-  Users as UsersIcon,
-  Image as ImageIcon,
-  FileText as FileTextIcon,
-  Camera,
-  Video as VideoIcon,
-  ThumbsUp,
-  MessageSquare,
-  UserPlus,
-  Award as AwardIcon,
-  Zap,
-  Clock,
-  Calendar,
-  Star as StarIcon,
-  Target as TargetIcon,
-  Rocket,
-  Lightbulb,
-  Scale,
-  Monitor,
-  Smartphone,
-  Tablet,
-  Laptop,
-  Desktop,
-  Cloud,
-  HardDrive as HardDriveIcon,
-  Package,
-  Archive as ArchiveIcon,
-  FileArchive,
-  Code,
-  Terminal,
-  GitBranch,
-  Database as DatabaseIcon,
-  Server as ServerIcon,
-  Network,
-  Wifi,
-  WifiOff,
-  Bluetooth,
-  Usb,
-  Cpu,
-  Memory,
-  HardDrive as StorageIcon
-} from 'lucide-react';
+import Card from "@/style-reference/components/Card";
+import Button from "@/style-reference/components/Button";
+import Badge from "@/style-reference/components/Badge";
+import Icon from "@/style-reference/components/Icon";
 import Link from 'next/link';
 
 export default function DownloadsPage() {
@@ -151,14 +37,14 @@ export default function DownloadsPage() {
     {
       title: 'API & SDKs',
       description: 'Developer tools and software development kits',
-      icon: Code,
+      icon: 'code',
       color: 'text-purple-600',
       bgColor: 'bg-purple-100'
     },
     {
       title: 'Documentation',
       description: 'PDF guides, whitepapers, and technical documentation',
-      icon: FileText,
+      icon: 'file-text',
       color: 'text-orange-600',
       bgColor: 'bg-orange-100'
     }
@@ -237,7 +123,7 @@ export default function DownloadsPage() {
       size: '2.1 MB',
       type: 'API Documentation',
       description: 'Complete REST API documentation and examples',
-      icon: Code,
+      icon: 'code',
       downloads: '12,345',
       lastUpdated: '2024-01-15',
       status: 'Latest'
@@ -248,7 +134,7 @@ export default function DownloadsPage() {
       size: '1.8 MB',
       type: 'NPM Package',
       description: 'Official JavaScript/TypeScript SDK',
-      icon: Code,
+      icon: 'code',
       downloads: '8,901',
       lastUpdated: '2024-01-15',
       status: 'Latest'
@@ -259,7 +145,7 @@ export default function DownloadsPage() {
       size: '2.3 MB',
       type: 'PyPI Package',
       description: 'Official Python SDK with full API support',
-      icon: Code,
+      icon: 'code',
       downloads: '5,678',
       lastUpdated: '2024-01-15',
       status: 'Latest'
@@ -270,7 +156,7 @@ export default function DownloadsPage() {
       size: '0.5 MB',
       type: 'API Collection',
       description: 'Complete Postman collection for API testing',
-      icon: Code,
+      icon: 'code',
       downloads: '3,234',
       lastUpdated: '2024-01-15',
       status: 'Latest'
@@ -284,7 +170,7 @@ export default function DownloadsPage() {
       size: '15.2 MB',
       type: 'PDF',
       description: 'Complete user guide and tutorials',
-      icon: FileText,
+      icon: 'file-text',
       downloads: '25,678',
       lastUpdated: '2024-01-15',
       status: 'Latest'
@@ -295,7 +181,7 @@ export default function DownloadsPage() {
       size: '8.7 MB',
       type: 'PDF',
       description: 'Complete API reference documentation',
-      icon: FileText,
+      icon: 'file-text',
       downloads: '18,901',
       lastUpdated: '2024-01-15',
       status: 'Latest'
@@ -306,7 +192,7 @@ export default function DownloadsPage() {
       size: '3.2 MB',
       type: 'PDF',
       description: 'Security practices and compliance information',
-      icon: Shield,
+      icon: 'shield',
       downloads: '12,345',
       lastUpdated: '2024-01-10',
       status: 'Latest'
@@ -317,7 +203,7 @@ export default function DownloadsPage() {
       size: '12.1 MB',
       type: 'PDF',
       description: 'Step-by-step integration tutorials',
-      icon: FileText,
+      icon: 'file-text',
       downloads: '9,876',
       lastUpdated: '2024-01-15',
       status: 'Latest'
@@ -342,7 +228,7 @@ export default function DownloadsPage() {
     {
       title: 'Release Notes',
       description: 'What\'s new in the latest version',
-      icon: FileText,
+      icon: 'file-text',
       action: 'releases',
       color: 'bg-purple-500'
     },
@@ -360,14 +246,14 @@ export default function DownloadsPage() {
       title: 'Total Downloads',
       value: '125,000+',
       description: 'Downloads this month',
-      icon: Download,
+      icon: 'download',
       color: 'text-blue-600'
     },
     {
       title: 'Active Users',
       value: '45,000+',
       description: 'Monthly active users',
-      icon: Users,
+      icon: 'users',
       color: 'text-green-600'
     },
     {
@@ -381,7 +267,7 @@ export default function DownloadsPage() {
       title: 'Languages',
       value: '20+',
       description: 'Supported languages',
-      icon: Globe,
+      icon: 'globe',
       color: 'text-orange-600'
     }
   ];
@@ -401,9 +287,10 @@ export default function DownloadsPage() {
 
   const renderStars = (rating: number) => {
     return [...Array(5)].map((_, i) => (
-      <StarIcon 
+      <Icon 
         key={i} 
-        className={`h-3 w-3 ${i < Math.floor(rating) ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} 
+        name="star"
+        className={`w-3 h-3 ${i < Math.floor(rating) ? 'text-yellow-400' : 'text-gray-300'}`} 
       />
     ));
   };
@@ -419,12 +306,12 @@ export default function DownloadsPage() {
           </p>
         </div>
         <div className="flex items-center space-x-2">
-          <Badge className="text-sm">
+          <Icon name="Badge.toLowerCase()" className="text-sm">
             {mobileApps.length + desktopApps.length} Applications
-          </Badge>
-          <Badge className="text-sm">
+          </Icon>
+          <Icon name="Badge.toLowerCase()" className="text-sm">
             {developerTools.length + documentation.length} Resources
-          </Badge>
+          </Icon>
         </div>
       </div>
 
@@ -432,7 +319,7 @@ export default function DownloadsPage() {
       <div className="grid gap-4 md:grid-cols-4">
         {downloadStats.map((stat) => (
           <Card key={stat.title}>
-            <CardContent className="pt-6">
+            <Icon name="CardContent.toLowerCase()" className="pt-6">
               <div className="flex items-center space-x-4">
                 <div className="p-2 rounded-lg bg-gray-100">
                   <stat.icon className={`h-6 w-6 ${stat.color}`} />
@@ -443,7 +330,7 @@ export default function DownloadsPage() {
                   <p className="text-xs text-muted-foreground">{stat.description}</p>
                 </div>
               </div>
-            </CardContent>
+            </Icon>
           </Card>
         ))}
       </div>
@@ -453,17 +340,17 @@ export default function DownloadsPage() {
         {quickActions.map((action) => (
           <Card key={action.title} className="hover:shadow-lg transition-shadow cursor-pointer">
             <Link href="#">
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <Icon name="CardHeader.toLowerCase()" className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <div className={`p-2 rounded-lg ${action.color}`}>
                   <action.icon className="h-4 w-4 text-white" />
                 </div>
-              </CardHeader>
-              <CardContent>
-                <CardTitle className="text-lg font-semibold">{action.title}</CardTitle>
-                <CardDescription className="text-sm text-muted-foreground">
+              </Icon>
+              <Icon name="CardContent.toLowerCase()">
+                <Icon name="CardTitle.toLowerCase()" className="text-lg font-semibold">{action.title}</Icon>
+                <Icon name="CardDescription.toLowerCase()" className="text-sm text-muted-foreground">
                   {action.description}
-                </CardDescription>
-              </CardContent>
+                </Icon>
+              </Icon>
             </Link>
           </Card>
         ))}
@@ -471,16 +358,14 @@ export default function DownloadsPage() {
 
       {/* Download Categories */}
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Folder className="h-5 w-5" />
-            Download Categories
-          </CardTitle>
-          <CardDescription>
-            Choose the right download for your needs
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
+        <Icon name="CardHeader.toLowerCase()" className="flex items-center gap-2">
+          <Icon name="Folder.toLowerCase()" className="h-5 w-5" />
+          Download Categories
+        </Icon>
+        <Icon name="CardDescription.toLowerCase()">
+          Choose the right download for your needs
+        </Icon>
+        <Icon name="CardContent.toLowerCase()">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {downloadCategories.map((category) => (
               <div key={category.title} className="text-center p-4 border rounded-lg hover:shadow-lg transition-shadow cursor-pointer">
@@ -492,21 +377,19 @@ export default function DownloadsPage() {
               </div>
             ))}
           </div>
-        </CardContent>
+        </Icon>
       </Card>
 
       {/* Mobile Applications */}
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Smartphone className="h-5 w-5" />
-            Mobile Applications
-          </CardTitle>
-          <CardDescription>
-            Native mobile apps for iOS and Android
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
+        <Icon name="CardHeader.toLowerCase()" className="flex items-center gap-2">
+          <Icon name="Smartphone.toLowerCase()" className="h-5 w-5" />
+          Mobile Applications
+        </Icon>
+        <Icon name="CardDescription.toLowerCase()">
+          Native mobile apps for iOS and Android
+        </Icon>
+        <Icon name="CardContent.toLowerCase()">
           <div className="grid gap-4 md:grid-cols-2">
             {mobileApps.map((app) => (
               <div key={app.name} className="p-4 border rounded-lg">
@@ -543,29 +426,27 @@ export default function DownloadsPage() {
                     {renderStars(app.rating)}
                     <span className="text-sm text-muted-foreground ml-1">({app.rating})</span>
                   </div>
-                  <Button className="bg-blue-600 hover:bg-blue-700">
-                    <Download className="h-4 w-4 mr-2" />
+                  <Icon name="Button.toLowerCase()" className="bg-blue-600 hover:bg-blue-700">
+                    <Icon name="Download.toLowerCase()" className="h-4 w-4 mr-2" />
                     Download
-                  </Button>
+                  </Icon>
                 </div>
               </div>
             ))}
           </div>
-        </CardContent>
+        </Icon>
       </Card>
 
       {/* Desktop Applications */}
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Desktop className="h-5 w-5" />
-            Desktop Applications
-          </CardTitle>
-          <CardDescription>
-            Native desktop apps for Windows, macOS, and Linux
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
+        <Icon name="CardHeader.toLowerCase()" className="flex items-center gap-2">
+          <Icon name="Desktop.toLowerCase()" className="h-5 w-5" />
+          Desktop Applications
+        </Icon>
+        <Icon name="CardDescription.toLowerCase()">
+          Native desktop apps for Windows, macOS, and Linux
+        </Icon>
+        <Icon name="CardContent.toLowerCase()">
           <div className="grid gap-4 md:grid-cols-3">
             {desktopApps.map((app) => (
               <div key={app.name} className="p-4 border rounded-lg">
@@ -602,29 +483,27 @@ export default function DownloadsPage() {
                     {renderStars(app.rating)}
                     <span className="text-sm text-muted-foreground ml-1">({app.rating})</span>
                   </div>
-                  <Button className="bg-green-600 hover:bg-green-700">
-                    <Download className="h-4 w-4 mr-2" />
+                  <Icon name="Button.toLowerCase()" className="bg-green-600 hover:bg-green-700">
+                    <Icon name="Download.toLowerCase()" className="h-4 w-4 mr-2" />
                     Download
-                  </Button>
+                  </Icon>
                 </div>
               </div>
             ))}
           </div>
-        </CardContent>
+        </Icon>
       </Card>
 
       {/* Developer Tools */}
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Code className="h-5 w-5" />
-            Developer Tools & SDKs
-          </CardTitle>
-          <CardDescription>
-            APIs, SDKs, and development resources
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
+        <Icon name="CardHeader.toLowerCase()" className="flex items-center gap-2">
+          <Icon name="Code.toLowerCase()" className="h-5 w-5" />
+          Developer Tools & SDKs
+        </Icon>
+        <Icon name="CardDescription.toLowerCase()">
+          APIs, SDKs, and development resources
+        </Icon>
+        <Icon name="CardContent.toLowerCase()">
           <div className="grid gap-4 md:grid-cols-2">
             {developerTools.map((tool) => (
               <div key={tool.name} className="p-4 border rounded-lg">
@@ -660,29 +539,27 @@ export default function DownloadsPage() {
                   <span className="text-sm text-muted-foreground">
                     Updated: {tool.lastUpdated}
                   </span>
-                  <Button className="bg-purple-600 hover:bg-purple-700">
-                    <Download className="h-4 w-4 mr-2" />
+                  <Icon name="Button.toLowerCase()" className="bg-purple-600 hover:bg-purple-700">
+                    <Icon name="Download.toLowerCase()" className="h-4 w-4 mr-2" />
                     Download
-                  </Button>
+                  </Icon>
                 </div>
               </div>
             ))}
           </div>
-        </CardContent>
+        </Icon>
       </Card>
 
       {/* Documentation */}
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <FileText className="h-5 w-5" />
-            Documentation & Resources
-          </CardTitle>
-          <CardDescription>
-            PDF guides, whitepapers, and technical documentation
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
+        <Icon name="CardHeader.toLowerCase()" className="flex items-center gap-2">
+          <Icon name="FileText.toLowerCase()" className="h-5 w-5" />
+          Documentation & Resources
+        </Icon>
+        <Icon name="CardDescription.toLowerCase()">
+          PDF guides, whitepapers, and technical documentation
+        </Icon>
+        <Icon name="CardContent.toLowerCase()">
           <div className="grid gap-4 md:grid-cols-2">
             {documentation.map((doc) => (
               <div key={doc.name} className="p-4 border rounded-lg">
@@ -718,50 +595,48 @@ export default function DownloadsPage() {
                   <span className="text-sm text-muted-foreground">
                     Updated: {doc.lastUpdated}
                   </span>
-                  <Button className="bg-orange-600 hover:bg-orange-700">
-                    <Download className="h-4 w-4 mr-2" />
+                  <Icon name="Button.toLowerCase()" className="bg-orange-600 hover:bg-orange-700">
+                    <Icon name="Download.toLowerCase()" className="h-4 w-4 mr-2" />
                     Download
-                  </Button>
+                  </Icon>
                 </div>
               </div>
             ))}
           </div>
-        </CardContent>
+        </Icon>
       </Card>
 
       {/* Call to Action */}
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Download className="h-5 w-5" />
-            Need Help Getting Started?
-          </CardTitle>
-          <CardDescription>
-            Get support with installation and setup
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
+        <Icon name="CardHeader.toLowerCase()" className="flex items-center gap-2">
+          <Icon name="Download.toLowerCase()" className="h-5 w-5" />
+          Need Help Getting Started?
+        </Icon>
+        <Icon name="CardDescription.toLowerCase()">
+          Get support with installation and setup
+        </Icon>
+        <Icon name="CardContent.toLowerCase()">
           <div className="text-center space-y-4">
             <p className="text-muted-foreground">
               Our support team is here to help you get up and running quickly
             </p>
             <div className="flex items-center justify-center space-x-4">
               <Link href="/support">
-                <Button className="bg-blue-600 hover:bg-blue-700">
+                <Icon name="Button.toLowerCase()" className="bg-blue-600 hover:bg-blue-700">
                   Get Support
-                </Button>
+                </Icon>
               </Link>
               <Link href="/docs">
-                <Button className="border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">
+                <Icon name="Button.toLowerCase()" className="border border-gray-300 bg-white text-gray-700 hover:bg-b-surface">
                   View Documentation
-                </Button>
+                </Icon>
               </Link>
             </div>
             <p className="text-sm text-muted-foreground">
               Installation guides available • 24/7 support • Community forums
             </p>
           </div>
-        </CardContent>
+        </Icon>
       </Card>
     </div>
   );

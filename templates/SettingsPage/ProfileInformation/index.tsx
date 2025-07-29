@@ -1,10 +1,13 @@
+"use client";
+
+
 import { useState } from "react";
-import Card from "@/components/Card";
-import Icon from "@/components/Icon";
-import Image from "@/components/Image";
-import Field from "@/components/Field";
-import Select from "@/components/Select";
-import Editor from "@/components/Editor";
+import Card from "@/style-reference/components/Card";
+import Icon from "@/style-reference/components/Icon";
+import Image from "@/style-reference/components/Image";
+import Field from "@/style-reference/components/Field";
+import Select from "@/style-reference/components/Select";
+import Editor from "@/style-reference/components/Editor";
 
 const locations = [
     { id: 1, name: "Canada" },

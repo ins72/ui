@@ -1,5 +1,5 @@
 import { NumericFormat } from "react-number-format";
-import Image from "@/components/Image";
+import Image from "@/style-reference/components/Image";
 
 type CountryItemProps = {
     value: {

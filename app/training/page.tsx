@@ -1,267 +1,16 @@
+export const dynamic = 'force-dynamic';
+
+"use client";
+
+import { useEffect } from "react";
 'use client';
 
 import React from 'react';
 import { useApp } from '@/contexts/AppContext';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { 
-  GraduationCap, 
-  Database, 
-  Shield, 
-  Zap, 
-  Globe, 
-  Award,
-  CheckCircle,
-  ArrowRight,
-  Play,
-  BookOpen,
-  Terminal,
-  Cpu,
-  Server,
-  Lock,
-  Key,
-  FileText,
-  Copy,
-  ExternalLink,
-  Download,
-  Search,
-  Filter,
-  Settings,
-  Eye,
-  EyeOff,
-  RefreshCw,
-  Clock,
-  AlertCircle,
-  Info,
-  HelpCircle,
-  ChevronRight,
-  ChevronDown,
-  Hash,
-  Tag,
-  Link as LinkIcon,
-  Users,
-  Activity,
-  TrendingUp,
-  BarChart3,
-  PieChart,
-  LineChart,
-  Database as DatabaseIcon,
-  Cloud,
-  Wifi,
-  WifiOff,
-  Check,
-  X,
-  Plus,
-  Minus,
-  Edit,
-  Trash2,
-  Save,
-  RotateCcw,
-  PlayCircle,
-  PauseCircle,
-  StopCircle,
-  SkipBack,
-  SkipForward,
-  Volume2,
-  VolumeX,
-  Maximize,
-  Minimize,
-  Fullscreen,
-  FullscreenExit,
-  Monitor,
-  Smartphone,
-  Tablet,
-  Laptop,
-  Desktop,
-  Printer,
-  Camera,
-  Video,
-  Image,
-  File,
-  Folder,
-  FolderOpen,
-  FolderPlus,
-  FilePlus,
-  FileText as FileTextIcon,
-  FileImage,
-  FileVideo,
-  FileAudio,
-  FileArchive,
-  FileCode,
-  FileSpreadsheet,
-  FilePresentation,
-  FilePdf,
-  FileWord,
-  FileExcel,
-  FilePowerpoint,
-  FileZip,
-  FileX,
-  FileCheck,
-  FileSearch,
-  FileEdit,
-  FileMinus,
-  FileUp,
-  FileDown,
-  FileLeft,
-  FileRight,
-  FileUpRight,
-  FileDownLeft,
-  FileDownRight,
-  FileUpLeft,
-  FileHeart,
-  FileWarning,
-  FileQuestion,
-  FileInfo,
-  FileAlert,
-  FileX2,
-  FileCheck2,
-  FileClock,
-  FileLock,
-  FileUnlock,
-  FileKey,
-  FileShield,
-  FileShield2,
-  FileType,
-  FileType2,
-  FileJson,
-  FileJs,
-  FileTs,
-  FileJsx,
-  FileTsx,
-  FileVue,
-  FileSvelte,
-  FileReact,
-  FileAngular,
-  FileVue2,
-  FileSvelte2,
-  FileReact2,
-  FileAngular2,
-  FileHtml,
-  FileCss,
-  FileScss,
-  FileLess,
-  FileSass,
-  FileStylus,
-  FilePostcss,
-  FileTailwind,
-  FileBootstrap,
-  FileMaterial,
-  FileAntd,
-  FileMui,
-  FileChakra,
-  FileNext,
-  FileNuxt,
-  FileGatsby,
-  FileRemix,
-  FileSveltekit,
-  FileAstro,
-  FileVite,
-  FileWebpack,
-  FileRollup,
-  FileParcel,
-  FileEsbuild,
-  FileSwc,
-  FileBabel,
-  FileTypeScript,
-  FileJavaScript,
-  FilePython,
-  FileJava,
-  FileCpp,
-  FileC,
-  FileCsharp,
-  FilePhp,
-  FileRuby,
-  FileGo,
-  FileRust,
-  FileSwift,
-  FileKotlin,
-  FileScala,
-  FileClojure,
-  FileHaskell,
-  FileElixir,
-  FileErlang,
-  FileR,
-  FileMatlab,
-  FileJulia,
-  FileDart,
-  FileLua,
-  FilePerl,
-  FileBash,
-  FilePowershell,
-  FileBatch,
-  FileDocker,
-  FileKubernetes,
-  FileTerraform,
-  FileAnsible,
-  FileChef,
-  FilePuppet,
-  FileJenkins,
-  FileGitlab,
-  FileGithub,
-  FileBitbucket,
-  FileGit,
-  FileGitBranch,
-  FileGitCommit,
-  FileGitMerge,
-  FileGitPullRequest,
-  FileGitCompare,
-  FileGitFork,
-  FileGitBranch2,
-  FileGitCommit2,
-  FileGitMerge2,
-  FileGitPullRequest2,
-  FileGitCompare2,
-  FileGitFork2,
-  FileGitBranch3,
-  FileGitCommit3,
-  FileGitMerge3,
-  FileGitPullRequest3,
-  FileGitCompare3,
-  FileGitFork3,
-  FileGitBranch4,
-  FileGitCommit4,
-  FileGitMerge4,
-  FileGitPullRequest4,
-  FileGitCompare4,
-  FileGitFork4,
-  FileGitBranch5,
-  FileGitCommit5,
-  FileGitMerge5,
-  FileGitPullRequest5,
-  FileGitCompare5,
-  FileGitFork5,
-  FileGitBranch6,
-  FileGitCommit6,
-  FileGitMerge6,
-  FileGitPullRequest6,
-  FileGitCompare6,
-  FileGitFork6,
-  FileGitBranch7,
-  FileGitCommit7,
-  FileGitMerge7,
-  FileGitPullRequest7,
-  FileGitCompare7,
-  FileGitFork7,
-  FileGitBranch8,
-  FileGitCommit8,
-  FileGitMerge8,
-  FileGitPullRequest8,
-  FileGitCompare8,
-  FileGitFork8,
-  FileGitBranch9,
-  FileGitCommit9,
-  FileGitMerge9,
-  FileGitPullRequest9,
-  FileGitCompare9,
-  FileGitFork9,
-  FileGitBranch10,
-  FileGitCommit10,
-  FileGitMerge10,
-  FileGitPullRequest10,
-  FileGitCompare10,
-  FileGitFork10
-} from 'lucide-react';
+import Card from "@/style-reference/components/Card";
+import Button from "@/style-reference/components/Button";
+import Badge from "@/style-reference/components/Badge";
+import Icon from "@/style-reference/components/Icon";
 import Link from 'next/link';
 
 export default function TrainingPage() {
@@ -278,42 +27,42 @@ export default function TrainingPage() {
     {
       title: 'Getting Started',
       description: 'Learn the basics and get up to speed quickly',
-      icon: Play,
+      icon: 'play',
       color: 'bg-blue-500',
       courses: 8
     },
     {
       title: 'Advanced Features',
       description: 'Master advanced platform capabilities',
-      icon: Zap,
+      icon: 'zap',
       color: 'bg-green-500',
       courses: 12
     },
     {
       title: 'API Development',
       description: 'Build integrations and custom solutions',
-      icon: Code,
+      icon: 'code',
       color: 'bg-purple-500',
       courses: 15
     },
     {
       title: 'Administration',
       description: 'Learn platform administration and management',
-      icon: Settings,
+      icon: 'settings',
       color: 'bg-yellow-500',
       courses: 10
     },
     {
       title: 'Security',
       description: 'Security best practices and compliance',
-      icon: Shield,
+      icon: 'shield',
       color: 'bg-red-500',
       courses: 6
     },
     {
       title: 'Troubleshooting',
       description: 'Debug and resolve common issues',
-      icon: AlertCircle,
+      icon: 'alert-circle',
       color: 'bg-indigo-500',
       courses: 9
     }
@@ -370,7 +119,7 @@ export default function TrainingPage() {
     {
       title: 'Platform Administrator',
       description: 'Certified platform administration and management',
-      icon: Settings,
+      icon: 'settings',
       duration: '40 hours',
       level: 'Intermediate',
       price: '$299',
@@ -379,7 +128,7 @@ export default function TrainingPage() {
     {
       title: 'API Developer',
       description: 'Certified API development and integration',
-      icon: Code,
+      icon: 'code',
       duration: '50 hours',
       level: 'Advanced',
       price: '$399',
@@ -388,7 +137,7 @@ export default function TrainingPage() {
     {
       title: 'Security Specialist',
       description: 'Certified security implementation and compliance',
-      icon: Shield,
+      icon: 'shield',
       duration: '35 hours',
       level: 'Advanced',
       price: '$349',
@@ -409,21 +158,21 @@ export default function TrainingPage() {
       value: '15,000+',
       change: '+20%',
       changeType: 'positive',
-      icon: Users
+      icon: 'users'
     },
     {
       title: 'Certified Professionals',
       value: '2,500+',
       change: '+15%',
       changeType: 'positive',
-      icon: Award
+      icon: 'award'
     },
     {
       title: 'Course Completion Rate',
       value: '85%',
       change: '+5%',
       changeType: 'positive',
-      icon: CheckCircle
+      icon: 'check'
     }
   ];
 
@@ -436,7 +185,7 @@ export default function TrainingPage() {
           <div className="text-center">
             <div className="flex justify-center mb-6">
               <div className="p-3 bg-indigo-100 dark:bg-indigo-900/30 rounded-full">
-                <GraduationCap className="h-8 w-8 text-indigo-600 dark:text-indigo-400" />
+                <Icon name="GraduationCap.toLowerCase()" className="h-8 w-8 text-indigo-600 dark:text-indigo-400" />
               </div>
             </div>
             <h1 className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6">
@@ -447,11 +196,11 @@ export default function TrainingPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-white">
-                <Play className="mr-2 h-5 w-5" />
+                <Icon name="Play.toLowerCase()" className="mr-2 h-5 w-5" />
                 Start Learning
               </Button>
               <Button size="lg" variant="outline" className="border-slate-300 dark:border-slate-600">
-                <Award className="mr-2 h-5 w-5" />
+                <Icon name="Award.toLowerCase()" className="mr-2 h-5 w-5" />
                 View Certifications
               </Button>
             </div>
@@ -465,7 +214,7 @@ export default function TrainingPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {learningStats.map((stat, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow">
-                <CardContent className="p-6">
+                <Icon name="CardContent.toLowerCase()" className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm font-medium text-slate-600 dark:text-slate-400">
@@ -519,7 +268,7 @@ export default function TrainingPage() {
                       {course.duration}
                     </span>
                   </div>
-                  <CardTitle className="text-lg">{course.title}</CardTitle>
+                  <Icon name="CardTitle.toLowerCase()" className="text-lg">{course.title}</CardTitle>
                   <CardDescription>by {course.instructor}</CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -554,8 +303,8 @@ export default function TrainingPage() {
                       </span>
                     </div>
                   </div>
-                  <Button className="w-full">
-                    Enroll Now <ArrowRight className="ml-2 h-4 w-4" />
+                  <Icon name="Button.toLowerCase()" className="w-full">
+                    Enroll Now <Icon name="ArrowRight.toLowerCase()" className="ml-2 h-4 w-4" />
                   </Button>
                 </CardContent>
               </Card>
@@ -592,7 +341,7 @@ export default function TrainingPage() {
                       {category.courses} courses
                     </span>
                     <Button variant="ghost" className="p-0 h-auto">
-                      Browse <ArrowRight className="ml-2 h-4 w-4" />
+                      Browse <Icon name="ArrowRight.toLowerCase()" className="ml-2 h-4 w-4" />
                     </Button>
                   </div>
                 </CardContent>
@@ -630,7 +379,7 @@ export default function TrainingPage() {
                       {program.badge}
                     </Badge>
                   </div>
-                  <CardTitle className="text-xl">{program.title}</CardTitle>
+                  <Icon name="CardTitle.toLowerCase()" className="text-xl">{program.title}</CardTitle>
                   <CardDescription>{program.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -653,8 +402,8 @@ export default function TrainingPage() {
                       <span className="font-medium text-indigo-600 dark:text-indigo-400">{program.price}</span>
                     </div>
                   </div>
-                  <Button className="w-full">
-                    Get Certified <ArrowRight className="ml-2 h-4 w-4" />
+                  <Icon name="Button.toLowerCase()" className="w-full">
+                    Get Certified <Icon name="ArrowRight.toLowerCase()" className="ml-2 h-4 w-4" />
                   </Button>
                 </CardContent>
               </Card>
@@ -674,11 +423,11 @@ export default function TrainingPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="bg-white text-indigo-600 hover:bg-indigo-50">
-              <Play className="mr-2 h-5 w-5" />
+              <Icon name="Play.toLowerCase()" className="mr-2 h-5 w-5" />
               Start Learning
             </Button>
             <Button size="lg" variant="outline" className="border-white text-white hover:bg-indigo-700">
-              <Award className="mr-2 h-5 w-5" />
+              <Icon name="Award.toLowerCase()" className="mr-2 h-5 w-5" />
               View Certifications
             </Button>
           </div>

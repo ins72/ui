@@ -1,7 +1,9 @@
+"use client";
+
 import { useEffect, useState } from "react";
-import Sidebar from "@/components/Sidebar";
-import Header from "@/components/Header";
-import ThemeButton from "@/components/ThemeButton";
+import Sidebar from "@/style-reference/components/Sidebar";
+import Header from "@/style-reference/components/Header";
+import ThemeButton from "@/style-reference/components/ThemeButton";
 type LayoutProps = {
     title?: string;
     children: React.ReactNode;

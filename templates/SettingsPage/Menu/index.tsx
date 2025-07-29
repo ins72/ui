@@ -1,91 +1,68 @@
+"use client";
+
 import { useState } from "react";
-// import { Link } from "react-scroll"; // Temporarily disabled
-import Search from "@/components/Search";
-import Image from "@/components/Image";
-import Icon from "@/components/Icon";
+import { Element } from "react-scroll";
+import Link from "next/link";
+import Image from "next/image";
+import Icon from "@/style-reference/components/Icon";
 
 type MenuProps = {
+    className?: string;
     profileInformationTo: string;
-    items: {
+    items: Array<{
         title: string;
         icon: string;
         description: string;
         to: string;
-    }[];
+    }>;
 };
 
-const Menu = ({ profileInformationTo, items }: MenuProps) => {
-    const isOnline = true;
-    const [search, setSearch] = useState("");
-
+const Menu = ({ className, profileInformationTo, items }: MenuProps) => {
     return (
-        <div className="card sticky top-22 shrink-0 w-120 max-3xl:w-100 max-2xl:w-74 max-lg:hidden">
-            <Search
-                className="mb-3"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search settings"
-                isGray
-            />
-            <div className="flex flex-col gap-1">
-                <Link
-                    className="group relative flex items-center h-18 px-3 cursor-pointer"
-                    activeClass="[&_.box-hover]:!visible [&_.box-hover]:!opacity-100"
-                    to={profileInformationTo}
-                    smooth={true}
-                    duration={500}
-                    isDynamic={true}
-                    spy={true}
-                    // offset={-88}
+        <div className={`w-30rem pr-3 max-3xl:w-25rem max-2xl:w-18.5rem max-lg:w-full max-lg:pr-0 max-lg:mb-8 ${className || ""}`}>
+            <div className="bg-b-surface2 border border-s-stroke2 rounded-3xl p-6 max-lg:p-4">
+                {/* Profile Information Section */}
+                <Link 
+                    href={`#${profileInformationTo}`}
+                    className="flex items-center p-4 rounded-xl hover:bg-b-surface1 transition-colors"
                 >
-                    <div className="box-hover"></div>
-                    <div className="relative z-2 flex justify-center items-center shrink-0 w-11 h-11 rounded-full bg-b-surface1">
+                    <div className="relative mr-4">
                         <Image
-                            className="size-11 opacity-100 rounded-full overflow-hidden"
-                            src="/images/avatar.png"
-                            width={44}
-                            height={44}
-                            alt="Avatar"
-                            quality={100}
+                            className="w-12 h-12 rounded-full object-cover"
+                            src="/images/avatars/avatar-1.jpg"
+                            width={48}
+                            height={48}
+                            alt="Profile"
                         />
-                        {isOnline && (
-                            <div className="absolute right-0 bottom-0 w-[13px] h-[13px] bg-primary-02 border-2 border-b-surface2 rounded-full"></div>
-                        )}
+                        <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 border-2 border-white rounded-full"></div>
                     </div>
-                    <div className="relative z-2 grow pl-4">
-                        <div className="text-button">Chelsie Haley</div>
-                        <div className="mt-1 text-caption text-t-secondary">
-                            chelsiehaley@email.com
-                        </div>
+                    <div className="flex-1">
+                        <div className="text-t-primary font-medium">Profile Information</div>
+                        <div className="text-t-secondary text-sm">Manage your profile details</div>
                     </div>
                 </Link>
-                {items.map((item, index) => (
-                    <Link
-                        className="group relative flex items-center h-18 px-3 cursor-pointer"
-                        activeClass="[&_.box-hover]:!visible [&_.box-hover]:!opacity-100"
-                        key={index}
-                        to={item.to}
-                        smooth={true}
-                        duration={500}
-                        isDynamic={true}
-                        spy={true}
-                        offset={-5.5}
-                    >
-                        <div className="box-hover"></div>
-                        <div className="relative z-2 flex justify-center items-center shrink-0 !size-11 rounded-full bg-b-surface1">
-                            <Icon
-                                className="fill-t-secondary"
-                                name={item.icon}
-                            />
-                        </div>
-                        <div className="relative z-2 w-[calc(100%-2.75rem)] pl-4">
-                            <div className="text-button">{item.title}</div>
-                            <div className="mt-1 truncate text-caption text-t-secondary">
-                                {item.description}
+
+                {/* Navigation Items */}
+                <div className="mt-6 space-y-2">
+                    {items.map((item, index) => (
+                        <Link
+                            key={index}
+                            href={`#${item.to}`}
+                            className="flex items-center p-4 rounded-xl hover:bg-b-surface1 transition-colors group"
+                        >
+                            <div className="w-10 h-10 bg-b-surface1 group-hover:bg-primary-01 rounded-full flex items-center justify-center mr-4 transition-colors">
+                                <Icon 
+                                    name={item.icon} 
+                                    className="w-5 h-5 text-t-secondary group-hover:text-white transition-colors" 
+                                />
                             </div>
-                        </div>
-                    </Link>
-                ))}
+                            <div className="flex-1">
+                                <div className="text-t-primary font-medium">{item.title}</div>
+                                <div className="text-t-secondary text-sm">{item.description}</div>
+                            </div>
+                        </Link>
+                    ))}
+                </div>
             </div>
         </div>
     );

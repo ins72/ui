@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Icon from "@/components/Icon";
+import Icon from "@/style-reference/components/Icon";
 
 interface StatCardProps {
   title: string;

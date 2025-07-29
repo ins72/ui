@@ -1,7 +1,8 @@
+import React from "react";
 import TextareaAutosize from "react-textarea-autosize";
-import Emoji from "@/components/Emoji";
-import Button from "@/components/Button";
-import Icon from "@/components/Icon";
+import Emoji from "@/style-reference/components/Emoji";
+import Button from "@/style-reference/components/Button";
+import Icon from "@/style-reference/components/Icon";
 
 type MessageProps = {
     className?: string;

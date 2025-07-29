@@ -1,11 +1,49 @@
 "use client";
 
+
+export const metadata = {
+  title: "MEWAYZ - All-in-One Business Platform | E-commerce, CRM, Courses & More",
+  description: "Transform your business with MEWAYZ's comprehensive platform. Manage e-commerce, CRM, courses, social media, and marketing automation in one powerful solution. Start free today.",
+  keywords: "business platform, e-commerce platform, CRM software, online course platform, marketing automation, social media management, business intelligence, enterprise software",
+  openGraph: {
+    title: "MEWAYZ - All-in-One Business Platform | E-commerce, CRM, Courses & More",
+    description: "Transform your business with MEWAYZ's comprehensive platform. Manage e-commerce, CRM, courses, social media, and marketing automation in one powerful solution. Start free today.",
+    type: "website",
+    url: "https://mewayz.com",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "MEWAYZ - Transform Your Business"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MEWAYZ - All-in-One Business Platform | E-commerce, CRM, Courses & More",
+    description: "Transform your business with MEWAYZ's comprehensive platform. Manage e-commerce, CRM, courses, social media, and marketing automation in one powerful solution. Start free today.",
+    images: ["/og-image.jpg"]
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1
+    }
+  }
+};
+
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import Layout from "@/components/Layout";
-import Button from "@/components/Button";
-import Icon from "@/components/Icon";
+import Layout from "@/style-reference/components/Layout";
+import Button from "@/style-reference/components/Button";
+import Icon from "@/style-reference/components/Icon";
 
 const OnboardingPage = () => {
     const sessionResult = useSession();
@@ -117,7 +155,7 @@ const OnboardingPage = () => {
                                     </div>
                                     <button
                                         type="button"
-                                        onClick={() => fileInputRef.current?.click()}
+                                        onClick={() = aria-label="Action button"> fileInputRef.current?.click()}
                                         className="absolute -bottom-2 -right-2 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white hover:bg-blue-700 transition-colors"
                                     >
                                         <Icon name="camera" className="fill-white" />
@@ -183,12 +221,12 @@ const OnboardingPage = () => {
                         </div>
 
                         <div className="flex justify-center">
-                            <Button
-                                type="submit"
+                            <button
+                                type="Get Started Free"
                                 isBlack
                                 className="px-8 py-3"
                                 disabled={isLoading}
-                            >
+                             aria-label="Action button">
                                 {isLoading ? "Setting up..." : "Complete Setup"}
                             </Button>
                         </div>

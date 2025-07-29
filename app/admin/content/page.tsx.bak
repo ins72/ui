@@ -1,0 +1,473 @@
+"use client";
+
+import React, { useEffect } from "react";
+import { useApp } from '@/contexts/AppContext';
+import Card from '@/components/Card';
+import Button from '@/components/Button';
+import Badge from '@/components/Badge';
+import { useContentOverview } from '@/hooks/useApi';
+import Icon from '@/components/Icon';
+import Link from 'next/link';
+
+export const dynamic = 'force-dynamic';
+
+export default function AdminContentPage() {
+  const { setBreadcrumbs, setCurrentPage } = useApp();
+  
+  // API hooks for real data
+  const { data: contentStats, loading: statsLoading } = useContentOverview();
+
+  React.useEffect(() => {
+    setBreadcrumbs([
+      { label: 'Admin', href: '/admin' },
+      { label: 'Content Management', href: '/admin/content' }
+    ]);
+    setCurrentPage('Content Management');
+  }, [setBreadcrumbs, setCurrentPage]);
+
+  const contentStats = [
+    {
+      title: 'Total Files',
+      value: contentLoading ? 'Loading...' : '1,234',
+      change: '+45',
+      changeType: 'positive',
+      icon: File,
+      href: '/admin/content/files'
+    },
+    {
+      title: 'Total Storage',
+      value: contentLoading ? 'Loading...' : '2.4 GB',
+      change: '+2.3 GB',
+      changeType: 'positive',
+      icon: Folder,
+      href: '/admin/content/storage'
+    },
+    {
+      title: 'Active Users',
+      value: contentLoading ? 'Loading...' : '156',
+      change: '+12',
+      changeType: 'positive',
+      icon: UserCheck,
+      href: '/admin/content/users'
+    },
+    {
+      title: 'Uploads Today',
+      value: contentLoading ? 'Loading...' : '23',
+      change: '+8',
+      changeType: 'positive',
+      icon: Upload,
+      href: '/admin/content/uploads'
+    }
+  ];
+
+  const quickActions = [
+    {
+      title: 'Upload Files',
+      description: 'Upload new files to the system',
+      icon: Upload,
+      href: '/admin/content/upload',
+      color: 'bg-blue-500'
+    },
+    {
+      title: 'Create Folder',
+      description: 'Create new folder structure',
+      icon: FolderPlus,
+      href: '/admin/content/folders',
+      color: 'bg-green-500'
+    },
+    {
+      title: 'Manage Permissions',
+      description: 'Set file and folder permissions',
+      icon: Lock,
+      href: '/admin/content/permissions',
+      color: 'bg-purple-500'
+    },
+    {
+      title: 'Content Analytics',
+      description: 'View content usage analytics',
+      icon: BarChart3,
+      href: '/admin/content/analytics',
+      color: 'bg-orange-500'
+    }
+  ];
+
+  const fileTypes = [
+    {
+      type: 'Images',
+      count: contentLoading ? 'Loading...' : '456',
+      size: contentLoading ? 'Loading...' : '1.2 GB',
+      icon: FileImage,
+      color: 'bg-blue-100 text-blue-600'
+    },
+    {
+      type: 'Videos',
+      count: contentLoading ? 'Loading...' : '234',
+      size: contentLoading ? 'Loading...' : '3.8 GB',
+      icon: FileVideo,
+      color: 'bg-red-100 text-red-600'
+    },
+    {
+      type: 'Documents',
+      count: contentLoading ? 'Loading...' : '345',
+      size: contentLoading ? 'Loading...' : '0.8 GB',
+      icon: FileText,
+      color: 'bg-green-100 text-green-600'
+    },
+    {
+      type: 'Audio',
+      count: contentLoading ? 'Loading...' : '123',
+      size: contentLoading ? 'Loading...' : '0.6 GB',
+      icon: FileAudio,
+      color: 'bg-purple-100 text-purple-600'
+    }
+  ];
+
+  const recentUploads = [
+    {
+      name: 'product-catalog-2024.pdf',
+      type: 'Document',
+      size: '2.4 MB',
+      uploadedBy: 'john.doe@company.com',
+      date: '2024-01-15 14:30:00',
+      status: 'processed',
+      downloads: 12
+    },
+    {
+      name: 'company-logo.png',
+      type: 'Image',
+      size: '156 KB',
+      uploadedBy: 'admin@company.com',
+      date: '2024-01-15 13:45:00',
+      status: 'processed',
+      downloads: 8
+    },
+    {
+      name: 'presentation-video.mp4',
+      type: 'Video',
+      size: '45.2 MB',
+      uploadedBy: 'sarah.smith@company.com',
+      date: '2024-01-15 12:15:00',
+      status: 'processing',
+      downloads: 3
+    },
+    {
+      name: 'background-music.mp3',
+      type: 'Audio',
+      size: '3.1 MB',
+      uploadedBy: 'mark.wilson@company.com',
+      date: '2024-01-15 11:20:00',
+      status: 'processed',
+      downloads: 5
+    }
+  ];
+
+  const storageMetrics = [
+    {
+      title: 'Storage Used',
+      value: contentLoading ? 'Loading...' : `${(contentOverview?.storage?.used / 1024 / 1024 || 0).toFixed(2)} GB`,
+      change: '+15%',
+      changeType: 'positive',
+      icon: HardDrive
+    },
+    {
+      title: 'Storage Available',
+      value: contentLoading ? 'Loading...' : `${(contentOverview?.storage?.available / 1024 / 1024 || 0).toFixed(2)} GB`,
+      change: '-8%',
+      changeType: 'negative',
+      icon: Server
+    },
+    {
+      title: 'Upload Speed',
+      value: '2.5 MB/s',
+      change: '+12%',
+      changeType: 'positive',
+      icon: Zap
+    },
+    {
+      title: 'Download Speed',
+      value: '5.8 MB/s',
+      change: '+8%',
+      changeType: 'positive',
+      icon: Download
+    }
+  ];
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'processed':
+        return 'text-green-600 bg-green-100';
+      case 'processing':
+        return 'text-yellow-600 bg-yellow-100';
+      case 'failed':
+        return 'text-red-600 bg-red-100';
+      case 'pending':
+        return 'text-t-secondary bg-gray-100';
+      default:
+        return 'text-t-secondary bg-gray-100';
+    }
+  };
+
+  const getStatusIcon = (status: string) => {
+    switch (status) {
+      case 'processed':
+        return <Icon name="CheckCircle.toLowerCase()" className="w-4 h-4" />;
+      case 'processing':
+        return <Icon name="RefreshCw.toLowerCase()" className="w-4 h-4 animate-spin" />;
+      case 'failed':
+        return <Icon name="AlertTriangle.toLowerCase()" className="w-4 h-4" />;
+      case 'pending':
+        return <Icon name="Clock.toLowerCase()" className="w-4 h-4" />;
+      default:
+        return <Icon name="Info.toLowerCase()" className="w-4 h-4" />;
+    }
+  };
+
+  const getFileTypeIcon = (type: string) => {
+    switch (type.toLowerCase()) {
+      case 'document':
+        return <Icon name="FileText.toLowerCase()" className="h-4 w-4" />;
+      case 'image':
+        return <Icon name="FileImage.toLowerCase()" className="h-4 w-4" />;
+      case 'video':
+        return <Icon name="FileVideo.toLowerCase()" className="h-4 w-4" />;
+      case 'audio':
+        return <Icon name="FileAudio.toLowerCase()" className="h-4 w-4" />;
+      default:
+        return <Icon name="File.toLowerCase()" className="h-4 w-4" />;
+    }
+  };
+
+  return (
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="flex justify-between items-center">
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight">Content Management</h1>
+          <p className="text-muted-foreground">
+            Manage files, folders, and content across the platform
+          </p>
+        </div>
+        <div className="flex items-center space-x-2">
+          <Icon name="Badge.toLowerCase()" className="text-sm">
+            Content Admin
+          </Badge>
+          <Icon name="Badge.toLowerCase()" className="text-sm">
+            File Manager
+          </Badge>
+        </div>
+      </div>
+
+      {/* Content Stats Grid */}
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {contentStats.map((stat) => (
+          <Card key={stat.title} className="hover:shadow-lg transition-shadow">
+            <Icon name="CardHeader.toLowerCase()" className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <Icon name="CardTitle.toLowerCase()" className="text-sm font-medium">
+                {stat.title}
+              </CardTitle>
+              <stat.icon className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{stat.value}</div>
+              <p className="text-xs text-muted-foreground">
+                <span className={stat.changeType === 'positive' ? 'text-green-600' : 'text-red-600'}>
+                  {stat.change}
+                </span>{' '}
+                from last week
+              </p>
+              <Link href={stat.href}>
+                <Icon name="Button.toLowerCase()" className="mt-2 p-0 h-auto">
+                  View Details →
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      {/* Quick Actions Grid */}
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {quickActions.map((action) => (
+          <Card key={action.title} className="hover:shadow-lg transition-shadow cursor-pointer">
+            <Link href={action.href}>
+              <Icon name="CardHeader.toLowerCase()" className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <div className={`p-2 rounded-lg ${action.color}`}>
+                  <action.icon className="h-4 w-4 text-white" />
+                </div>
+              </CardHeader>
+              <CardContent>
+                <Icon name="CardTitle.toLowerCase()" className="text-lg font-semibold">{action.title}</CardTitle>
+                <Icon name="CardDescription.toLowerCase()" className="text-sm text-muted-foreground">
+                  {action.description}
+                </CardDescription>
+              </CardContent>
+            </Link>
+          </Card>
+        ))}
+      </div>
+
+      {/* File Types Overview */}
+      <Card>
+        <CardHeader>
+          <Icon name="CardTitle.toLowerCase()" className="flex items-center gap-2">
+            <Icon name="Folder.toLowerCase()" className="h-5 w-5" />
+            File Types Overview
+          </CardTitle>
+          <CardDescription>
+            Content distribution by file type and storage usage
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {fileTypes.map((fileType) => (
+              <div key={fileType.type} className="flex items-center space-x-4 p-4 border rounded-lg">
+                <div className={`p-2 rounded-lg ${fileType.color}`}>
+                  <fileType.icon className="h-4 w-4" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm font-medium">{fileType.type}</p>
+                  <p className="text-lg font-bold">{fileType.count}</p>
+                  <p className="text-xs text-muted-foreground">
+                    {fileType.size} storage
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Storage Metrics */}
+      <Card>
+        <CardHeader>
+          <Icon name="CardTitle.toLowerCase()" className="flex items-center gap-2">
+            <Icon name="Server.toLowerCase()" className="h-5 w-5" />
+            Storage Performance
+          </CardTitle>
+          <CardDescription>
+            Storage usage and performance metrics
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {storageMetrics.map((metric) => (
+              <div key={metric.title} className="flex items-center space-x-4">
+                <div className={`p-2 rounded-lg ${metric.changeType === 'positive' ? 'bg-green-100' : 'bg-red-100'}`}>
+                  <metric.icon className={`h-4 w-4 ${metric.changeType === 'positive' ? 'text-green-600' : 'text-red-600'}`} />
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm font-medium">{metric.title}</p>
+                  <p className="text-lg font-bold">{metric.value}</p>
+                  <p className={`text-xs ${metric.changeType === 'positive' ? 'text-green-600' : 'text-red-600'}`}>
+                    {metric.change} from last week
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Recent Uploads */}
+      <Card>
+        <CardHeader>
+          <Icon name="CardTitle.toLowerCase()" className="flex items-center gap-2">
+            <Icon name="Upload.toLowerCase()" className="h-5 w-5" />
+            Recent Uploads
+          </CardTitle>
+          <CardDescription>
+            Latest file uploads and their processing status
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            {recentUploads.map((upload, index) => (
+              <div key={index} className="flex items-center justify-between p-4 border rounded-lg">
+                <div className="flex items-center space-x-4">
+                  <div className="p-2 rounded-lg bg-blue-100">
+                    {getFileTypeIcon(upload.type)}
+                  </div>
+                  <div>
+                    <h4 className="font-semibold">{upload.name}</h4>
+                    <p className="text-sm text-muted-foreground">{upload.type}</p>
+                    <div className="flex items-center space-x-4 mt-1">
+                      <span className="text-xs text-muted-foreground">
+                        Size: {upload.size}
+                      </span>
+                      <span className="text-xs text-muted-foreground">
+                        By: {upload.uploadedBy}
+                      </span>
+                      <span className="text-xs text-muted-foreground">
+                        {upload.date}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-4">
+                  <div className="flex items-center space-x-2">
+                    <Icon name="Download.toLowerCase()" className="h-4 w-4 text-muted-foreground" />
+                    <span className="text-sm text-muted-foreground">{upload.downloads}</span>
+                  </div>
+                  <Badge className={`text-xs ${getStatusColor(upload.status)}`}>
+                    <div className="flex items-center space-x-1">
+                      {getStatusIcon(upload.status)}
+                      <span>{upload.status}</span>
+                    </div>
+                  </Badge>
+                  <Button size="sm">
+                    <Icon name="Eye.toLowerCase()" className="h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Content Charts Placeholder */}
+      <div className="grid gap-6 md:grid-cols-2">
+        <Card>
+          <CardHeader>
+            <Icon name="CardTitle.toLowerCase()" className="flex items-center gap-2">
+              <BarChart3 className="h-5 w-5" />
+              Upload Trends
+            </CardTitle>
+            <CardDescription>
+              File upload activity over time
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="h-64 flex items-center justify-center bg-muted rounded-lg">
+              <div className="text-center">
+                <BarChart3 className="h-12 w-12 text-muted-foreground mx-auto mb-2" />
+                <p className="text-sm text-muted-foreground">Interactive chart will be displayed here</p>
+                <p className="text-xs text-muted-foreground">Upload activity trends</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <Icon name="CardTitle.toLowerCase()" className="flex items-center gap-2">
+              <Icon name="PieChart.toLowerCase()" className="h-5 w-5" />
+              Storage Distribution
+            </CardTitle>
+            <CardDescription>
+              Storage usage by file type
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="h-64 flex items-center justify-center bg-muted rounded-lg">
+              <div className="text-center">
+                <Icon name="PieChart.toLowerCase()" className="h-12 w-12 text-muted-foreground mx-auto mb-2" />
+                <p className="text-sm text-muted-foreground">Interactive chart will be displayed here</p>
+                <p className="text-xs text-muted-foreground">Storage distribution analysis</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+} 

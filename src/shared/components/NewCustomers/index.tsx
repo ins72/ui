@@ -1,7 +1,7 @@
 import Link from "next/link";
-import Icon from "@/components/Icon";
-import Image from "@/components/Image";
-import Percentage from "@/components/Percentage";
+import Icon from "@/style-reference/components/Icon";
+import Image from "@/style-reference/components/Image";
+import Percentage from "@/style-reference/components/Percentage";
 
 import { customersData } from "@/mocks/dashboard";
 

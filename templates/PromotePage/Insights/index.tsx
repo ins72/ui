@@ -1,14 +1,51 @@
 "use client";
 
-import { useState, useEffect } from "react";
+
+export const metadata = {
+  title: "MEWAYZ - All-in-One Business Platform | E-commerce, CRM, Courses & More",
+  description: "Transform your business with MEWAYZ's comprehensive platform. Manage e-commerce, CRM, courses, social media, and marketing automation in one powerful solution. Start free today.",
+  keywords: "business platform, e-commerce platform, CRM software, online course platform, marketing automation, social media management, business intelligence, enterprise software",
+  openGraph: {
+    title: "MEWAYZ - All-in-One Business Platform | E-commerce, CRM, Courses & More",
+    description: "Transform your business with MEWAYZ's comprehensive platform. Manage e-commerce, CRM, courses, social media, and marketing automation in one powerful solution. Start free today.",
+    type: "website",
+    url: "https://mewayz.com",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "MEWAYZ - Transform Your Business"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MEWAYZ - All-in-One Business Platform | E-commerce, CRM, Courses & More",
+    description: "Transform your business with MEWAYZ's comprehensive platform. Manage e-commerce, CRM, courses, social media, and marketing automation in one powerful solution. Start free today.",
+    images: ["/og-image.jpg"]
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1
+    }
+  }
+};
+
+import { useState } from "react";
 import { NumericFormat } from "react-number-format";
-import Card from "@/components/Card";
-import Icon from "@/components/Icon";
-import Tooltip from "@/components/Tooltip";
-import Percentage from "@/components/Percentage";
-import { dataService } from "@/lib/data-service";
+import Card from "@/style-reference/components/Card";
+import Icon from "@/style-reference/components/Icon";
+import Tooltip from "@/style-reference/components/Tooltip";
+import Percentage from "@/style-reference/components/Percentage";
 
-
+import { insights } from "@/mocks/promote";
 
 const durations = [
     { id: 1, name: "Last 7 days" },
@@ -16,64 +53,7 @@ const durations = [
     { id: 3, name: "Last 28 days" },
 ];
 
-const insights = [
-    {
-        id: 1,
-        title: "Total Sales",
-        value: "$12,345",
-        percentage: 12.5,
-        icon: "chart",
-        tooltip: "Total sales in the selected period",
-        newCustomers: 15,
-        productReached: 1234,
-    },
-    {
-        id: 2,
-        title: "Revenue",
-        value: "$8,901",
-        percentage: 8.2,
-        icon: "dollar",
-        tooltip: "Total revenue generated",
-        newCustomers: 8,
-        productReached: 987,
-    },
-    {
-        id: 3,
-        title: "Orders",
-        value: "156",
-        percentage: 23.1,
-        icon: "shopping-cart",
-        tooltip: "Total number of orders",
-        newCustomers: 23,
-        productReached: 567,
-    },
-];
-
 const Insights = ({}) => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const response = await dataService.getProducts({ limit: 10 });
-        if (response.data) {
-          setData(response.data);
-        }
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Unknown error");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
     const [duration, setDuration] = useState(durations[0]);
 
     return (

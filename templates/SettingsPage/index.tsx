@@ -1,7 +1,7 @@
 "use client";
 
-// import { Element } from "react-scroll"; // Temporarily disabled
-import Layout from "@/components/Layout";
+import { Element } from "react-scroll";
+import Layout from "@/style-reference/components/Layout";
 import Menu from "./Menu";
 import ProfileInformation from "./ProfileInformation";
 import YourShop from "./YourShop";

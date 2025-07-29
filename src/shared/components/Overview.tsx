@@ -1,18 +1,10 @@
+"use client";
+
 'use client';
 
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
-import { 
-  Users, 
-  DollarSign, 
-  FileText, 
-  TrendingUp,
-  TrendingDown,
-  Activity,
-  Clock,
-  AlertTriangle
-} from 'lucide-react';
 import { idurarApiService, DashboardStats } from '../lib/idurar-api';
 
 const Overview = () => {
@@ -28,7 +20,7 @@ const Overview = () => {
   const tabs = [
     {
       id: 'clients',
-      icon: Users,
+      icon: 'users',
       label: 'Clients',
       value: stats?.totalClients || 0,
       percent: stats?.clientGrowth || 0,
@@ -46,7 +38,7 @@ const Overview = () => {
     },
     {
       id: 'invoices',
-      icon: FileText,
+      icon: 'file-text',
       label: 'Invoices',
       value: stats?.totalInvoices || 0,
       percent: stats?.invoiceGrowth || 0,

@@ -1,7 +1,8 @@
+
 "use client";
 
 import { useState, useEffect } from "react";
-import { apiClient } from "@/infrastructure/api/apiClient";
+import { apiClient } from "@/lib/api-client";
 import Layout from "@/components/Layout";
 import Card from "@/components/Card";
 import Button from "@/components/Button";
@@ -139,25 +140,25 @@ const LeadManagementPage = () => {
             label: "Actions",
             render: (lead: Lead) => (
                 <div className="flex space-x-2">
-                    <Button 
+                    <Button
                         href={`/leads/view/${lead.id}`}
                         size="sm"
                         isStroke
-                    >
+                        aria-label="Action button">
                         View
                     </Button>
                     <Button 
                         href={`/leads/edit/${lead.id}`}
                         size="sm"
                         isStroke
-                    >
+                     aria-label="Action button">
                         Edit
                     </Button>
-                    <Button 
+                    <Button
                         onClick={() => handleDeleteLead(lead.id)}
                         size="sm"
                         className="bg-red-600 hover:bg-red-700"
-                    >
+                        aria-label="Action button">
                         Delete
                     </Button>
                 </div>
@@ -182,7 +183,7 @@ const LeadManagementPage = () => {
                     <Card 
                         title="Leads" 
                         headContent={
-                            <Button href="/leads/create">
+                            <Button href="/leads/create" aria-label="Action button">
                                 Add Lead
                             </Button>
                         }
@@ -255,16 +256,16 @@ const LeadManagementPage = () => {
                     
                     <Card title="Quick Actions" className="mt-4">
                         <div className="space-y-2">
-                            <Button href="/leads/import" className="w-full" isStroke>
+                            <button href="/leads/import" className="w-full" isStroke aria-label="Action button">
                                 Import Leads
                             </Button>
-                            <Button href="/leads/export" className="w-full" isStroke>
+                            <button href="/leads/export" className="w-full" isStroke aria-label="Action button">
                                 Export Leads
                             </Button>
-                            <Button href="/leads/analytics" className="w-full" isStroke>
+                            <button href="/leads/analytics" className="w-full" isStroke aria-label="Action button">
                                 Lead Analytics
                             </Button>
-                            <Button href="/leads/automation" className="w-full" isStroke>
+                            <button href="/leads/automation" className="w-full" isStroke aria-label="Action button">
                                 Lead Automation
                             </Button>
                         </div>

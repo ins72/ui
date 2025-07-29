@@ -1,5 +1,8 @@
+"use client";
+
 'use client';
 
+import { useEffect } from "react";
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNotifications } from '@/contexts/AppContext';

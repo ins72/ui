@@ -1,8 +1,8 @@
-import ProductsPage from "@/templates/Products/OverviewPage";
-
-// Force dynamic rendering
+import React from "react";
+import OverviewPage from "@/templates/Products/OverviewPage";
 export const dynamic = 'force-dynamic';
 
+
 export default function Page() {
-    return <ProductsPage />;
+    return <OverviewPage />;
 }

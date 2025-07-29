@@ -1,12 +1,52 @@
+"use client";
+
+
+export const metadata = {
+  title: "CRM Software | Customer Relationship Management | MEWAYZ",
+  description: "Streamline customer relationships with MEWAYZ's advanced CRM. Lead tracking, sales pipeline management, customer analytics, and automated workflows.",
+  keywords: "CRM software, customer relationship management, lead tracking, sales pipeline, customer analytics, sales automation",
+  openGraph: {
+    title: "CRM Software | Customer Relationship Management | MEWAYZ",
+    description: "Streamline customer relationships with MEWAYZ's advanced CRM. Lead tracking, sales pipeline management, customer analytics, and automated workflows.",
+    type: "website",
+    url: "https://mewayz.com",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "MEWAYZ - Transform Your Business"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CRM Software | Customer Relationship Management | MEWAYZ",
+    description: "Streamline customer relationships with MEWAYZ's advanced CRM. Lead tracking, sales pipeline management, customer analytics, and automated workflows.",
+    images: ["/og-image.jpg"]
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1
+    }
+  }
+};
+
 import { useState } from "react";
 import Link from "next/link";
 import { NumericFormat } from "react-number-format";
-import Table from "@/components/Table";
-import TableRow from "@/components/TableRow";
-import Image from "@/components/Image";
-import Icon from "@/components/Icon";
-import Percentage from "@/components/Percentage";
-import Button from "@/components/Button";
+import Table from "@/style-reference/components/Table";
+import TableRow from "@/style-reference/components/TableRow";
+import Image from "@/style-reference/components/Image";
+import Icon from "@/style-reference/components/Icon";
+import Percentage from "@/style-reference/components/Percentage";
+import Button from "@/style-reference/components/Button";
 import { Customer } from "@/types/customer";
 
 const tableHead = [
@@ -110,7 +150,7 @@ const List = ({
                                                     : ""
                                             }`}
                                         >
-                                            <button className="action">
+                                            <button className="action" aria-label="Action button">
                                                 <Icon name="chat" />
                                                 Message
                                             </button>
@@ -121,7 +161,7 @@ const List = ({
                                                 <Icon name="arrow-up-right" />
                                                 Detail
                                             </Link>
-                                            <button className="action">
+                                            <button className="action" aria-label="Action button">
                                                 <Icon name="block" />
                                                 Ban
                                             </button>
@@ -153,14 +193,14 @@ const List = ({
                 ))}
             </Table>
             <div className="flex justify-center gap-1 pt-1 pb-4 max-md:pt-3 max-md:pb-1">
-                <Button
+                <button
                     className="rotate-180"
                     icon="arrow"
                     isCircle
                     isStroke
                     disabled
-                />
-                <Button icon="arrow" isCircle isStroke />
+                / aria-label="Action button">
+                <button icon="arrow" isCircle isStroke / aria-label="Action button">
             </div>
         </>
     );

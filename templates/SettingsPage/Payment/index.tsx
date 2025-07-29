@@ -1,8 +1,11 @@
+"use client";
+
+
 import { useState } from "react";
-import Card from "@/components/Card";
-import Field from "@/components/Field";
-import Image from "@/components/Image";
-import Button from "@/components/Button";
+import Card from "@/style-reference/components/Card";
+import Field from "@/style-reference/components/Field";
+import Image from "@/style-reference/components/Image";
+import Button from "@/style-reference/components/Button";
 
 const Payment = ({}) => {
     const [paypalEmail, setPaypalEmail] = useState("chelsiehaley@email.com");
@@ -28,7 +31,7 @@ const Payment = ({}) => {
                         alt="Paypal"
                     />
                 </Field>
-                <Button className="gap-2 mt-6" isBlack>
+                <Button className="gap-2 mt-6" isBlack aria-label="Action button">
                     <Image
                         className="size-7"
                         src="/images/logos/stripe.svg"

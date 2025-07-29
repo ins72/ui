@@ -1,8 +1,48 @@
+"use client";
+
+
+export const metadata = {
+  title: "CRM Software | Customer Relationship Management | MEWAYZ",
+  description: "Streamline customer relationships with MEWAYZ's advanced CRM. Lead tracking, sales pipeline management, customer analytics, and automated workflows.",
+  keywords: "CRM software, customer relationship management, lead tracking, sales pipeline, customer analytics, sales automation",
+  openGraph: {
+    title: "CRM Software | Customer Relationship Management | MEWAYZ",
+    description: "Streamline customer relationships with MEWAYZ's advanced CRM. Lead tracking, sales pipeline management, customer analytics, and automated workflows.",
+    type: "website",
+    url: "https://mewayz.com",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "MEWAYZ - Transform Your Business"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CRM Software | Customer Relationship Management | MEWAYZ",
+    description: "Streamline customer relationships with MEWAYZ's advanced CRM. Lead tracking, sales pipeline management, customer analytics, and automated workflows.",
+    images: ["/og-image.jpg"]
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1
+    }
+  }
+};
+
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Button from "@/components/Button";
-import Image from "@/components/Image";
-import Editor from "@/components/Editor";
+import Button from "@/style-reference/components/Button";
+import Image from "@/style-reference/components/Image";
+import Editor from "@/style-reference/components/Editor";
 import Contacts from "./Contacts";
 import PurchaseHistory from "./PurchaseHistory";
 
@@ -17,22 +57,22 @@ const Details = ({ onBack }: DetailsProps) => {
     return (
         <div className="flex flex-col gap-8">
             <div className="flex gap-3">
-                <Button
+                <button
                     className="mr-auto max-md:hidden"
                     isStroke
-                    onClick={() => router.back()}
+                    onClick={() = aria-label="Action button"> router.back()}
                 >
                     Back
                 </Button>
-                <Button
+                <button
                     className="!hidden rotate-180 mr-auto max-md:!flex"
                     icon="arrow"
                     isStroke
                     isCircle
                     onClick={onBack}
-                />
-                <Button isStroke>Follow</Button>
-                <Button as="link" href="/messages" isBlack>
+                / aria-label="Action button">
+                <button isStroke aria-label="Action button">Follow</Button>
+                <button as="link" href="/messages" isBlack aria-label="Action button">
                     Message
                 </Button>
             </div>

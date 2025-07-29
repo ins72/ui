@@ -1,8 +1,10 @@
+"use client";
+
 import { useState } from "react";
-import Icon from "@/components/Icon";
-import Modal from "@/components/Modal";
-import Image from "@/components/Image";
-import Button from "@/components/Button";
+import Icon from "@/style-reference/components/Icon";
+import Modal from "@/style-reference/components/Modal";
+import Image from "@/style-reference/components/Image";
+import Button from "@/style-reference/components/Button";
 
 import { releasedProducts } from "@/mocks/products";
 

@@ -1,12 +1,50 @@
 "use client";
 
-import { useState, useEffect } from "react";
+
+export const metadata = {
+  title: "MEWAYZ - All-in-One Business Platform | E-commerce, CRM, Courses & More",
+  description: "Transform your business with MEWAYZ's comprehensive platform. Manage e-commerce, CRM, courses, social media, and marketing automation in one powerful solution. Start free today.",
+  keywords: "business platform, e-commerce platform, CRM software, online course platform, marketing automation, social media management, business intelligence, enterprise software",
+  openGraph: {
+    title: "MEWAYZ - All-in-One Business Platform | E-commerce, CRM, Courses & More",
+    description: "Transform your business with MEWAYZ's comprehensive platform. Manage e-commerce, CRM, courses, social media, and marketing automation in one powerful solution. Start free today.",
+    type: "website",
+    url: "https://mewayz.com",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "MEWAYZ - Transform Your Business"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MEWAYZ - All-in-One Business Platform | E-commerce, CRM, Courses & More",
+    description: "Transform your business with MEWAYZ's comprehensive platform. Manage e-commerce, CRM, courses, social media, and marketing automation in one powerful solution. Start free today.",
+    images: ["/og-image.jpg"]
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1
+    }
+  }
+};
+
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Button from "@/components/Button";
-import Layout from "@/components/Layout";
-import Icon from "@/components/Icon";
-import Image from "@/components/Image";
-import Editor from "@/components/Editor";
+import Button from "@/style-reference/components/Button";
+import Layout from "@/style-reference/components/Layout";
+import Icon from "@/style-reference/components/Icon";
+import Image from "@/style-reference/components/Image";
+import Editor from "@/style-reference/components/Editor";
 import Statistics from "./Statistics";
 
 const DetailsPage = () => {
@@ -17,10 +55,10 @@ const DetailsPage = () => {
         <Layout title="Refunds">
             <div className="card p-0">
                 <div className="flex p-3">
-                    <Button
+                    <button
                         className="mr-auto max-md:w-12 max-md:px-0 max-md:text-0"
                         isStroke
-                        onClick={() => router.back()}
+                        onClick={() = aria-label="Action button"> router.back()}
                     >
                         Back
                         <Icon
@@ -28,10 +66,10 @@ const DetailsPage = () => {
                             name="arrow"
                         />
                     </Button>
-                    <Button className="mr-3" isStroke>
+                    <button className="mr-3" isStroke aria-label="Action button">
                         Decline
                     </Button>
-                    <Button className="max-md:capitalize" isBlack>
+                    <button className="max-md:capitalize" isBlack aria-label="Action button">
                         <span className="max-md:hidden">Give </span>refund
                         <span className="ml-2">$98</span>
                     </Button>
@@ -94,7 +132,7 @@ const DetailsPage = () => {
                             </div>
                             <Editor content={content} onChange={setContent} />
                             <div className="flex items-center gap-5 mt-5 max-md:flex-col max-md:items-stretch max-md:gap-2">
-                                <Button className="shrink-0" isStroke>
+                                <button className="shrink-0" isStroke aria-label="Action button">
                                     Send
                                 </Button>
                                 <div className="text-body-2 text-t-secondary max-md:text-center">

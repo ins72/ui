@@ -1,6 +1,8 @@
+"use client";
+
 import { useState } from "react";
-import Checkbox from "@/components/Checkbox";
-import Image from "@/components/Image";
+import Checkbox from "@/style-reference/components/Checkbox";
+import Image from "@/style-reference/components/Image";
 
 type GridProductProps = {
     title: string;

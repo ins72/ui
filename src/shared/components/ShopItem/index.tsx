@@ -1,8 +1,10 @@
+"use client";
+
 import { useState } from "react";
 import { NumericFormat } from "react-number-format";
-import Image from "@/components/Image";
-import Icon from "@/components/Icon";
-import Button from "@/components/Button";
+import Image from "@/style-reference/components/Image";
+import Icon from "@/style-reference/components/Icon";
+import Button from "@/style-reference/components/Button";
 
 type ShopItemProps = {
     className?: string;

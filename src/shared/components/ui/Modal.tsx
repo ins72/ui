@@ -1,6 +1,9 @@
+"use client";
+
+import { useEffect } from "react";
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react';
+import Icon from "@/style-reference/components/Icon";
 
 interface ModalProps {
   isOpen: boolean;
@@ -85,7 +88,7 @@ export const Modal: React.FC<ModalProps> = ({
                       onClick={onClose}
                       className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
                     >
-                      <X className="h-5 w-5" />
+                      <Icon name="close" className="h-5 w-5" />
                     </button>
                   )}
                 </div>

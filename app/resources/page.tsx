@@ -1,99 +1,17 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React, { useEffect } from "react";
 import { useApp } from '@/contexts/AppContext';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { 
-  Download, 
-  FileText,
-  Video,
-  Image,
-  BookOpen,
-  Users,
-  Calendar,
-  MapPin,
-  Globe,
-  Mail,
-  Phone,
-  CheckCircle,
-  AlertTriangle,
-  Info,
-  ExternalLink,
-  Share,
-  Bookmark,
-  Search,
-  Filter,
-  SortAsc,
-  SortDesc,
-  MoreHorizontal,
-  MoreVertical,
-  ChevronLeft,
-  ChevronRight,
-  ChevronUp,
-  ChevronDown,
-  Minus,
-  Plus,
-  X,
-  Check,
-  AlertCircle,
-  HelpCircle,
-  Unlink,
-  Copy,
-  Scissors,
-  RotateCw,
-  RotateCcw,
-  Save,
-  Upload,
-  Archive,
-  HardDrive,
-  Table,
-  Columns,
-  Rows,
-  Hash,
-  Unlock,
-  Edit,
-  Trash2,
-  Database,
-  Server,
-  Key,
-  Eye,
-  EyeOff,
-  Lock,
-  Shield,
-  Settings,
-  BarChart3,
-  Folder,
-  File,
-  Home,
-  Contact,
-  DollarSign,
-  Zap,
-  Newspaper,
-  Briefcase,
-  LifeBuoy,
-  Cookie,
-  Activity,
-  XCircle,
-  Wrench,
-  Star,
-  Award,
-  TrendingUp,
-  Target,
-  Users as UsersIcon,
-  Camera,
-  Play,
-  Headphones,
-  Monitor,
-  Smartphone
-} from 'lucide-react';
+import Card from "@/components/Card";
+import Button from "@/components/Button";
+import Badge from "@/components/Badge";
+import Icon from "@/components/Icon";
 import Link from 'next/link';
 
 export default function ResourcesPage() {
   const { setBreadcrumbs, setCurrentPage } = useApp();
 
-  React.useEffect(() => {
+  useEffect(() => {
     setBreadcrumbs([
       { label: 'Resources', href: '/resources' }
     ]);
@@ -104,7 +22,7 @@ export default function ResourcesPage() {
     {
       title: 'Whitepapers',
       description: 'In-depth technical and business analysis documents',
-      icon: FileText,
+      icon: 'file-text',
       resources: [
         {
           title: 'Enterprise Security Best Practices',
@@ -234,14 +152,14 @@ export default function ResourcesPage() {
     {
       title: 'Download All',
       description: 'Get all resources in one package',
-      icon: Download,
+      icon: 'download',
       action: 'download-all',
       color: 'bg-blue-500'
     },
     {
       title: 'Request Custom',
       description: 'Request custom resources for your needs',
-      icon: FileText,
+      icon: 'file-text',
       action: 'request',
       color: 'bg-green-500'
     },
@@ -266,14 +184,14 @@ export default function ResourcesPage() {
       title: 'Total Resources',
       value: resourceCategories.reduce((total, cat) => total + cat.resources.length, 0).toString(),
       description: 'Available for download',
-      icon: FileText,
+      icon: 'file-text',
       color: 'text-blue-600'
     },
     {
       title: 'Total Downloads',
       value: '50K+',
       description: 'Resources downloaded this year',
-      icon: Download,
+      icon: 'download',
       color: 'text-green-600'
     },
     {
@@ -287,7 +205,7 @@ export default function ResourcesPage() {
       title: 'Featured Resources',
       value: resourceCategories.reduce((total, cat) => total + cat.resources.filter(r => r.featured).length, 0).toString(),
       description: 'Highlighted content',
-      icon: Star,
+      icon: 'star',
       color: 'text-orange-600'
     }
   ];
@@ -310,10 +228,10 @@ export default function ResourcesPage() {
           </p>
         </div>
         <div className="flex items-center space-x-2">
-          <Badge className="text-sm">
+          <Icon name="Badge.toLowerCase()" className="text-sm">
             {resourceCategories.reduce((total, cat) => total + cat.resources.length, 0)} Resources
           </Badge>
-          <Badge className="text-sm">
+          <Icon name="Badge.toLowerCase()" className="text-sm">
             {resourceCategories.length} Categories
           </Badge>
         </div>
@@ -323,7 +241,7 @@ export default function ResourcesPage() {
       <div className="grid gap-4 md:grid-cols-4">
         {stats.map((stat) => (
           <Card key={stat.title}>
-            <CardContent className="pt-6">
+            <Icon name="CardContent.toLowerCase()" className="pt-6">
               <div className="flex items-center space-x-4">
                 <div className="p-2 rounded-lg bg-gray-100">
                   <stat.icon className={`h-6 w-6 ${stat.color}`} />
@@ -344,14 +262,14 @@ export default function ResourcesPage() {
         {quickActions.map((action) => (
           <Card key={action.title} className="hover:shadow-lg transition-shadow cursor-pointer">
             <Link href="#">
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <Icon name="CardHeader.toLowerCase()" className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <div className={`p-2 rounded-lg ${action.color}`}>
                   <action.icon className="h-4 w-4 text-white" />
                 </div>
               </CardHeader>
               <CardContent>
-                <CardTitle className="text-lg font-semibold">{action.title}</CardTitle>
-                <CardDescription className="text-sm text-muted-foreground">
+                <Icon name="CardTitle.toLowerCase()" className="text-lg font-semibold">{action.title}</CardTitle>
+                <Icon name="CardDescription.toLowerCase()" className="text-sm text-muted-foreground">
                   {action.description}
                 </CardDescription>
               </CardContent>
@@ -363,8 +281,8 @@ export default function ResourcesPage() {
       {/* Featured Resources */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Star className="h-5 w-5 text-yellow-400" />
+          <Icon name="CardTitle.toLowerCase()" className="flex items-center gap-2">
+            <Icon name="Star.toLowerCase()" className="h-5 w-5 text-yellow-400" />
             Featured Resources
           </CardTitle>
           <CardDescription>
@@ -381,22 +299,22 @@ export default function ResourcesPage() {
                     <p className="text-muted-foreground mb-3">{resource.description}</p>
                     <div className="flex items-center space-x-4 text-sm text-muted-foreground">
                       <span className="flex items-center space-x-1">
-                        <FileText className="h-4 w-4" />
+                        <Icon name="FileText.toLowerCase()" className="h-4 w-4" />
                         <span>{resource.type}</span>
                       </span>
                       <span className="flex items-center space-x-1">
-                        <HardDrive className="h-4 w-4" />
+                        <Icon name="HardDrive.toLowerCase()" className="h-4 w-4" />
                         <span>{resource.size}</span>
                       </span>
                       {resource.duration && (
                         <span className="flex items-center space-x-1">
-                          <Play className="h-4 w-4" />
+                          <Icon name="Play.toLowerCase()" className="h-4 w-4" />
                           <span>{resource.duration}</span>
                         </span>
                       )}
                     </div>
                   </div>
-                  <Badge className="text-xs bg-blue-100 text-blue-800">
+                  <Icon name="Badge.toLowerCase()" className="text-xs bg-blue-100 text-blue-800">
                     {resource.category}
                   </Badge>
                 </div>
@@ -404,23 +322,23 @@ export default function ResourcesPage() {
                   <div className="flex items-center space-x-4 text-sm text-muted-foreground">
                     {resource.downloads && (
                       <span className="flex items-center space-x-1">
-                        <Download className="h-4 w-4" />
+                        <Icon name="Download.toLowerCase()" className="h-4 w-4" />
                         <span>{resource.downloads.toLocaleString()} downloads</span>
                       </span>
                     )}
                     {resource.views && (
                       <span className="flex items-center space-x-1">
-                        <Eye className="h-4 w-4" />
+                        <Icon name="Eye.toLowerCase()" className="h-4 w-4" />
                         <span>{resource.views.toLocaleString()} views</span>
                       </span>
                     )}
                   </div>
                   <div className="flex items-center space-x-2">
-                    <Button className="bg-blue-600 hover:bg-blue-700">
-                      <Download className="h-4 w-4 mr-2" />
+                    <Icon name="Button.toLowerCase()" className="bg-blue-600 hover:bg-blue-700">
+                      <Icon name="Download.toLowerCase()" className="h-4 w-4 mr-2" />
                       Download
                     </Button>
-                    <Button className="border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">
+                    <Icon name="Button.toLowerCase()" className="border border-gray-300 bg-white text-gray-700 hover:bg-b-surface">
                       Preview
                     </Button>
                   </div>
@@ -435,7 +353,7 @@ export default function ResourcesPage() {
       {resourceCategories.map((category) => (
         <Card key={category.title}>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+            <Icon name="CardTitle.toLowerCase()" className="flex items-center gap-2">
               <category.icon className="h-5 w-5" />
               {category.title}
             </CardTitle>
@@ -453,46 +371,46 @@ export default function ResourcesPage() {
                       <p className="text-sm text-muted-foreground mb-2">{resource.description}</p>
                       <div className="flex items-center space-x-4 text-xs text-muted-foreground">
                         <span className="flex items-center space-x-1">
-                          <FileText className="h-3 w-3" />
+                          <Icon name="FileText.toLowerCase()" className="h-3 w-3" />
                           <span>{resource.type}</span>
                         </span>
                         <span className="flex items-center space-x-1">
-                          <HardDrive className="h-3 w-3" />
+                          <Icon name="HardDrive.toLowerCase()" className="h-3 w-3" />
                           <span>{resource.size}</span>
                         </span>
                         {resource.duration && (
                           <span className="flex items-center space-x-1">
-                            <Play className="h-3 w-3" />
+                            <Icon name="Play.toLowerCase()" className="h-3 w-3" />
                             <span>{resource.duration}</span>
                           </span>
                         )}
                       </div>
                     </div>
                     {resource.featured && (
-                      <Star className="h-4 w-4 text-yellow-400" />
+                      <Icon name="Star.toLowerCase()" className="h-4 w-4 text-yellow-400" />
                     )}
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2 text-xs text-muted-foreground">
                       {resource.downloads && (
                         <span className="flex items-center space-x-1">
-                          <Download className="h-3 w-3" />
+                          <Icon name="Download.toLowerCase()" className="h-3 w-3" />
                           <span>{resource.downloads.toLocaleString()} downloads</span>
                         </span>
                       )}
                       {resource.views && (
                         <span className="flex items-center space-x-1">
-                          <Eye className="h-3 w-3" />
+                          <Icon name="Eye.toLowerCase()" className="h-3 w-3" />
                           <span>{resource.views.toLocaleString()} views</span>
                         </span>
                       )}
                     </div>
                     <div className="flex items-center space-x-2">
-                      <Button className="text-xs">
-                        <Download className="h-3 w-3 mr-1" />
+                      <Icon name="Button.toLowerCase()" className="text-xs">
+                        <Icon name="Download.toLowerCase()" className="h-3 w-3 mr-1" />
                         Download
                       </Button>
-                      <Button className="text-xs border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">
+                      <Icon name="Button.toLowerCase()" className="text-xs border border-gray-300 bg-white text-gray-700 hover:bg-b-surface">
                         Preview
                       </Button>
                     </div>
@@ -507,8 +425,8 @@ export default function ResourcesPage() {
       {/* Resource Formats */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <FileText className="h-5 w-5" />
+          <Icon name="CardTitle.toLowerCase()" className="flex items-center gap-2">
+            <Icon name="FileText.toLowerCase()" className="h-5 w-5" />
             Available Formats
           </CardTitle>
           <CardDescription>
@@ -518,22 +436,22 @@ export default function ResourcesPage() {
         <CardContent>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             <div className="text-center p-4 border rounded-lg">
-              <FileText className="h-8 w-8 text-blue-600 mx-auto mb-2" />
+              <Icon name="FileText.toLowerCase()" className="h-8 w-8 text-blue-600 mx-auto mb-2" />
               <h3 className="font-semibold">PDF Documents</h3>
               <p className="text-sm text-muted-foreground">Whitepapers, guides, and reports</p>
             </div>
             <div className="text-center p-4 border rounded-lg">
-              <Video className="h-8 w-8 text-green-600 mx-auto mb-2" />
+              <Icon name="Video.toLowerCase()" className="h-8 w-8 text-green-600 mx-auto mb-2" />
               <h3 className="font-semibold">Video Content</h3>
               <p className="text-sm text-muted-foreground">Tutorials and demonstrations</p>
             </div>
             <div className="text-center p-4 border rounded-lg">
-              <File className="h-8 w-8 text-purple-600 mx-auto mb-2" />
+              <Icon name="File.toLowerCase()" className="h-8 w-8 text-purple-600 mx-auto mb-2" />
               <h3 className="font-semibold">Templates</h3>
               <p className="text-sm text-muted-foreground">Ready-to-use templates and tools</p>
             </div>
             <div className="text-center p-4 border rounded-lg">
-              <Image className="h-8 w-8 text-orange-600 mx-auto mb-2" />
+              <Icon name="Image.toLowerCase()" className="h-8 w-8 text-orange-600 mx-auto mb-2" />
               <h3 className="font-semibold">Infographics</h3>
               <p className="text-sm text-muted-foreground">Visual guides and charts</p>
             </div>
@@ -544,8 +462,8 @@ export default function ResourcesPage() {
       {/* Call to Action */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Download className="h-5 w-5" />
+          <Icon name="CardTitle.toLowerCase()" className="flex items-center gap-2">
+            <Icon name="Download.toLowerCase()" className="h-5 w-5" />
             Need Custom Resources?
           </CardTitle>
           <CardDescription>
@@ -558,11 +476,11 @@ export default function ResourcesPage() {
               Our team can create custom whitepapers, case studies, and tutorials tailored to your specific requirements
             </p>
             <div className="flex items-center justify-center space-x-4">
-              <Button className="bg-blue-600 hover:bg-blue-700">
+              <Icon name="Button.toLowerCase()" className="bg-blue-600 hover:bg-blue-700">
                 Request Custom Resource
               </Button>
               <Link href="/contact">
-                <Button className="border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">
+                <Icon name="Button.toLowerCase()" className="border border-gray-300 bg-white text-gray-700 hover:bg-b-surface">
                   Contact Our Team
                 </Button>
               </Link>

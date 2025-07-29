@@ -1,7 +1,47 @@
+"use client";
+
+
+export const metadata = {
+  title: "E-commerce Platform | Online Store Builder | MEWAYZ",
+  description: "Build and manage your online store with MEWAYZ's powerful e-commerce platform. Product management, inventory tracking, payment processing, and sales analytics included.",
+  keywords: "e-commerce platform, online store builder, product management, inventory management, payment processing, sales analytics",
+  openGraph: {
+    title: "E-commerce Platform | Online Store Builder | MEWAYZ",
+    description: "Build and manage your online store with MEWAYZ's powerful e-commerce platform. Product management, inventory tracking, payment processing, and sales analytics included.",
+    type: "website",
+    url: "https://mewayz.com",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "MEWAYZ - Transform Your Business"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "E-commerce Platform | Online Store Builder | MEWAYZ",
+    description: "Build and manage your online store with MEWAYZ's powerful e-commerce platform. Product management, inventory tracking, payment processing, and sales analytics included.",
+    images: ["/og-image.jpg"]
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1
+    }
+  }
+};
+
 import { useState } from "react";
 import { Field, Radio, RadioGroup } from "@headlessui/react";
-import Modal from "@/components/Modal";
-import Button from "@/components/Button";
+import Modal from "@/style-reference/components/Modal";
+import Button from "@/style-reference/components/Button";
 import Image from "next/image";
 
 const statuses = ["Active", "Deactive"];
@@ -16,7 +56,7 @@ const SetProductsStatus = ({ counter }: SetProductsStatusProps) => {
 
     return (
         <>
-            <Button className="ml-3" isStroke onClick={() => setOpen(true)}>
+            <button className="ml-3" isStroke onClick={() = aria-label="Action button"> setOpen(true)}>
                 Set status
             </Button>
             <Modal open={open} onClose={() => setOpen(false)}>

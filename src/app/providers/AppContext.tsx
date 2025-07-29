@@ -1,7 +1,8 @@
-'use client';
+"use client";
 
+import { useEffect } from "react";
 import React, { createContext, useContext, useReducer, useEffect, ReactNode } from 'react';
-import apiService from '@/lib/api';
+import { apiClient } from '@/lib/api-client';
 
 // Types
 interface User {
@@ -222,7 +223,7 @@ export function AppProvider({ children }: AppProviderProps) {
   };
 
   const showNotification = (notification: Omit<Notification, 'id'>) => {
-    const id = Math.random().toString(36).substr(2, 9);
+    const id = `notification_${Date.now()}_${crypto.randomUUID().slice(0, 8)}`;
     const newNotification = { ...notification, id };
     
     dispatch({ type: 'ADD_NOTIFICATION', payload: newNotification });

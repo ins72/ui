@@ -1,4 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
+"use client";
+
+import React, { useState, useEffect, useCallback } from 'react';
 import { apiService, ApiResponse, PaginatedResponse, User } from '@/lib/api';
 
 // Generic hook for data fetching

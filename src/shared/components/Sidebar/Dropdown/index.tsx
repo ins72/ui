@@ -1,9 +1,11 @@
+"use client";
+
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import AnimateHeight from "react-animate-height";
-import Icon from "@/components/Icon";
-import NavLink from "@/components/NavLink";
+import Icon from "@/style-reference/components/Icon";
+import NavLink from "@/style-reference/components/NavLink";
 
 type DropdownProps = {
     value: {

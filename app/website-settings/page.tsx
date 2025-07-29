@@ -1,12 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Layout from "@/components/Layout";
-import Card from "@/components/Card";
-import Button from "@/components/Button";
-import Field from "@/components/Field";
-import Icon from "@/components/Icon";
-import { apiClient } from "@/infrastructure/api/apiClient";
+export const dynamic = 'force-dynamic';
+
+import Layout from "@/style-reference/components/Layout";
+import Card from "@/style-reference/components/Card";
+import Button from "@/style-reference/components/Button";
+import Field from "@/style-reference/components/Field";
+import Icon from "@/style-reference/components/Icon";
+import { apiClient } from "@/lib/api-client";
 
 interface WebsiteSettings {
     id: string;

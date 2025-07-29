@@ -1,10 +1,12 @@
+"use client";
+
 import { useState } from "react";
 import { NumericFormat } from "react-number-format";
-import Icon from "@/components/Icon";
-import Modal from "@/components/Modal";
-import Image from "@/components/Image";
-import DateAndTime from "@/components/DateAndTime";
-import Button from "@/components/Button";
+import Icon from "@/style-reference/components/Icon";
+import Modal from "@/style-reference/components/Modal";
+import Image from "@/style-reference/components/Image";
+import DateAndTime from "@/style-reference/components/DateAndTime";
+import Button from "@/style-reference/components/Button";
 
 type ShareProductProps = {
     title: string;

@@ -1,6 +1,8 @@
+"use client";
+
 import { useState } from "react";
-import Button from "@/components/Button";
-import Image from "@/components/Image";
+import Button from "@/style-reference/components/Button";
+import Image from "@/style-reference/components/Image";
 import SignIn from "./SignIn";
 import CreateAccount from "./CreateAccount";
 import ResetPassword from "./ResetPassword";

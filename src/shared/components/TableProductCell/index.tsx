@@ -1,5 +1,7 @@
+"use client";
+
 import { useState } from "react";
-import Image from "@/components/Image";
+import Image from "@/style-reference/components/Image";
 
 type TableProductCellProps = {
     title: string;

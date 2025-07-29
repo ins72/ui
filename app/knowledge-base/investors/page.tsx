@@ -1,488 +1,153 @@
-'use client';
+"use client";
 
 import React from 'react';
-import { useApp } from '@/contexts/AppContext';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { 
-  DollarSign, 
-  TrendingUp, 
-  BarChart3, 
-  FileText, 
-  Globe, 
-  Users,
-  Search,
-  Filter,
-  ArrowRight,
-  Calendar,
-  Clock,
-  Eye,
-  Download,
-  Share2,
-  Star,
-  Bookmark,
-  MessageSquare,
-  HelpCircle,
-  Lightbulb,
-  Settings,
-  UserCheck,
-  Building,
-  Rocket,
-  Award,
-  CheckCircle,
-  Activity,
-  PieChart,
-  Target,
-  Zap,
-  Shield,
-  Database
-} from 'lucide-react';
-import Link from 'next/link';
+import Layout from '@/style-reference/components/Layout';
+import Card from '@/style-reference/components/Card';
+import Button from '@/style-reference/components/Button';
+import Icon from '@/style-reference/components/Icon';
 
-export default function InvestorRelationsPage() {
-  const { setBreadcrumbs, setCurrentPage } = useApp();
-
-  React.useEffect(() => {
-    setBreadcrumbs([
-      { label: 'Knowledge Base', href: '/knowledge-base' },
-      { label: 'Investor Relations', href: '/knowledge-base/investors' }
-    ]);
-    setCurrentPage('Investor Relations');
-  }, [setBreadcrumbs, setCurrentPage]);
-
-  const investorSections = [
-    {
-      title: 'Financial Reports',
-      description: 'Quarterly and annual financial reports',
-      icon: FileText,
-      color: 'bg-blue-500',
-      articles: 12,
-      topics: [
-        'Quarterly Reports',
-        'Annual Reports',
-        'Earnings Calls',
-        'Financial Statements',
-        'SEC Filings'
-      ]
-    },
-    {
-      title: 'Investor Updates',
-      description: 'Regular investor communications and updates',
-      icon: MessageSquare,
-      color: 'bg-green-500',
-      articles: 18,
-      topics: [
-        'Monthly Updates',
-        'Quarterly Calls',
-        'Press Releases',
-        'Investor Presentations',
-        'Newsletters'
-      ]
-    },
-    {
-      title: 'Business Metrics',
-      description: 'Key performance indicators and business metrics',
-      icon: BarChart3,
-      color: 'bg-purple-500',
-      articles: 15,
-      topics: [
-        'KPIs Dashboard',
-        'Growth Metrics',
-        'Customer Metrics',
-        'Financial Metrics',
-        'Operational Metrics'
-      ]
-    },
-    {
-      title: 'Market Analysis',
-      description: 'Market research and competitive analysis',
-      icon: Globe,
-      color: 'bg-yellow-500',
-      articles: 10,
-      topics: [
-        'Market Research',
-        'Competitive Analysis',
-        'Industry Trends',
-        'Market Size',
-        'Growth Opportunities'
-      ]
-    },
-    {
-      title: 'Growth Projections',
-      description: 'Future growth plans and projections',
-      icon: TrendingUp,
-      color: 'bg-red-500',
-      articles: 8,
-      topics: [
-        'Growth Strategy',
-        'Revenue Projections',
-        'Market Expansion',
-        'Product Roadmap',
-        'Investment Plans'
-      ]
-    }
+export default function InvestorsKnowledgeBasePage() {
+  const documents = [
+    { title: 'Annual Report 2024', type: 'PDF', date: 'March 2024', size: '2.3 MB' },
+    { title: 'Q4 2023 Earnings Report', type: 'PDF', date: 'January 2024', size: '1.8 MB' },
+    { title: 'Corporate Governance Guidelines', type: 'PDF', date: 'December 2023', size: '945 KB' },
+    { title: 'Investor Presentation', type: 'PPTX', date: 'February 2024', size: '15.2 MB' },
+    { title: 'SEC Filings Archive', type: 'ZIP', date: 'Ongoing', size: '45.6 MB' }
   ];
 
-  const featuredInvestorDocs = [
-    {
-      title: 'Q4 2023 Financial Report',
-      description: 'Complete financial performance and business metrics for Q4 2023',
-      category: 'financial',
-      readTime: '20 min read',
-      views: 2341,
-      rating: 4.9,
-      author: 'Finance Team',
-      date: '2024-01-20',
-      featured: true
-    },
-    {
-      title: '2024 Growth Strategy',
-      description: 'Comprehensive growth strategy and market expansion plans',
-      category: 'strategy',
-      readTime: '15 min read',
-      views: 1892,
-      rating: 4.8,
-      author: 'Strategy Team',
-      date: '2024-01-18',
-      featured: true
-    },
-    {
-      title: 'Market Analysis Report',
-      description: 'Detailed market analysis and competitive landscape',
-      category: 'market',
-      readTime: '18 min read',
-      views: 1456,
-      rating: 4.7,
-      author: 'Market Research Team',
-      date: '2024-01-15',
-      featured: true
-    },
-    {
-      title: 'Investor Presentation Q1 2024',
-      description: 'Latest investor presentation with key metrics and updates',
-      category: 'presentation',
-      readTime: '12 min read',
-      views: 1234,
-      rating: 4.6,
-      author: 'Investor Relations',
-      date: '2024-01-12',
-      featured: true
-    }
+  const metrics = [
+    { label: 'Market Cap', value: '$2.4B', change: '+12.5%', positive: true },
+    { label: 'Revenue Growth', value: '145%', change: '+23.1%', positive: true },
+    { label: 'Active Users', value: '2.8M', change: '+67.3%', positive: true },
+    { label: 'Monthly Recurring Revenue', value: '$18.5M', change: '+34.2%', positive: true }
   ];
-
-  const financialMetrics = [
-    {
-      title: 'Revenue',
-      value: '$12.5M',
-      change: '+45%',
-      changeType: 'positive',
-      icon: DollarSign,
-      color: 'text-green-600'
-    },
-    {
-      title: 'ARR',
-      value: '$48.2M',
-      change: '+38%',
-      changeType: 'positive',
-      icon: TrendingUp,
-      color: 'text-blue-600'
-    },
-    {
-      title: 'Gross Margin',
-      value: '78%',
-      change: '+2%',
-      changeType: 'positive',
-      icon: PieChart,
-      color: 'text-purple-600'
-    },
-    {
-      title: 'Customer Growth',
-      value: '+156%',
-      change: '+23%',
-      changeType: 'positive',
-      icon: Users,
-      color: 'text-yellow-600'
-    }
-  ];
-
-  const quickActions = [
-    {
-      title: 'Financial Reports',
-      description: 'Download latest financial reports',
-      icon: FileText,
-      href: '/knowledge-base/investors/reports',
-      color: 'bg-blue-500'
-    },
-    {
-      title: 'Investor Calendar',
-      description: 'View upcoming investor events',
-      icon: Calendar,
-      href: '/knowledge-base/investors/calendar',
-      color: 'bg-green-500'
-    },
-    {
-      title: 'Metrics Dashboard',
-      description: 'Access real-time business metrics',
-      icon: BarChart3,
-      href: '/knowledge-base/investors/metrics',
-      color: 'bg-purple-500'
-    },
-    {
-      title: 'Contact IR',
-      description: 'Get in touch with investor relations',
-      icon: MessageSquare,
-      href: '/contact/investor-relations',
-      color: 'bg-yellow-500'
-    }
-  ];
-
-  const getCategoryBadge = (category: string) => {
-    switch (category) {
-      case 'financial':
-        return <Badge className="bg-blue-100 text-blue-800">Financial</Badge>;
-      case 'strategy':
-        return <Badge className="bg-green-100 text-green-800">Strategy</Badge>;
-      case 'market':
-        return <Badge className="bg-purple-100 text-purple-800">Market</Badge>;
-      case 'presentation':
-        return <Badge className="bg-yellow-100 text-yellow-800">Presentation</Badge>;
-      default:
-        return <Badge className="bg-gray-100 text-gray-800">General</Badge>;
-    }
-  };
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Investor Relations</h1>
-          <p className="text-muted-foreground">
-            Financial reports, investor updates, and business metrics
-          </p>
+    <Layout>
+      <div className="max-w-6xl mx-auto p-6 space-y-6">
+        <div className="text-center space-y-4">
+          <h1 className="text-4xl font-bold text-gray-900">Investor Relations</h1>
+          <p className="text-xl text-gray-600">Financial information, reports, and updates for MEWAYZ investors</p>
         </div>
-        <div className="flex items-center space-x-2">
-          <Badge className="bg-yellow-100 text-yellow-800">
-            Investor Focus
-          </Badge>
-        </div>
-      </div>
 
-      {/* Financial Metrics */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {financialMetrics.map((metric) => (
-          <Card key={metric.title} className="hover:shadow-lg transition-shadow">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
-                {metric.title}
-              </CardTitle>
-              <metric.icon className={`h-4 w-4 ${metric.color}`} />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{metric.value}</div>
-              <p className="text-xs text-muted-foreground">
-                <span className={metric.changeType === 'positive' ? 'text-green-600' : 'text-red-600'}>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+          {metrics.map((metric, index) => (
+            <Card key={index}>
+              <div className="p-4 text-center">
+                <div className="text-2xl font-bold text-gray-900">{metric.value}</div>
+                <div className="text-sm text-gray-600 mb-2">{metric.label}</div>
+                <div className={`text-sm font-medium ${metric.positive ? 'text-green-600' : 'text-red-600'}`}>
                   {metric.change}
-                </span>{' '}
-                YoY
-              </p>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-
-      {/* Quick Actions */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {quickActions.map((action) => (
-          <Card key={action.title} className="hover:shadow-lg transition-shadow cursor-pointer">
-            <Link href={action.href}>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <div className={`p-2 rounded-lg ${action.color}`}>
-                  <action.icon className="h-4 w-4 text-white" />
-                </div>
-              </CardHeader>
-              <CardContent>
-                <CardTitle className="text-sm font-medium">{action.title}</CardTitle>
-                <CardDescription className="text-xs">
-                  {action.description}
-                </CardDescription>
-              </CardContent>
-            </Link>
-          </Card>
-        ))}
-      </div>
-
-      {/* Featured Investor Documents */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Featured Investor Documents</CardTitle>
-          <CardDescription>
-            Most important financial and strategic documents
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid gap-4 md:grid-cols-2">
-            {featuredInvestorDocs.map((doc) => (
-              <div key={doc.title} className="p-4 border rounded-lg hover:bg-gray-50 cursor-pointer">
-                <div className="flex items-start justify-between mb-2">
-                  {getCategoryBadge(doc.category)}
-                  <div className="flex items-center space-x-1 text-sm text-gray-500">
-                    <Star className="w-4 h-4 text-yellow-500" />
-                    <span>{doc.rating}</span>
-                  </div>
-                </div>
-                <h3 className="font-semibold text-lg mb-2">{doc.title}</h3>
-                <p className="text-gray-600 text-sm mb-3">{doc.description}</p>
-                <div className="flex items-center justify-between text-xs text-gray-500">
-                  <div className="flex items-center space-x-4">
-                    <span>{doc.readTime}</span>
-                    <span>{doc.views} views</span>
-                    <span>By {doc.author}</span>
-                  </div>
-                  <span>{doc.date}</span>
                 </div>
               </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+            </Card>
+          ))}
+        </div>
 
-      {/* Investor Sections */}
-      <div className="grid gap-6 md:grid-cols-2">
-        {investorSections.map((section) => (
-          <Card key={section.title} className="hover:shadow-lg transition-shadow">
-            <CardHeader>
-              <div className="flex items-center space-x-3">
-                <div className={`p-2 rounded-lg ${section.color}`}>
-                  <section.icon className="h-5 w-5 text-white" />
-                </div>
-                <div className="flex-1">
-                  <CardTitle className="text-lg">{section.title}</CardTitle>
-                  <CardDescription>{section.description}</CardDescription>
-                </div>
-                <Badge className="bg-gray-100 text-gray-800">
-                  {section.articles} articles
-                </Badge>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                {section.topics.map((topic) => (
-                  <div key={topic} className="flex items-center justify-between p-2 hover:bg-gray-50 rounded cursor-pointer">
-                    <span className="text-sm font-medium">{topic}</span>
-                    <ArrowRight className="w-4 h-4 text-gray-400" />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <Card>
+            <div className="p-6">
+              <h2 className="text-2xl font-semibold mb-4">Financial Documents</h2>
+              <div className="space-y-4">
+                {documents.map((doc, index) => (
+                  <div key={index} className="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <Icon name="file-text" className="w-5 h-5 text-blue-600" />
+                      </div>
+                      <div>
+                        <h3 className="font-medium">{doc.title}</h3>
+                        <div className="flex items-center space-x-2 text-sm text-gray-600">
+                          <span>{doc.type}</span>
+                          <span>•</span>
+                          <span>{doc.date}</span>
+                          <span>•</span>
+                          <span>{doc.size}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <Button variant="secondary" size="sm">
+                      <Icon name="download" className="w-4 h-4" />
+                    </Button>
                   </div>
                 ))}
-                <div className="pt-2">
-                  <Link href={`/knowledge-base/investors/${section.title.toLowerCase().replace(/\s+/g, '-')}`}>
-                    <Button variant="outline" className="w-full">
-                      View All {section.title} Resources
-                    </Button>
-                  </Link>
-                </div>
               </div>
-            </CardContent>
+            </div>
           </Card>
-        ))}
-      </div>
 
-      {/* Investor Resources */}
-      <div className="grid gap-6 md:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle>Financial Reports</CardTitle>
-            <CardDescription>
-              Download latest financial reports and presentations
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              <div className="flex items-center justify-between p-2 hover:bg-gray-50 rounded cursor-pointer">
-                <div className="flex items-center space-x-3">
-                  <FileText className="w-4 h-4 text-blue-500" />
-                  <span className="text-sm font-medium">Q4 2023 Financial Report</span>
+          <div className="space-y-6">
+            <Card>
+              <div className="p-6">
+                <h2 className="text-xl font-semibold mb-4">Quick Links</h2>
+                <div className="space-y-3">
+                  <Button variant="primary" size="lg" className="w-full justify-start">
+                    <Icon name="trending-up" className="w-5 h-5 mr-2" />
+                    Stock Performance
+                  </Button>
+                  <Button variant="secondary" size="lg" className="w-full justify-start">
+                    <Icon name="calendar" className="w-5 h-5 mr-2" />
+                    Earnings Calendar
+                  </Button>
+                  <Button variant="success" size="lg" className="w-full justify-start">
+                    <Icon name="users" className="w-5 h-5 mr-2" />
+                    Management Team
+                  </Button>
+                  <Button variant="purple" size="lg" className="w-full justify-start">
+                    <Icon name="shield" className="w-5 h-5 mr-2" />
+                    Corporate Governance
+                  </Button>
                 </div>
-                <Download className="w-4 h-4 text-gray-400" />
               </div>
-              <div className="flex items-center justify-between p-2 hover:bg-gray-50 rounded cursor-pointer">
-                <div className="flex items-center space-x-3">
-                  <BarChart3 className="w-4 h-4 text-green-500" />
-                  <span className="text-sm font-medium">Q4 2023 Earnings Call</span>
+            </Card>
+
+            <Card>
+              <div className="p-6">
+                <h2 className="text-xl font-semibold mb-4">Upcoming Events</h2>
+                <div className="space-y-4">
+                  <div className="border-l-4 border-blue-500 pl-4">
+                    <h3 className="font-medium">Q1 2024 Earnings Call</h3>
+                    <p className="text-sm text-gray-600">April 15, 2024 at 4:00 PM EST</p>
+                  </div>
+                  <div className="border-l-4 border-green-500 pl-4">
+                    <h3 className="font-medium">Annual Shareholders Meeting</h3>
+                    <p className="text-sm text-gray-600">May 20, 2024 at 10:00 AM EST</p>
+                  </div>
+                  <div className="border-l-4 border-purple-500 pl-4">
+                    <h3 className="font-medium">Investor Day 2024</h3>
+                    <p className="text-sm text-gray-600">June 10, 2024 at 9:00 AM EST</p>
+                  </div>
                 </div>
-                <Download className="w-4 h-4 text-gray-400" />
               </div>
-              <div className="flex items-center justify-between p-2 hover:bg-gray-50 rounded cursor-pointer">
-                <div className="flex items-center space-x-3">
-                  <TrendingUp className="w-4 h-4 text-purple-500" />
-                  <span className="text-sm font-medium">2024 Growth Strategy</span>
+            </Card>
+
+            <Card>
+              <div className="p-6 text-center space-y-4">
+                <Icon name="mail" className="w-12 h-12 text-blue-600 mx-auto" />
+                <h3 className="text-lg font-semibold">Investor Contact</h3>
+                <div className="text-sm text-gray-600 space-y-1">
+                  <p>investors@mewayz.com</p>
+                  <p>+1 (555) 123-4567</p>
                 </div>
-                <Download className="w-4 h-4 text-gray-400" />
+                <Button variant="primary" size="sm">
+                  Contact IR Team
+                </Button>
               </div>
-              <div className="flex items-center justify-between p-2 hover:bg-gray-50 rounded cursor-pointer">
-                <div className="flex items-center space-x-3">
-                  <Globe className="w-4 h-4 text-yellow-500" />
-                  <span className="text-sm font-medium">Market Analysis Report</span>
-                </div>
-                <Download className="w-4 h-4 text-gray-400" />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+            </Card>
+          </div>
+        </div>
 
         <Card>
-          <CardHeader>
-            <CardTitle>Investor Events</CardTitle>
-            <CardDescription>
-              Upcoming investor events and presentations
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              <div className="flex items-center justify-between p-2 hover:bg-gray-50 rounded cursor-pointer">
-                <div className="flex items-center space-x-3">
-                  <Calendar className="w-4 h-4 text-blue-500" />
-                  <span className="text-sm font-medium">Q1 2024 Earnings Call</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <span className="text-xs text-gray-500">Feb 15, 2024</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400" />
-                </div>
-              </div>
-              <div className="flex items-center justify-between p-2 hover:bg-gray-50 rounded cursor-pointer">
-                <div className="flex items-center space-x-3">
-                  <Calendar className="w-4 h-4 text-green-500" />
-                  <span className="text-sm font-medium">Annual Shareholder Meeting</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <span className="text-xs text-gray-500">May 20, 2024</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400" />
-                </div>
-              </div>
-              <div className="flex items-center justify-between p-2 hover:bg-gray-50 rounded cursor-pointer">
-                <div className="flex items-center space-x-3">
-                  <Calendar className="w-4 h-4 text-purple-500" />
-                  <span className="text-sm font-medium">Investor Day</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <span className="text-xs text-gray-500">Mar 10, 2024</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400" />
-                </div>
-              </div>
-              <div className="flex items-center justify-between p-2 hover:bg-gray-50 rounded cursor-pointer">
-                <div className="flex items-center space-x-3">
-                  <Calendar className="w-4 h-4 text-yellow-500" />
-                  <span className="text-sm font-medium">Analyst Day</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <span className="text-xs text-gray-500">Apr 5, 2024</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400" />
-                </div>
-              </div>
+          <div className="p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg">
+            <div className="text-center space-y-4">
+              <h2 className="text-2xl font-semibold">Stay Updated</h2>
+              <p className="text-gray-600">Subscribe to receive the latest investor updates and financial news</p>
+              <Button variant="primary" size="lg">
+                Subscribe to Investor Alerts
+              </Button>
             </div>
-          </CardContent>
+          </div>
         </Card>
       </div>
-    </div>
+    </Layout>
   );
 } 

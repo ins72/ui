@@ -1,6 +1,8 @@
+"use client";
+
 import { useState } from "react";
-import Image from "@/components/Image";
-import Icon from "@/components/Icon";
+import Image from "@/style-reference/components/Image";
+import Icon from "@/style-reference/components/Icon";
 
 type FollowerProps = {
     className?: string;

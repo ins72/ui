@@ -1,3 +1,6 @@
+"use client";
+
+import {  useState , useEffect } from "react";
 'use client';
 
 import React, { useState, useEffect } from 'react';

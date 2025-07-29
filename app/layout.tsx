@@ -1,149 +1,83 @@
-import { headers } from "next/headers";
-import type { Metadata, Viewport } from "next";
-import localFont from "next/font/local";
-import Providers from "./providers";
-import "./globals.css";
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
+import { Providers } from './providers';
 
-const interDisplay = localFont({
-    src: [
-        {
-            path: "../public/fonts/InterDisplay-Light.woff2",
-            weight: "300",
-        },
-        {
-            path: "../public/fonts/InterDisplay-Regular.woff2",
-            weight: "400",
-        },
-        {
-            path: "../public/fonts/InterDisplay-Medium.woff2",
-            weight: "500",
-        },
-        {
-            path: "../public/fonts/InterDisplay-SemiBold.woff2",
-            weight: "600",
-        },
-        {
-            path: "../public/fonts/InterDisplay-Bold.woff2",
-            weight: "700",
-        },
-    ],
-    variable: "--font-inter-display",
-});
+const inter = Inter({ subsets: ['latin'] });
 
+// Advanced SEO Metadata following Bruce Clay's guidelines
 export const metadata: Metadata = {
-    title: "Core 2.0",
-    description: "Core 2.0",
+  title: "MEWAYZ - Professional Business Platform | E-commerce, CRM & Course Creation Software",
+  description: "Transform your business with MEWAYZ's all-in-one platform. Professional e-commerce solutions, advanced CRM systems, course creation tools, and social media management. Start your free trial today.",
+  keywords: [
+    "business platform",
+    "e-commerce solutions", 
+    "CRM software",
+    "course creation platform",
+    "professional business tools",
+    "all-in-one business management software",
+    "enterprise e-commerce platform",
+    "advanced customer relationship management",
+    "online course creation tools",
+    "social media management platform",
+    "business automation software",
+    "digital commerce platform",
+    "customer management system",
+    "online learning platform",
+    "business growth tools"
+  ].join(", "),
+  openGraph: {
+    title: "MEWAYZ - Professional Business Platform for Growth",
+    description: "Comprehensive business platform combining e-commerce, CRM, course creation, and social media management. Join 10,000+ businesses transforming their operations.",
+    url: "https://mewayz.com",
+    siteName: "MEWAYZ",
+    images: [
+      {
+        url: "/images/og-business-platform.jpg",
+        width: 1200,
+        height: 630,
+        alt: "MEWAYZ Business Platform Dashboard"
+      }
+    ],
+    locale: "en_US",
+    type: "website"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MEWAYZ - Professional Business Platform",
+    description: "All-in-one business platform for e-commerce, CRM, courses & more. Transform your business operations today.",
+    images: ["/images/twitter-business-platform.jpg"],
+    creator: "@mewayz"
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1
+    }
+  },
+  alternates: {
+    canonical: "https://mewayz.com"
+  }
 };
 
 export default function RootLayout({
-    children,
-}: Readonly<{
-    children: React.ReactNode;
-}>) {
-    return (
-        <html lang="en" suppressHydrationWarning>
-            <head>
-                {/* Description no longer than 155 characters */}
-                <meta
-                    name="description"
-                    content="Core 2.0 – Dashboard Builder"
-                />
-                {/* Product Name */}
-                <meta
-                    name="product-name"
-                    content="Core 2.0 – Dashboard Builder"
-                />
-                {/* Twitter Card data */}
-                <meta name="twitter:card" content="summary" />
-                <meta name="twitter:site" content="@ui8" />
-                <meta
-                    name="twitter:title"
-                    content="Core 2.0 – Dashboard Builder"
-                />
-                <meta
-                    name="twitter:description"
-                    content="Minimal & Ready-to-Build Dashboard UI Design Kit + Code 🔥"
-                />
-                <meta name="twitter:creator" content="@ui8" />
-                <meta
-                    name="twitter:image"
-                    content="%PUBLIC_URL%/twitter-card.png"
-                />
-                {/* Open Graph data for Facebook */}
-                <meta
-                    property="og:title"
-                    content="Core 2.0 – Dashboard Builder"
-                />
-                <meta property="og:type" content="Article" />
-                <meta
-                    property="og:url"
-                    content="https://ui8.net/ui8/products/core-20--dashboard-builder"
-                />
-                <meta
-                    property="og:image"
-                    content="%PUBLIC_URL%/fb-og-image.png"
-                />
-                <meta
-                    property="og:description"
-                    content="Minimal & Ready-to-Build Dashboard UI Design Kit + Code 🔥"
-                />
-                <meta
-                    property="og:site_name"
-                    content="Core 2.0 – Dashboard Builder"
-                />
-                <meta property="fb:admins" content="132951670226590" />
-                {/* Open Graph data for LinkedIn */}
-                <meta
-                    property="og:title"
-                    content="Core 2.0 – Dashboard Builder"
-                />
-                <meta
-                    property="og:url"
-                    content="https://ui8.net/ui8/products/core-20--dashboard-builder"
-                />
-                <meta
-                    property="og:image"
-                    content="%PUBLIC_URL%/linkedin-og-image.png"
-                />
-                <meta
-                    property="og:description"
-                    content="Minimal & Ready-to-Build Dashboard UI Design Kit + Code 🔥"
-                />
-                {/* Open Graph data for Pinterest */}
-                <meta
-                    property="og:title"
-                    content="Core 2.0 – Dashboard Builder"
-                />
-                <meta
-                    property="og:url"
-                    content="https://ui8.net/ui8/products/core-20--dashboard-builder"
-                />
-                <meta
-                    property="og:image"
-                    content="%PUBLIC_URL%/pinterest-og-image.png"
-                />
-                <meta
-                    property="og:description"
-                    content="Minimal & Ready-to-Build Dashboard UI Design Kit + Code 🔥"
-                />
-            </head>
-            <body
-                className={`${interDisplay.variable} bg-b-surface1 font-inter text-body-1 text-t-primary antialiased`}
-            >
-                <Providers>{children}</Providers>
-            </body>
-        </html>
-    );
-}
-
-export async function generateViewport(): Promise<Viewport> {
-    const userAgent = (await headers()).get("user-agent");
-    const isiPhone = /iphone/i.test(userAgent ?? "");
-    return isiPhone
-        ? {
-              width: "device-width",
-              initialScale: 1,
-              maximumScale: 1, // disables auto-zoom on ios safari
-          }
-        : {};
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </head>
+      <body className={inter.className}>{children}</body>
+    </html>
+  );
 }

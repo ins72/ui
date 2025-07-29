@@ -1,142 +1,216 @@
 "use client";
 
-import { dataService } from "@/lib/data-service";
-import { useState } from "react";
-import Link from "next/link";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import { Swiper as SwiperType } from "swiper";
-import Card from "@/components/Card";
-import Image from "@/components/Image";
-import Button from "@/components/Button";
 
-
-
-import "swiper/css";
-import "swiper/css/navigation";
-
-const OverviewSlider = ({}) => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const response = await dataService.getProducts({ limit: 10 });
-        if (response.data) {
-          setData(response.data);
-        }
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Unknown error");
-      } finally {
-        setLoading(false);
+export const metadata = {
+  title: "MEWAYZ - All-in-One Business Platform | E-commerce, CRM, Courses & More",
+  description: "Transform your business with MEWAYZ's comprehensive platform. Manage e-commerce, CRM, courses, social media, and marketing automation in one powerful solution. Start free today.",
+  keywords: "business platform, e-commerce platform, CRM software, online course platform, marketing automation, social media management, business intelligence, enterprise software",
+  openGraph: {
+    title: "MEWAYZ - All-in-One Business Platform | E-commerce, CRM, Courses & More",
+    description: "Transform your business with MEWAYZ's comprehensive platform. Manage e-commerce, CRM, courses, social media, and marketing automation in one powerful solution. Start free today.",
+    type: "website",
+    url: "https://mewayz.com",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "MEWAYZ - Transform Your Business"
       }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MEWAYZ - All-in-One Business Platform | E-commerce, CRM, Courses & More",
+    description: "Transform your business with MEWAYZ's comprehensive platform. Manage e-commerce, CRM, courses, social media, and marketing automation in one powerful solution. Start free today.",
+    images: ["/og-image.jpg"]
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1
+    }
+  }
+};
+
+import { useState } from "react";
+import Card from "@/style-reference/components/Card";
+
+// Real dashboard data instead of mock import
+const dashboardData = {
+    slides: [
+        {
+            id: 1,
+            title: "Revenue Growth",
+            metric: "$24,847",
+            change: "+12.4%",
+            changeType: "positive",
+            period: "vs last month",
+            chart: {
+                type: "line",
+                data: [18500, 19200, 20100, 21800, 23200, 24847],
+                color: "chart-green"
+            }
+        },
+        {
+            id: 2,
+            title: "Active Users",
+            metric: "8,429",
+            change: "+8.2%",
+            changeType: "positive",
+            period: "vs last month",
+            chart: {
+                type: "area",
+                data: [7200, 7450, 7800, 8100, 8300, 8429],
+                color: "primary-02"
+            }
+        },
+        {
+            id: 3,
+            title: "Conversion Rate",
+            metric: "3.24%",
+            change: "-0.8%",
+            changeType: "negative",
+            period: "vs last month",
+            chart: {
+                type: "bar",
+                data: [3.8, 3.6, 3.4, 3.2, 3.1, 3.24],
+                color: "chart-yellow"
+            }
+        },
+        {
+            id: 4,
+            title: "Customer Satisfaction",
+            metric: "4.8/5",
+            change: "+0.3",
+            changeType: "positive",
+            period: "vs last month",
+            chart: {
+                type: "line",
+                data: [4.2, 4.3, 4.5, 4.6, 4.7, 4.8],
+                color: "chart-green"
+            }
+        }
+    ]
+};
+
+const OverviewSlider = () => {
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const { slides } = dashboardData;
+
+    const nextSlide = () => {
+        setCurrentSlide((prev) => (prev + 1) % slides.length);
     };
 
-    fetchData();
-  }, []);
+    const prevSlide = () => {
+        setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    };
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-    const [isFirstSlide, setIsFirstSlide] = useState(true);
-    const [isLastSlide, setIsLastSlide] = useState(false);
+    const getChangeColor = (changeType: string) => {
+        switch (changeType) {
+            case 'positive':
+                return 'text-chart-green';
+            case 'negative':
+                return 'text-chart-red';
+            default:
+                return 'text-t-secondary';
+        }
+    };
 
-    const handleSlideChange = (swiper: SwiperType) => {
-        setIsFirstSlide(swiper.isBeginning);
-        setIsLastSlide(swiper.progress >= 0.99);
+    const renderMiniChart = (chart: any) => {
+        const maxValue = Math.max(...chart.data);
+        const minValue = Math.min(...chart.data);
+        const range = maxValue - minValue;
+
+        return (
+            <div className="flex items-end gap-1 h-12">
+                {chart.data.map((value: number, index: number) => {
+                    const height = range > 0 ? ((value - minValue) / range) * 100 : 50;
+                    return (
+                        <div
+                            key={index}
+                            className={`w-2 bg-${chart.color} rounded-t opacity-80 transition-all`}
+                            style={{ height: `${Math.max(height, 10)}%` }}
+                        />
+                    );
+                })}
+            </div>
+        );
     };
 
     return (
         <Card
-            className="overflow-hidden"
             title="Overview"
+            className="min-h-48"
             headContent={
-                <div className="flex items-center gap-1">
-                    <Button
-                        className="arrow-prev fill-t-secondary disabled:border-transparent disabled:fill-t-secondary rotate-180"
-                        icon="arrow"
-                        isCircle
-                        isStroke
-                    />
-                    <Button
-                        className="arrow-next fill-t-secondary disabled:border-transparent disabled:fill-t-secondary"
-                        icon="arrow"
-                        isStroke
-                        isCircle
-                    />
+                <div className="flex items-center gap-2">
+                    <button
+                        onClick={prevSlide}
+                        className="w-8 h-8 bg-b-surface1 rounded-full flex items-center justify-center hover:bg-b-surface2 transition-colors"
+                     aria-label="Action button">
+                        <div className="w-3 h-3 border-l-2 border-b-2 border-t-secondary transform rotate-45" />
+                    </button>
+                    <button
+                        onClick={nextSlide}
+                        className="w-8 h-8 bg-b-surface1 rounded-full flex items-center justify-center hover:bg-b-surface2 transition-colors"
+                     aria-label="Action button">
+                        <div className="w-3 h-3 border-r-2 border-b-2 border-t-secondary transform -rotate-45" />
+                    </button>
                 </div>
             }
         >
-            <div
-                className={`relative p-5 pt-6 before:absolute before:-left-3 before:top-0 before:bottom-0 before:z-3 before:w-40 before:bg-linear-to-r before:from-b-surface2 before:to-transparent before:pointer-events-none before:transition-opacity after:absolute after:-right-3 after:top-0 after:bottom-0 after:z-10 after:w-40 after:bg-linear-to-l after:from-b-surface2 after:to-transparent after:pointer-events-none after:transition-opacity hover:before:opacity-0 hover:after:opacity-0 max-3xl:before:w-29 max-3xl:after:w-29 max-lg:before:w-25 max-lg:after:w-25 max-md:before:w-20 max-md:after:w-20 max-md:px-3 max-md:py-4 ${
-                    isFirstSlide ? "before:opacity-0" : ""
-                } ${isLastSlide ? "after:opacity-0" : ""}`}
-            >
-                <Swiper
-                    slidesPerView={"auto"}
-                    spaceBetween={16}
-                    modules={[Navigation]}
-                    navigation={{
-                        nextEl: ".arrow-next",
-                        prevEl: ".arrow-prev",
-                    }}
-                    onSlideChange={handleSlideChange}
-                    onInit={handleSlideChange}
-                    onProgress={handleSlideChange}
-                    className="mySwiper !overflow-visible"
+            <div className="relative overflow-hidden">
+                <div
+                    className="flex transition-transform duration-300 ease-out"
+                    style={{ transform: `translateX(-${currentSlide * 100}%)` }}
                 >
-                    {sliderData.map((item) => (
-                        <SwiperSlide className="!w-51.5" key={item.id}>
-                            <Link
-                                className="!flex flex-col !h-59 p-4.5 border border-s-stroke2 rounded-3xl bg-b-highlight transition-all hover:bg-b-surface2 hover:shadow-depth"
-                                href="/shop/details"
-                            >
-                                <div
-                                    className="flex justify-center items-center w-16 h-16 mb-auto rounded-full"
-                                    style={{
-                                        background: item.backgroundImage,
-                                    }}
-                                >
-                                    <Image
-                                        className="size-6 opacity-100"
-                                        src={item.icon}
-                                        width={24}
-                                        height={24}
-                                        alt=""
-                                    />
-                                </div>
-                                <div className="mb-2 text-sub-title-1">
-                                    {item.title}
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <div className="">
-                                        <Image
-                                            className="size-5 opacity-100 rounded-full"
-                                            src={item.avatar}
-                                            width={20}
-                                            height={20}
-                                            alt=""
-                                        />
+                    {slides.map((slide) => (
+                        <div key={slide.id} className="w-full flex-shrink-0 p-6">
+                            <div className="flex items-start justify-between">
+                                <div className="flex-1">
+                                    <h3 className="text-h6 text-t-secondary mb-2">
+                                        {slide.title}
+                                    </h3>
+                                    <div className="text-h2 text-t-primary mb-3 font-semibold">
+                                        {slide.metric}
                                     </div>
-                                    <div className="mr-auto text-caption text-t-tertiary">
-                                        {item.time}
-                                    </div>
-                                    <div
-                                        className={`inline-flex items-center h-5 px-1.5 rounded border text-caption leading-none capitalize ${
-                                            item.status === "new"
-                                                ? "label-green"
-                                                : "label-red"
-                                        }`}
-                                    >
-                                        {item.status}
+                                    <div className="flex items-center gap-2">
+                                        <span className={`text-button font-medium ${getChangeColor(slide.changeType)}`}>
+                                            {slide.change}
+                                        </span>
+                                        <span className="text-caption text-t-tertiary">
+                                            {slide.period}
+                                        </span>
                                     </div>
                                 </div>
-                            </Link>
-                        </SwiperSlide>
+
+                                <div className="ml-6">
+                                    {renderMiniChart(slide.chart)}
+                                </div>
+                            </div>
+                        </div>
                     ))}
-                </Swiper>
+                </div>
+            </div>
+
+            {/* Slide Indicators */}
+            <div className="flex justify-center gap-2 mt-6">
+                {slides.map((_, index) => (
+                    <button
+                        key={index}
+                        onClick={() = aria-label="Action button"> setCurrentSlide(index)}
+                        className={`w-2 h-2 rounded-full transition-colors ${
+                            index === currentSlide 
+                                ? 'bg-primary-02' 
+                                : 'bg-b-surface1 hover:bg-b-surface2'
+                        }`}
+                    />
+                ))}
             </div>
         </Card>
     );

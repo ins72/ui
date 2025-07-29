@@ -1,90 +1,12 @@
-'use client';
+"use client";
 
-import React from 'react';
+import { useEffect } from "react";
+import React, { useEffect } from 'react';
 import { useApp } from '@/contexts/AppContext';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { 
-  Calendar, 
-  Clock,
-  MapPin,
-  Users,
-  Video,
-  ExternalLink,
-  Download,
-  Share,
-  Bookmark,
-  Search,
-  Filter,
-  SortAsc,
-  SortDesc,
-  MoreHorizontal,
-  MoreVertical,
-  ChevronLeft,
-  ChevronRight,
-  ChevronUp,
-  ChevronDown,
-  Minus,
-  Plus,
-  X,
-  Check,
-  AlertCircle,
-  HelpCircle,
-  Unlink,
-  Copy,
-  Scissors,
-  RotateCw,
-  RotateCcw,
-  Save,
-  Upload,
-  Archive,
-  HardDrive,
-  Table,
-  Columns,
-  Rows,
-  Hash,
-  Unlock,
-  Edit,
-  Trash2,
-  Database,
-  Server,
-  Key,
-  Eye,
-  EyeOff,
-  Lock,
-  Shield,
-  Settings,
-  BarChart3,
-  Folder,
-  File,
-  Home,
-  Contact,
-  DollarSign,
-  Zap,
-  BookOpen,
-  Newspaper,
-  Briefcase,
-  LifeBuoy,
-  Cookie,
-  Activity,
-  XCircle,
-  Wrench,
-  Star,
-  Award,
-  TrendingUp,
-  Target,
-  Users as UsersIcon,
-  Image,
-  FileText,
-  Camera,
-  Globe,
-  Mail,
-  Phone,
-  CheckCircle,
-  AlertTriangle,
-  Info
-} from 'lucide-react';
+import Card from "@/style-reference/components/Card";
+import Button from "@/style-reference/components/Button";
+import Badge from "@/style-reference/components/Badge";
+import Icon from "@/style-reference/components/Icon";
 import Link from 'next/link';
 
 export default function EventsPage() {
@@ -187,25 +109,25 @@ export default function EventsPage() {
     {
       title: 'Conferences',
       description: 'Large-scale events with multiple sessions and networking opportunities',
-      icon: Users,
+      icon: 'users',
       count: 2
     },
     {
       title: 'Webinars',
       description: 'Online educational sessions and product demonstrations',
-      icon: Video,
+      icon: 'video',
       count: 1
     },
     {
       title: 'Workshops',
       description: 'Hands-on training sessions with practical exercises',
-      icon: BookOpen,
+      icon: 'book-open',
       count: 1
     },
     {
       title: 'Meetups',
       description: 'Local community gatherings and networking events',
-      icon: MapPin,
+      icon: 'map-pin',
       count: 1
     }
   ];
@@ -214,28 +136,28 @@ export default function EventsPage() {
     {
       title: 'Register for Events',
       description: 'Sign up for upcoming events and webinars',
-      icon: Calendar,
+      icon: 'calendar',
       action: 'register',
       color: 'bg-blue-500'
     },
     {
       title: 'View Past Events',
       description: 'Access recordings and materials from past events',
-      icon: Video,
+      icon: 'video',
       action: 'past-events',
       color: 'bg-green-500'
     },
     {
       title: 'Host Your Event',
       description: 'Request to host a Core 2.0 event in your area',
-      icon: Users,
+      icon: 'users',
       action: 'host',
       color: 'bg-purple-500'
     },
     {
       title: 'Event Calendar',
       description: 'Download our event calendar',
-      icon: Download,
+      icon: 'download',
       action: 'calendar',
       color: 'bg-orange-500'
     }
@@ -246,28 +168,28 @@ export default function EventsPage() {
       title: 'Upcoming Events',
       value: upcomingEvents.length.toString(),
       description: 'Events in the next 30 days',
-      icon: Calendar,
+      icon: 'calendar',
       color: 'text-blue-600'
     },
     {
       title: 'Total Attendees',
       value: '1,200+',
       description: 'Across all events this year',
-      icon: Users,
+      icon: 'users',
       color: 'text-green-600'
     },
     {
       title: 'Event Types',
       value: eventCategories.length.toString(),
       description: 'Different types of events',
-      icon: Target,
+      icon: 'target',
       color: 'text-purple-600'
     },
     {
       title: 'Free Events',
       value: '60%',
       description: 'Percentage of free events',
-      icon: DollarSign,
+      icon: 'dollar-sign',
       color: 'text-orange-600'
     }
   ];
@@ -316,7 +238,7 @@ export default function EventsPage() {
       <div className="grid gap-4 md:grid-cols-4">
         {stats.map((stat) => (
           <Card key={stat.title}>
-            <CardContent className="pt-6">
+            <Icon name="CardContent.toLowerCase()" className="pt-6">
               <div className="flex items-center space-x-4">
                 <div className="p-2 rounded-lg bg-gray-100">
                   <stat.icon className={`h-6 w-6 ${stat.color}`} />
@@ -327,7 +249,7 @@ export default function EventsPage() {
                   <p className="text-xs text-muted-foreground">{stat.description}</p>
                 </div>
               </div>
-            </CardContent>
+            </Icon>
           </Card>
         ))}
       </div>
@@ -337,17 +259,17 @@ export default function EventsPage() {
         {quickActions.map((action) => (
           <Card key={action.title} className="hover:shadow-lg transition-shadow cursor-pointer">
             <Link href="#">
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <Icon name="CardHeader.toLowerCase()" className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <div className={`p-2 rounded-lg ${action.color}`}>
                   <action.icon className="h-4 w-4 text-white" />
                 </div>
-              </CardHeader>
-              <CardContent>
-                <CardTitle className="text-lg font-semibold">{action.title}</CardTitle>
-                <CardDescription className="text-sm text-muted-foreground">
+              </Icon>
+              <Icon name="CardContent.toLowerCase()">
+                <Icon name="CardTitle.toLowerCase()" className="text-lg font-semibold">{action.title}</Icon>
+                <Icon name="CardDescription.toLowerCase()" className="text-sm text-muted-foreground">
                   {action.description}
-                </CardDescription>
-              </CardContent>
+                </Icon>
+              </Icon>
             </Link>
           </Card>
         ))}
@@ -355,16 +277,14 @@ export default function EventsPage() {
 
       {/* Featured Upcoming Events */}
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Star className="h-5 w-5 text-yellow-400" />
-            Featured Upcoming Events
-          </CardTitle>
-          <CardDescription>
-            Don't miss these important events and webinars
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
+        <Icon name="CardHeader.toLowerCase()" className="flex items-center gap-2">
+          <Icon name="Star.toLowerCase()" className="h-5 w-5 text-yellow-400" />
+          Featured Upcoming Events
+        </Icon>
+        <Icon name="CardDescription.toLowerCase()" className="text-sm text-muted-foreground">
+          Don't miss these important events and webinars
+        </Icon>
+        <Icon name="CardContent.toLowerCase()">
           <div className="space-y-6">
             {upcomingEvents.filter(event => event.featured).map((event) => (
               <div key={event.id} className="p-6 border rounded-lg bg-gradient-to-r from-blue-50 to-purple-50">
@@ -374,15 +294,15 @@ export default function EventsPage() {
                     <p className="text-muted-foreground mb-3">{event.description}</p>
                     <div className="flex items-center space-x-4 text-sm text-muted-foreground">
                       <span className="flex items-center space-x-1">
-                        <Calendar className="h-4 w-4" />
+                        <Icon name="Calendar.toLowerCase()" className="h-4 w-4" />
                         <span>{new Date(event.date).toLocaleDateString()}</span>
                       </span>
                       <span className="flex items-center space-x-1">
-                        <Clock className="h-4 w-4" />
+                        <Icon name="Clock.toLowerCase()" className="h-4 w-4" />
                         <span>{event.time}</span>
                       </span>
                       <span className="flex items-center space-x-1">
-                        <MapPin className="h-4 w-4" />
+                        <Icon name="MapPin.toLowerCase()" className="h-4 w-4" />
                         <span>{event.location}</span>
                       </span>
                     </div>
@@ -402,7 +322,7 @@ export default function EventsPage() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-4 text-sm text-muted-foreground">
                     <span className="flex items-center space-x-1">
-                      <Users className="h-4 w-4" />
+                      <Icon name="Users.toLowerCase()" className="h-4 w-4" />
                       <span>{event.attendees}/{event.capacity} registered</span>
                     </span>
                   </div>
@@ -410,7 +330,7 @@ export default function EventsPage() {
                     <Button className="bg-blue-600 hover:bg-blue-700">
                       Register Now
                     </Button>
-                    <Button className="border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">
+                    <Button className="border border-gray-300 bg-white text-gray-700 hover:bg-b-surface">
                       Learn More
                     </Button>
                   </div>
@@ -418,21 +338,19 @@ export default function EventsPage() {
               </div>
             ))}
           </div>
-        </CardContent>
+        </Icon>
       </Card>
 
       {/* All Upcoming Events */}
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Calendar className="h-5 w-5" />
-            All Upcoming Events
-          </CardTitle>
-          <CardDescription>
-            Complete list of upcoming events and webinars
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
+        <Icon name="CardHeader.toLowerCase()" className="flex items-center gap-2">
+          <Icon name="Calendar.toLowerCase()" className="h-5 w-5" />
+          All Upcoming Events
+        </Icon>
+        <Icon name="CardDescription.toLowerCase()" className="text-sm text-muted-foreground">
+          Complete list of upcoming events and webinars
+        </Icon>
+        <Icon name="CardContent.toLowerCase()">
           <div className="space-y-4">
             {upcomingEvents.filter(event => !event.featured).map((event) => (
               <div key={event.id} className="p-4 border rounded-lg hover:shadow-lg transition-shadow">
@@ -442,15 +360,15 @@ export default function EventsPage() {
                     <p className="text-sm text-muted-foreground mb-2">{event.description}</p>
                     <div className="flex items-center space-x-4 text-xs text-muted-foreground">
                       <span className="flex items-center space-x-1">
-                        <Calendar className="h-3 w-3" />
+                        <Icon name="Calendar.toLowerCase()" className="h-3 w-3" />
                         <span>{new Date(event.date).toLocaleDateString()}</span>
                       </span>
                       <span className="flex items-center space-x-1">
-                        <Clock className="h-3 w-3" />
+                        <Icon name="Clock.toLowerCase()" className="h-3 w-3" />
                         <span>{event.time}</span>
                       </span>
                       <span className="flex items-center space-x-1">
-                        <MapPin className="h-3 w-3" />
+                        <Icon name="MapPin.toLowerCase()" className="h-3 w-3" />
                         <span>{event.location}</span>
                       </span>
                     </div>
@@ -464,7 +382,7 @@ export default function EventsPage() {
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2 text-xs text-muted-foreground">
-                    <Users className="h-3 w-3" />
+                    <Icon name="Users.toLowerCase()" className="h-3 w-3" />
                     <span>{event.attendees}/{event.capacity} registered</span>
                   </div>
                   <Button className="text-xs">
@@ -474,21 +392,19 @@ export default function EventsPage() {
               </div>
             ))}
           </div>
-        </CardContent>
+        </Icon>
       </Card>
 
       {/* Event Categories */}
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Target className="h-5 w-5" />
-            Event Categories
-          </CardTitle>
-          <CardDescription>
-            Different types of events we host throughout the year
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
+        <Icon name="CardHeader.toLowerCase()" className="flex items-center gap-2">
+          <Icon name="Target.toLowerCase()" className="h-5 w-5" />
+          Event Categories
+        </Icon>
+        <Icon name="CardDescription.toLowerCase()" className="text-sm text-muted-foreground">
+          Different types of events we host throughout the year
+        </Icon>
+        <Icon name="CardContent.toLowerCase()">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {eventCategories.map((category) => (
               <div key={category.title} className="p-4 border rounded-lg text-center">
@@ -503,21 +419,19 @@ export default function EventsPage() {
               </div>
             ))}
           </div>
-        </CardContent>
+        </Icon>
       </Card>
 
       {/* Past Events */}
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Archive className="h-5 w-5" />
-            Past Events
-          </CardTitle>
-          <CardDescription>
-            Access recordings and materials from previous events
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
+        <Icon name="CardHeader.toLowerCase()" className="flex items-center gap-2">
+          <Icon name="Archive.toLowerCase()" className="h-5 w-5" />
+          Past Events
+        </Icon>
+        <Icon name="CardDescription.toLowerCase()" className="text-sm text-muted-foreground">
+          Access recordings and materials from previous events
+        </Icon>
+        <Icon name="CardContent.toLowerCase()">
           <div className="space-y-4">
             {pastEvents.map((event) => (
               <div key={event.id} className="p-4 border rounded-lg">
@@ -527,15 +441,15 @@ export default function EventsPage() {
                     <p className="text-sm text-muted-foreground mb-2">{event.description}</p>
                     <div className="flex items-center space-x-4 text-xs text-muted-foreground">
                       <span className="flex items-center space-x-1">
-                        <Calendar className="h-3 w-3" />
+                        <Icon name="Calendar.toLowerCase()" className="h-3 w-3" />
                         <span>{new Date(event.date).toLocaleDateString()}</span>
                       </span>
                       <span className="flex items-center space-x-1">
-                        <Clock className="h-3 w-3" />
+                        <Icon name="Clock.toLowerCase()" className="h-3 w-3" />
                         <span>{event.time}</span>
                       </span>
                       <span className="flex items-center space-x-1">
-                        <Users className="h-3 w-3" />
+                        <Icon name="Users.toLowerCase()" className="h-3 w-3" />
                         <span>{event.attendees} attendees</span>
                       </span>
                     </div>
@@ -547,13 +461,13 @@ export default function EventsPage() {
                 <div className="flex items-center space-x-2">
                   {event.recordings && (
                     <Button className="text-xs">
-                      <Video className="h-3 w-3 mr-1" />
+                      <Icon name="Video.toLowerCase()" className="h-3 w-3 mr-1" />
                       Watch Recording
                     </Button>
                   )}
                   {event.materials && (
-                    <Button className="text-xs border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">
-                      <Download className="h-3 w-3 mr-1" />
+                    <Button className="text-xs border border-gray-300 bg-white text-gray-700 hover:bg-b-surface">
+                      <Icon name="Download.toLowerCase()" className="h-3 w-3 mr-1" />
                       Download Materials
                     </Button>
                   )}
@@ -561,21 +475,19 @@ export default function EventsPage() {
               </div>
             ))}
           </div>
-        </CardContent>
+        </Icon>
       </Card>
 
       {/* Call to Action */}
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Calendar className="h-5 w-5" />
-            Stay Updated
-          </CardTitle>
-          <CardDescription>
-            Never miss an important event or webinar
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
+        <Icon name="CardHeader.toLowerCase()" className="flex items-center gap-2">
+          <Icon name="Calendar.toLowerCase()" className="h-5 w-5" />
+          Stay Updated
+        </Icon>
+        <Icon name="CardDescription.toLowerCase()" className="text-sm text-muted-foreground">
+          Never miss an important event or webinar
+        </Icon>
+        <Icon name="CardContent.toLowerCase()">
           <div className="text-center space-y-4">
             <p className="text-muted-foreground">
               Subscribe to our events newsletter and get notified about upcoming events
@@ -585,7 +497,7 @@ export default function EventsPage() {
                 Subscribe to Events
               </Button>
               <Link href="/contact">
-                <Button className="border border-gray-300 bg-white text-gray-700 hover:bg-gray-50">
+                <Button className="border border-gray-300 bg-white text-gray-700 hover:bg-b-surface">
                   Contact Events Team
                 </Button>
               </Link>
@@ -594,7 +506,7 @@ export default function EventsPage() {
               Get early access to registrations • Priority notifications • Exclusive content
             </p>
           </div>
-        </CardContent>
+        </Icon>
       </Card>
     </div>
   );

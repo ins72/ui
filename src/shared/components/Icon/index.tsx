@@ -1,3 +1,4 @@
+import React from "react";
 type IconsType = {
     [key: string]: string;
 };

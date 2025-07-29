@@ -1,8 +1,47 @@
 "use client";
 
+
+export const metadata = {
+  title: "MEWAYZ - All-in-One Business Platform | E-commerce, CRM, Courses & More",
+  description: "Transform your business with MEWAYZ's comprehensive platform. Manage e-commerce, CRM, courses, social media, and marketing automation in one powerful solution. Start free today.",
+  keywords: "business platform, e-commerce platform, CRM software, online course platform, marketing automation, social media management, business intelligence, enterprise software",
+  openGraph: {
+    title: "MEWAYZ - All-in-One Business Platform | E-commerce, CRM, Courses & More",
+    description: "Transform your business with MEWAYZ's comprehensive platform. Manage e-commerce, CRM, courses, social media, and marketing automation in one powerful solution. Start free today.",
+    type: "website",
+    url: "https://mewayz.com",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "MEWAYZ - Transform Your Business"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MEWAYZ - All-in-One Business Platform | E-commerce, CRM, Courses & More",
+    description: "Transform your business with MEWAYZ's comprehensive platform. Manage e-commerce, CRM, courses, social media, and marketing automation in one powerful solution. Start free today.",
+    images: ["/og-image.jpg"]
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1
+    }
+  }
+};
+
+import React from "react";
 import Link from "next/link";
-import Button from "@/components/Button";
-import Logo from "@/components/Logo";
+import Button from "@/style-reference/components/Button";
+import Logo from "@/style-reference/components/Logo";
 
 const PublicHeader = () => {
     return (
@@ -33,10 +72,10 @@ const PublicHeader = () => {
 
                     <div className="flex items-center space-x-4">
                         <Link href="/auth/signin">
-                            <Button isStroke>Sign In</Button>
+                            <button isStroke aria-label="Action button">Sign In</Button>
                         </Link>
                         <Link href="/auth/signup">
-                            <Button isBlack>Get Started</Button>
+                            <button isBlack aria-label="Action button">Get Started</Button>
                         </Link>
                     </div>
                 </div>

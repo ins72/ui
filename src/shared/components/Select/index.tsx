@@ -5,8 +5,8 @@ import {
     ListboxOptions,
     Label,
 } from "@headlessui/react";
-import Icon from "@/components/Icon";
-import Tooltip from "@/components/Tooltip";
+import Icon from "@/style-reference/components/Icon";
+import Tooltip from "@/style-reference/components/Tooltip";
 import { SelectOption } from "@/types/select";
 
 type SelectProps = {

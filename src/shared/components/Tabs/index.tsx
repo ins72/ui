@@ -1,4 +1,4 @@
-import Icon from "@/components/Icon";
+import Icon from "@/style-reference/components/Icon";
 import { TabsOption } from "@/types/tabs";
 
 type TabsProps = {

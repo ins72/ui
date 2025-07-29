@@ -1,7 +1,8 @@
+
 "use client";
 
 import { useState, useEffect } from "react";
-import { apiClient } from "@/infrastructure/api/apiClient";
+import { apiClient } from "@/lib/api-client";
 import Layout from "@/components/Layout";
 import Card from "@/components/Card";
 import Button from "@/components/Button";
@@ -150,25 +151,25 @@ const OrderManagementPage = () => {
             label: "Actions",
             render: (order: Order) => (
                 <div className="flex space-x-2">
-                    <Button 
+                    <Button
                         href={`/orders/view/${order.id}`}
                         size="sm"
                         isStroke
-                    >
+                        aria-label="Action button">
                         View
                     </Button>
                     <Button 
                         href={`/orders/edit/${order.id}`}
                         size="sm"
                         isStroke
-                    >
+                     aria-label="Action button">
                         Edit
                     </Button>
-                    <Button 
+                    <Button
                         onClick={() => handleDeleteOrder(order.id)}
                         size="sm"
                         className="bg-red-600 hover:bg-red-700"
-                    >
+                        aria-label="Action button">
                         Delete
                     </Button>
                 </div>
@@ -193,7 +194,7 @@ const OrderManagementPage = () => {
                     <Card 
                         title="Orders" 
                         headContent={
-                            <Button href="/orders/create">
+                            <Button href="/orders/create" aria-label="Action button">
                                 Create Order
                             </Button>
                         }

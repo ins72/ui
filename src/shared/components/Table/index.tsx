@@ -1,4 +1,5 @@
-import Checkbox from "@/components/Checkbox";
+import React from "react";
+import Checkbox from "@/style-reference/components/Checkbox";
 
 type TableProps = {
     selectAll?: boolean;
